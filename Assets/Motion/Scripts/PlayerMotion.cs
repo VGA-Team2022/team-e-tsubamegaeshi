@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerMotion : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //関数でプレイヤーのアニメーションを呼び出せる
+    [SerializeField] Animator _playerAnimator;
+    public void motion()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _playerAnimator.SetTrigger("New Trigger");
     }
 }
