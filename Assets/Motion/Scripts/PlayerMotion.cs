@@ -6,9 +6,9 @@ using UnityEngine.Events;
 public class PlayerMotion : MonoBehaviour
 {
     //関数でプレイヤーのアニメーションを呼び出せる
-    [SerializeField] Animator _animator;
+    [SerializeField] Animator _playerAnimator;
     public void motion()
     {
-        _animator.SetTrigger("New Trigger");
+        _playerAnimator.SetTrigger("New Trigger");
     }
 }
