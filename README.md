@@ -1,1 +1,9 @@
-# team-e-tsubamegaeshi
+# network-vsaction-invisible
+チーム制作授業の「秘剣！燕返し！！」のリポジトリ。  
+
+## コミットのルール  
+__先頭に[コミット内容]を記述__  
+  * [add] ファイルの新規追加  
+  * [update] 既存ファイルの追記  
+  * [fix] 既存ファイルの修正  
+  * [remove] ファイルの削除  
