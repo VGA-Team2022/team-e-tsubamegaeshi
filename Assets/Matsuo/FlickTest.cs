@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FlickController : MonoBehaviour
+public class FlickTest : MonoBehaviour
 {
 
     private Vector3 _touchStartPos;
@@ -59,6 +57,7 @@ public class FlickController : MonoBehaviour
                 //右向きにフリック
                 Direction = "Right";
                 Debug.Log(Direction);
+                ChangeState(SwipeDirection.RIGHT);
             }
 
             else if (-30 > directionX)
@@ -66,6 +65,7 @@ public class FlickController : MonoBehaviour
                 //左向きにフリック
                 Direction = "Left";
                 Debug.Log(Direction);
+                ChangeState(SwipeDirection.LEFT);
             }
         }
 
@@ -76,12 +76,14 @@ public class FlickController : MonoBehaviour
                 //上向きにフリック
                 Direction = "Up";
                 Debug.Log(Direction);
+                ChangeState(SwipeDirection.UP);
             }
             else if (-30 > directionY)
             {
                 //下向きのフリック
                 Direction = "Down";
                 Debug.Log(Direction);
+                ChangeState(SwipeDirection.DOWN);
             }
         }
         else
@@ -104,7 +106,7 @@ public class FlickController : MonoBehaviour
         var prev = _nowSwipe;
         // 次の状態に変更する
         _nowSwipe = next;
-        Debug.Log($"{prev} -> {next}");
+        Debug.Log($"エネミーステート変更 {prev} -> {next}");
         switch (_nowSwipe)
         {
             case SwipeDirection.NONE:
