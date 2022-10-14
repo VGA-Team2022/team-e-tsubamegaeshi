@@ -39,7 +39,7 @@ public class RectScalerWithViewport : MonoBehaviour
     }
 #endif
 
-    void UpdateRectCheck()
+    private void UpdateRectCheck()
     {
         Camera cam = Camera.main;
         float width = cam.rect.width * Screen.width;
@@ -48,7 +48,7 @@ public class RectScalerWithViewport : MonoBehaviour
         UpdateRect();
     }
 
-    void UpdateRect()
+    private void UpdateRect()
     {
         if (_refResolution.x == 0f || _refResolution.y == 0f) { return; }
 

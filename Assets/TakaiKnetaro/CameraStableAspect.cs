@@ -16,7 +16,7 @@ public class CameraStableAspect : MonoBehaviour
 
     int Width = -1, Heigth = -1;
 
-    void Awake()
+    private void Awake()
     {
         if (_camera == null) { _camera = GetComponent<Camera>(); }
         UpdateCamera();
@@ -27,13 +27,13 @@ public class CameraStableAspect : MonoBehaviour
         UpdateCameraCheck();
     }
 
-    void UpdateCameraCheck()
+    private void UpdateCameraCheck()
     {
         if (Width == Screen.width && Heigth == Screen.height) { return; }
         UpdateCamera();
     }
 
-    void UpdateCamera()
+    private void UpdateCamera()
     {
         float screenWidth = (float)Screen.width;
         float screenHeigth = (float)Screen.height;
