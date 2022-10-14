@@ -4,15 +4,5 @@ using UnityEngine;
 
 public class EnemyMotion : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //関数で敵のアニメーションを呼び出せる
 }
