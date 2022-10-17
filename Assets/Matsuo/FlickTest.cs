@@ -55,18 +55,33 @@ public class FlickTest : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
 
-            //Vector3 toDirection = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z) - _imageObj.transform.position;
-            //// ëŒè€ï®Ç÷âÒì]Ç∑ÇÈ
-            //_imageObj.transform.rotation = Quaternion.FromToRotation(Vector3.up, toDirection);
-            _line.SetPosition(0, Camera.main.ScreenToWorldPoint(_touchStartPos));
-            _line.SetPosition(1, Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
+            var lineStartPos = Camera.main.ScreenToWorldPoint(_touchStartPos);
+            var lineEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            lineStartPos.z = 0;
+            lineEndPos.z = 0;
+
+            Debug.Log(lineStartPos);
+            Debug.Log(lineEndPos);
+
+            if (_nowSwipe == FlickState.NONE)
+            {
+                _line.enabled = true;
+
+                _line.SetPosition(0, lineStartPos);
+                _line.SetPosition(1, lineEndPos);
+            }
 
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             _touchEndPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+            var lineEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            _line.SetPosition(1, lineEndPos);
+
             GetDirection();
         }
     }
@@ -179,6 +194,7 @@ public class FlickTest : MonoBehaviour
         {
             //Debug.Log("StateReSet");
             yield return new WaitForSeconds(1);
+            _line.enabled = false;
             //_imageObj.SetActive(false);
             ChangeState(FlickState.NONE);
         }
