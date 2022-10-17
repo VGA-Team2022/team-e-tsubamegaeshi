@@ -20,6 +20,7 @@ public class StateTest : MonoBehaviour
     private BattleState _enemyState = BattleState.NONE;
 
 
+
     private void Update()
     {
         Battle();

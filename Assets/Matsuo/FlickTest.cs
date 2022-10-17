@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class FlickTest : MonoBehaviour
 {
@@ -6,7 +7,7 @@ public class FlickTest : MonoBehaviour
     private Vector3 _touchStartPos;
     private Vector3 _touchEndPos;
 
-    public enum SwipeDirection
+    public enum FlickState
     {
         NONE,
         TAP,
@@ -16,12 +17,24 @@ public class FlickTest : MonoBehaviour
         LEFT,
     }
     [SerializeField]
-    private SwipeDirection _nowSwipe = SwipeDirection.NONE;
+    private FlickState _nowSwipe = FlickState.NONE;
 
+    [SerializeField]
+    LineRenderer _line;
+
+    private void Start()
+    {
+        //_imageObj = Instantiate(_imageObj);
+        //_imageObj.SetActive(false);
+    }
 
     private void Update()
     {
-        Flick();
+        if (_nowSwipe == FlickState.NONE)
+        {
+            Flick();
+        }
+
     }
 
     /// <summary>
@@ -32,6 +45,23 @@ public class FlickTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             _touchStartPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
+
+            //_imageObj.SetActive(true);
+            //_imageObj.transform.Rotate(Vector3.zero);
+            //var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition + Camera.main.transform.forward * 10);
+            //_imageObj.transform.position = pos;
+        }
+
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+
+            //Vector3 toDirection = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z) - _imageObj.transform.position;
+            //// 対象物へ回転する
+            //_imageObj.transform.rotation = Quaternion.FromToRotation(Vector3.up, toDirection);
+            _line.SetPosition(0, Camera.main.ScreenToWorldPoint(_touchStartPos));
+            _line.SetPosition(1, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+
+
         }
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
@@ -55,17 +85,15 @@ public class FlickTest : MonoBehaviour
             if (30 < directionX)
             {
                 //右向きにフリック
-                Direction = "Right";
-                Debug.Log(Direction);
-                ChangeState(SwipeDirection.RIGHT);
+
+                ChangeState(FlickState.RIGHT);
             }
 
             else if (-30 > directionX)
             {
                 //左向きにフリック
-                Direction = "Left";
-                Debug.Log(Direction);
-                ChangeState(SwipeDirection.LEFT);
+
+                ChangeState(FlickState.LEFT);
             }
         }
 
@@ -74,16 +102,14 @@ public class FlickTest : MonoBehaviour
             if (30 < directionY)
             {
                 //上向きにフリック
-                Direction = "Up";
-                Debug.Log(Direction);
-                ChangeState(SwipeDirection.UP);
+
+                ChangeState(FlickState.UP);
             }
             else if (-30 > directionY)
             {
                 //下向きのフリック
-                Direction = "Down";
-                Debug.Log(Direction);
-                ChangeState(SwipeDirection.DOWN);
+
+                ChangeState(FlickState.DOWN);
             }
         }
         else
@@ -100,45 +126,61 @@ public class FlickTest : MonoBehaviour
     /// 状態変更時に1回だけ呼ばれる処理
     /// </summary>
     /// <param name="next"></param>
-    public void ChangeState(SwipeDirection next)
+    public void ChangeState(FlickState next)
     {
         // 以前の状態を保持
         var prev = _nowSwipe;
         // 次の状態に変更する
         _nowSwipe = next;
-        Debug.Log($"エネミーステート変更 {prev} -> {next}");
+        Debug.Log($"フリック方向 {prev} -> {next}");
         switch (_nowSwipe)
         {
-            case SwipeDirection.NONE:
+            case FlickState.NONE:
                 {
 
                 }
                 break;
-            case SwipeDirection.UP:
+            case FlickState.UP:
                 {
+                    StartCoroutine(StateReSet());
 
                 }
                 break;
-            case SwipeDirection.DOWN:
+            case FlickState.DOWN:
                 {
+                    StartCoroutine(StateReSet());
 
                 }
                 break;
-            case SwipeDirection.RIGHT:
+            case FlickState.RIGHT:
                 {
+                    StartCoroutine(StateReSet());
 
                 }
                 break;
-            case SwipeDirection.LEFT:
+            case FlickState.LEFT:
                 {
+                    StartCoroutine(StateReSet());
 
                 }
                 break;
-            case SwipeDirection.TAP:
+            case FlickState.TAP:
                 {
+                    StartCoroutine(StateReSet());
 
                 }
                 break;
+        }
+    }
+
+    IEnumerator StateReSet()
+    {
+        if(_nowSwipe != FlickState.NONE)
+        {
+            //Debug.Log("StateReSet");
+            yield return new WaitForSeconds(1);
+            //_imageObj.SetActive(false);
+            ChangeState(FlickState.NONE);
         }
     }
 }
