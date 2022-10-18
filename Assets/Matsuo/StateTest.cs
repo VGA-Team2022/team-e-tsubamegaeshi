@@ -8,9 +8,9 @@ public class StateTest : MonoBehaviour
     {
         //とりあえずじゃんけん方式
         NONE = 0,
-        Rock = 1,//グーRight
-        Scissors = 2,//チョキLight
-        Paper = 3//パーDown
+        Rock = 1,//グー/Right
+        Scissors = 2,//チョキ/Light
+        Paper = 3//パー/Down
     }
 
     [SerializeField]

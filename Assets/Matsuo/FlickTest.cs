@@ -7,6 +7,9 @@ public class FlickTest : MonoBehaviour
     private Vector3 _touchStartPos;
     private Vector3 _touchEndPos;
 
+    private Vector3 _lineStartPos;
+    private Vector3 _lineEndPos;
+
     public enum FlickState
     {
         NONE,
@@ -20,13 +23,13 @@ public class FlickTest : MonoBehaviour
     private FlickState _nowSwipe = FlickState.NONE;
 
     [SerializeField]
-    LineRenderer _line;
+    float _stateReSetTime = 0.5f;
 
-    private void Start()
-    {
-        //_imageObj = Instantiate(_imageObj);
-        //_imageObj.SetActive(false);
-    }
+    [SerializeField]
+    float _flickRange = 30f;
+
+    [SerializeField]
+    LineRenderer _line;
 
     private void Update()
     {
@@ -45,32 +48,25 @@ public class FlickTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             _touchStartPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-
-            //_imageObj.SetActive(true);
-            //_imageObj.transform.Rotate(Vector3.zero);
-            //var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition + Camera.main.transform.forward * 10);
-            //_imageObj.transform.position = pos;
         }
 
         if (Input.GetKey(KeyCode.Mouse0))
         {
+            _lineStartPos = Camera.main.ScreenToWorldPoint(_touchStartPos);
+            _lineEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+            _lineStartPos.z = 0;
+            _lineEndPos.z = 0;
 
-            var lineStartPos = Camera.main.ScreenToWorldPoint(_touchStartPos);
-            var lineEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-            lineStartPos.z = 0;
-            lineEndPos.z = 0;
-
-            Debug.Log(lineStartPos);
-            Debug.Log(lineEndPos);
+            //Debug.Log(_lineStartPos);
+            //Debug.Log(_lineEndPos);
 
             if (_nowSwipe == FlickState.NONE)
             {
                 _line.enabled = true;
 
-                _line.SetPosition(0, lineStartPos);
-                _line.SetPosition(1, lineEndPos);
+                _line.SetPosition(0, _lineStartPos);
+                _line.SetPosition(1, _lineEndPos);
             }
 
         }
@@ -78,9 +74,10 @@ public class FlickTest : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             _touchEndPos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Input.mousePosition.z);
-            var lineEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            _line.SetPosition(1, lineEndPos);
+            _lineEndPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            _lineEndPos.z = 0;
+            _line.SetPosition(1, _lineEndPos);
 
             GetDirection();
         }
@@ -97,14 +94,14 @@ public class FlickTest : MonoBehaviour
 
         if (Mathf.Abs(directionY) < Mathf.Abs(directionX))
         {
-            if (30 < directionX)
+            if (_flickRange < directionX)
             {
                 //右向きにフリック
 
                 ChangeState(FlickState.RIGHT);
             }
 
-            else if (-30 > directionX)
+            else if (-_flickRange > directionX)
             {
                 //左向きにフリック
 
@@ -114,7 +111,7 @@ public class FlickTest : MonoBehaviour
 
         else if (Mathf.Abs(directionX) < Mathf.Abs(directionY))
         {
-            if (30 < directionY)
+            if (_flickRange < directionY)
             {
                 //上向きにフリック
 
@@ -188,14 +185,17 @@ public class FlickTest : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// FlickStateリセット処理
+    /// </summary>
+    /// <returns></returns>
     IEnumerator StateReSet()
     {
         if(_nowSwipe != FlickState.NONE)
         {
             //Debug.Log("StateReSet");
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(_stateReSetTime);
             _line.enabled = false;
-            //_imageObj.SetActive(false);
             ChangeState(FlickState.NONE);
         }
     }
