@@ -21,6 +21,7 @@ public class FlickTest : MonoBehaviour
     }
     [SerializeField]
     private FlickState _nowSwipe = FlickState.NONE;
+    public FlickState NowSwipe { get => _nowSwipe; set => _nowSwipe = value; }
 
     [SerializeField]
     float _stateReSetTime = 0.5f;
@@ -31,12 +32,19 @@ public class FlickTest : MonoBehaviour
     [SerializeField]
     LineRenderer _line;
 
+    [SerializeField]
+    Battele _battele;
+
     private void Update()
     {
-        if (_nowSwipe == FlickState.NONE)
+        if(_battele.IsBattle)
         {
-            Flick();
+            if (_nowSwipe == FlickState.NONE)
+            {
+                Flick();
+            }
         }
+
 
     }
 
