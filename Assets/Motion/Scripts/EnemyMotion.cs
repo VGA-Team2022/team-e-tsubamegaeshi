@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class EnemyMotion : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //関数で敵のアニメーションを呼び出せる
+    [SerializeField] Animator _enemyAnimator;
+    public void motion()
     {
-        
+        _enemyAnimator.Play("New Trigger");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void EnemyWalk()
     {
-        
+        _enemyAnimator.Play("KnockBack");
     }
 }
