@@ -40,14 +40,14 @@ public class StateTest : MonoBehaviour
     private void Update()
     {
         Battle();
-        if (_battele.IsBattle && !_isBattele)
-        {
-            BattleStart();
-        }
-        if(_battele.IsBattle)
-        {
-            PlayerStateSet();
-        }
+        //if (_battele.IsBattle && !_isBattele)
+        //{
+        //    BattleStart();
+        //}
+        //if(_battele.IsBattle)
+        //{
+        //    PlayerStateSet();
+        //}
     }
     void BattleStart()
     {
@@ -86,6 +86,9 @@ public class StateTest : MonoBehaviour
             case FlickTest.FlickState.DOWN:
                 _playerState = BattleState.Paper;
                 break;
+            case FlickTest.FlickState.NONE:
+                _playerState = BattleState.NONE;
+                break;
         }
     }
 
@@ -120,6 +123,7 @@ public class StateTest : MonoBehaviour
                         Debug.Log("•‰‚¯");
                         ChangeBattleEndState(BattleEndState.Lose);
                     }
+
                 }
                 break;
             case BattleState.Scissors:
