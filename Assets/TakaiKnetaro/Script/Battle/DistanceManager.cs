@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using DG.Tweening;
 
 //TODO
 //PlayerとEnemy両方の管理を行うとコード量が多くなるかも
@@ -27,6 +28,10 @@ public class DistanceManager : MonoBehaviour
     private float _enemySpeed = 1;
     [SerializeField, Tooltip("敵の初期座標")]
     private Transform _enemyInitPos;
+    [SerializeField, Tooltip("ノックバックの威力")]
+    private float _kbDistance = 1f;
+    [SerializeField, Tooltip("ノックバックされてる時間")]
+    private float _kbTime = 1f;
 
     [Header("ステージ設定")]
     [SerializeField, Tooltip("ステージの最左")]
@@ -73,6 +78,15 @@ public class DistanceManager : MonoBehaviour
         else
         {
             Debug.LogError("プレハブにEnemyを設定してください");
+        }
+
+        if (_kbDistance <= 0)
+        {
+            Debug.LogError("ノックバック距離の値を設定してください");
+        }
+        if (_kbTime <= 0)
+        {
+            Debug.Log("ノックバック時間を設定してください");
         }
 
         _isMove = true;
@@ -154,11 +168,21 @@ public class DistanceManager : MonoBehaviour
     {
         if (e - p <= _stopDistance)
         {
+            KnockBackEnemy();
             return false;
         }
         else
         {
             return true;
         }
+    }
+
+    private void KnockBackEnemy()
+    {
+        _enemy.transform.DOLocalMove
+            (_enemy.transform.position + _enemy.transform.right * _kbDistance, _kbTime)
+            .OnComplete(() => _isMove = true
+            );
+
     }
 }
