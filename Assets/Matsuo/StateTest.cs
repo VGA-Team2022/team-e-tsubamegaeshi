@@ -13,13 +13,13 @@ public class StateTest : MonoBehaviour
         Paper = 3//パー/Down
     }
 
-    [SerializeField]
+    [SerializeField]//確認用　playerのアクション
     private BattleState _playerState = BattleState.NONE;
 
-    [SerializeField]
+    [SerializeField]//確認用　enemyのアクション
     private BattleState _enemyState = BattleState.NONE;
 
-    public enum BattleEndState
+    public enum BattleEndState//勝敗
     {
         NONE = 0,
         Win = 1,
@@ -29,14 +29,14 @@ public class StateTest : MonoBehaviour
     [SerializeField]
     private BattleEndState battleEndState = BattleEndState.NONE;
 
-    [SerializeField]
-    Battele _battele;
+    //[SerializeField]
+    //Battele _battele;
 
-    [SerializeField]
-    FlickTest _flickTest;
+    [SerializeField]//確認用
+    FlickTest _flickTest;//フリック方向
 
-    [SerializeField]
-    bool _isBattele;
+    //[SerializeField]
+    //bool _isBattele;
     private void Update()
     {
         Battle();
@@ -49,12 +49,20 @@ public class StateTest : MonoBehaviour
         //    PlayerStateSet();
         //}
     }
-    void BattleStart()
+
+    /// <summary>
+    /// 戦闘開始時に呼ぶ処理
+    /// </summary>
+    public void BattleStart()
     {
-        _isBattele = true;
+        //_isBattele = true;
         EnemyStateSet();
         //PlayerStateSet();
     }
+
+    /// <summary>
+    /// エネミーの出す手を決めて変更する処理
+    /// </summary>
     void EnemyStateSet()
     {
         var rdm = Random.Range(1, 4);
@@ -72,6 +80,9 @@ public class StateTest : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// デバック用
+    /// </summary>
     void PlayerStateSet()
     {
 
@@ -92,12 +103,19 @@ public class StateTest : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// デバック用ステートリセット
+    /// </summary>
     void StateReSet()
     {
         _playerState = BattleState.NONE;
         _enemyState = BattleState.NONE;
 
     }
+
+    /// <summary>
+    /// 勝敗を判定する処理
+    /// </summary>
     void Battle()
     {
         switch (_playerState)
@@ -110,17 +128,17 @@ public class StateTest : MonoBehaviour
                 {
                     if (_enemyState == BattleState.Rock)
                     {
-                        Debug.Log("あいこ");
+                        //Debug.Log("あいこ");
                         ChangeBattleEndState(BattleEndState.Draw);
                     }
                     else if (_enemyState == BattleState.Scissors)
                     {
-                        Debug.Log("勝ち");
+                        //Debug.Log("勝ち");
                         ChangeBattleEndState(BattleEndState.Win);
                     }
                     else if (_enemyState == BattleState.Paper)
                     {
-                        Debug.Log("負け");
+                        //Debug.Log("負け");
                         ChangeBattleEndState(BattleEndState.Lose);
                     }
 
@@ -130,18 +148,18 @@ public class StateTest : MonoBehaviour
                 {
                     if (_enemyState == BattleState.Rock)
                     {
-                        Debug.Log("負け");
+                        //Debug.Log("負け");
                         ChangeBattleEndState(BattleEndState.Lose);
                     }
                     else if (_enemyState == BattleState.Scissors)
                     {
-                        Debug.Log("あいこ");
+                        //Debug.Log("あいこ");
                         ChangeBattleEndState(BattleEndState.Draw);
 
                     }
                     else if (_enemyState == BattleState.Paper)
                     {
-                        Debug.Log("勝ち");
+                        //Debug.Log("勝ち");
                         ChangeBattleEndState(BattleEndState.Win);
                     }
                 }
@@ -150,18 +168,18 @@ public class StateTest : MonoBehaviour
                 {
                     if (_enemyState == BattleState.Rock)
                     {
-                        Debug.Log("勝ち");
+                        //Debug.Log("勝ち");
                         ChangeBattleEndState(BattleEndState.Win);
                     }
                     else if (_enemyState == BattleState.Scissors)
                     {
-                        Debug.Log("負け");
+                        //Debug.Log("負け");
                         ChangeBattleEndState(BattleEndState.Lose);
 
                     }
                     else if (_enemyState == BattleState.Paper)
                     {
-                        Debug.Log("あいこ");
+                        //Debug.Log("あいこ");
                         ChangeBattleEndState(BattleEndState.Draw);
                     }
                 }
@@ -170,14 +188,15 @@ public class StateTest : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// ここに勝敗の後の処理を書くもしくは呼び出す
+    /// </summary>
+    /// <param name="next"></param>
     public void ChangeBattleEndState(BattleEndState next)
     {
-        _isBattele = false;
-        // 以前の状態を保持
+        //_isBattele = false;
         var prev = battleEndState;
-        // 次の状態に変更する
         battleEndState = next;
-        Debug.Log($"フリック方向 {prev} -> {next}");
         switch (battleEndState)
         {
             case BattleEndState.NONE:
@@ -188,18 +207,21 @@ public class StateTest : MonoBehaviour
 
             case BattleEndState.Win:
                 {
+                    Debug.Log($"戦闘結果{next}");
 
                 }
                 break;
 
             case BattleEndState.Lose:
                 {
+                    Debug.Log($"戦闘結果{next}");
 
                 }
                 break;
 
             case BattleEndState.Draw:
                 {
+                    Debug.Log($"戦闘結果{next}");
 
                 }
                 break;
