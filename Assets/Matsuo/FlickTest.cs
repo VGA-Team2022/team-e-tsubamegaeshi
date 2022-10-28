@@ -37,15 +37,10 @@ public class FlickTest : MonoBehaviour
 
     private void Update()
     {
-        if(_battele.IsBattle)
+        if (_nowSwipe == FlickState.NONE)
         {
-            if (_nowSwipe == FlickState.NONE)
-            {
-                Flick();
-            }
+            Flick();
         }
-
-
     }
 
     /// <summary>
@@ -199,7 +194,7 @@ public class FlickTest : MonoBehaviour
     /// <returns></returns>
     IEnumerator StateReSet()
     {
-        if(_nowSwipe != FlickState.NONE)
+        if (_nowSwipe != FlickState.NONE)
         {
             //Debug.Log("StateReSet");
             yield return new WaitForSeconds(_stateReSetTime);

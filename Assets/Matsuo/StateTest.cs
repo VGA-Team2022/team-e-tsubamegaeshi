@@ -56,6 +56,7 @@ public class StateTest : MonoBehaviour
     public void BattleStart()
     {
         //_isBattele = true;
+        Debug.Log("戦闘開始");
         EnemyStateSet();
         //PlayerStateSet();
     }
@@ -70,12 +71,15 @@ public class StateTest : MonoBehaviour
         {
             case 1:
                 _enemyState = BattleState.Rock;
+                Debug.Log($"敵:{BattleState.Rock}" );
                 break;
             case 2:
                 _enemyState = BattleState.Scissors;
+                Debug.Log($"敵:{BattleState.Scissors}");
                 break;
             case 3:
                 _enemyState = BattleState.Paper;
+                Debug.Log($"敵:{BattleState.Paper}");
                 break;
         }
     }
@@ -90,19 +94,26 @@ public class StateTest : MonoBehaviour
         {
             case FlickTest.FlickState.LEFT:
                 _playerState = BattleState.Rock;
+                Battle();
+                Debug.Log($"プレイヤー:{BattleState.Rock}");
                 break;
             case FlickTest.FlickState.RIGHT:
                 _playerState = BattleState.Scissors;
+                Battle();
+                Debug.Log($"プレイヤー:{BattleState.Scissors}");
                 break;
             case FlickTest.FlickState.DOWN:
                 _playerState = BattleState.Paper;
+                Battle();
+                Debug.Log($"プレイヤー:{BattleState.Paper}");
                 break;
             case FlickTest.FlickState.NONE:
                 _playerState = BattleState.NONE;
+                Battle();
+                Debug.Log($"プレイヤー:{BattleState.NONE}");
                 break;
         }
     }
-
     /// <summary>
     /// デバック用ステートリセット
     /// </summary>
@@ -110,7 +121,6 @@ public class StateTest : MonoBehaviour
     {
         _playerState = BattleState.NONE;
         _enemyState = BattleState.NONE;
-
     }
 
     /// <summary>
