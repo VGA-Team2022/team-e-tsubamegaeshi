@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using static StateTest;
 
-public class PlayerState : MonoBehaviour
+public class PlayerStateController : MonoBehaviour
 {
     [SerializeField]
     private Animator _animator;
     void Start()
     {
-        _animator = GetComponent<Animator>();
+        if(_animator == null)
+        {
+            _animator = GetComponent<Animator>();
+        }
     }
 
     // Update is called once per frame

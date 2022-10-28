@@ -39,6 +39,9 @@ public class StateTest : MonoBehaviour
     [SerializeField]//確認用
     DistanceManager _distanceManager;//バトル判定
 
+    public PlayerStateController _playerStateController;
+    public EnemyStateController _enemyStateController;
+
     //[SerializeField]
     //bool _isBattele;
     private void Update()
@@ -47,14 +50,6 @@ public class StateTest : MonoBehaviour
         {
             PlayerStateSet();
         }
-        //if (_battele.IsBattle && !_isBattele)
-        //{
-        //    BattleStart();
-        //}
-        //if(_battele.IsBattle)
-        //{
-        //    PlayerStateSet();
-        //}
     }
 
     /// <summary>
@@ -78,14 +73,17 @@ public class StateTest : MonoBehaviour
         {
             case 1:
                 _enemyState = BattleState.Rock;
+                _enemyStateController.OnEnemyChangeMode(BattleState.Rock);
                 Debug.Log($"敵:{BattleState.Rock}");
                 break;
             case 2:
                 _enemyState = BattleState.Scissors;
+                _enemyStateController.OnEnemyChangeMode(BattleState.Scissors);
                 Debug.Log($"敵:{BattleState.Scissors}");
                 break;
             case 3:
                 _enemyState = BattleState.Paper;
+                _enemyStateController.OnEnemyChangeMode(BattleState.Paper);
                 Debug.Log($"敵:{BattleState.Paper}");
                 break;
         }
@@ -100,16 +98,19 @@ public class StateTest : MonoBehaviour
         {
             case FlickTest.FlickState.LEFT:
                 _playerState = BattleState.Rock;
+                _playerStateController.OnPlayerChangeMode(BattleState.Rock);
                 Battle();
                 Debug.Log($"プレイヤー:{BattleState.Rock}");
                 break;
             case FlickTest.FlickState.RIGHT:
                 _playerState = BattleState.Scissors;
+                _playerStateController.OnPlayerChangeMode(BattleState.Scissors);
                 Battle();
                 Debug.Log($"プレイヤー:{BattleState.Scissors}");
                 break;
             case FlickTest.FlickState.DOWN:
                 _playerState = BattleState.Paper;
+                _playerStateController.OnPlayerChangeMode(BattleState.Paper);
                 Battle();
                 Debug.Log($"プレイヤー:{BattleState.Paper}");
                 break;
