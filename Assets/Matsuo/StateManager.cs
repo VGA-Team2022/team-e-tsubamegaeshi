@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateTest : MonoBehaviour
+public class StateManager : MonoBehaviour
 {
     public enum BattleState
     {
@@ -34,7 +34,7 @@ public class StateTest : MonoBehaviour
     bool BattleCheck = false;
 
     [SerializeField]//確認用
-    FlickTest _flickTest;//フリック方向
+    FlickManager _flickTest;//フリック方向
 
     [SerializeField]//確認用
     DistanceManager _distanceManager;//バトル判定
@@ -96,25 +96,25 @@ public class StateTest : MonoBehaviour
     {
         switch (_flickTest.NowSwipe)
         {
-            case FlickTest.FlickState.LEFT:
+            case FlickManager.FlickState.LEFT:
                 _playerState = BattleState.Rock;
                 _playerStateController.OnPlayerChangeMode(BattleState.Rock);
                 Battle();
                 Debug.Log($"プレイヤー:{BattleState.Rock}");
                 break;
-            case FlickTest.FlickState.RIGHT:
+            case FlickManager.FlickState.RIGHT:
                 _playerState = BattleState.Scissors;
                 _playerStateController.OnPlayerChangeMode(BattleState.Scissors);
                 Battle();
                 Debug.Log($"プレイヤー:{BattleState.Scissors}");
                 break;
-            case FlickTest.FlickState.DOWN:
+            case FlickManager.FlickState.DOWN:
                 _playerState = BattleState.Paper;
                 _playerStateController.OnPlayerChangeMode(BattleState.Paper);
                 Battle();
                 Debug.Log($"プレイヤー:{BattleState.Paper}");
                 break;
-            case FlickTest.FlickState.NONE:
+            case FlickManager.FlickState.NONE:
                 _playerState = BattleState.NONE;
                 //Debug.Log($"プレイヤー:{BattleState.NONE}");
                 break;

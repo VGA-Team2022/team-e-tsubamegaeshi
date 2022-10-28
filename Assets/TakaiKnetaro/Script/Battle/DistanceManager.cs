@@ -35,7 +35,7 @@ public class DistanceManager : MonoBehaviour
 
     [Header("マネージャー")]
     [SerializeField, Tooltip("StateTest")]
-    private StateTest _stateTest;
+    private StateManager _stateTest;
 
     [Tooltip("プレイヤーの現在の座標")]
     private Vector3 _playerCurrentPos;
@@ -130,17 +130,17 @@ public class DistanceManager : MonoBehaviour
         return value;
     }
 
-    public void SetUp(StateTest.BattleEndState battle)
+    public void SetUp(StateManager.BattleEndState battle)
     {
-        if (battle == StateTest.BattleEndState.Win)
+        if (battle == StateManager.BattleEndState.Win)
         {
             _charaEnemy.KnockBack();
         }
-        else if (battle == StateTest.BattleEndState.Lose)
+        else if (battle == StateManager.BattleEndState.Lose)
         {
             _charaPlayer.KnockBack();
         }
-        else if (battle == StateTest.BattleEndState.Draw)
+        else if (battle == StateManager.BattleEndState.Draw)
         {
             _charaPlayer.KnockBack();
             _charaEnemy.KnockBack();

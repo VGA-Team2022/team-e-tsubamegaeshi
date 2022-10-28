@@ -23,43 +23,43 @@ public class EnemyStateController : MonoBehaviour
     }
 
 
-    public void OnEnemyChangeMode(StateTest.BattleState janken)
+    public void OnEnemyChangeMode(StateManager.BattleState janken)
     {
         switch (janken)
         {
-            case StateTest.BattleState.NONE:
+            case StateManager.BattleState.NONE:
 
                 break;
-            case StateTest.BattleState.Rock:
+            case StateManager.BattleState.Rock:
                 _animator.Play("EnemyAttackRed");
-                Debug.Log($"Enemyのアニメーション{StateTest.BattleState.Rock}を再生");
+                Debug.Log($"Enemyのアニメーション{StateManager.BattleState.Rock}を再生");
                 break;
-            case StateTest.BattleState.Scissors:
+            case StateManager.BattleState.Scissors:
                 _animator.Play("EnemyAttackBlue");
-                Debug.Log($"Enemyのアニメーション{StateTest.BattleState.Scissors}を再生");
+                Debug.Log($"Enemyのアニメーション{StateManager.BattleState.Scissors}を再生");
                 break;
-            case StateTest.BattleState.Paper:
+            case StateManager.BattleState.Paper:
                 _animator.Play("EnemyAttackGreen");
-                Debug.Log($"Enemyのアニメーション{StateTest.BattleState.Paper}を再生");
+                Debug.Log($"Enemyのアニメーション{StateManager.BattleState.Paper}を再生");
                 break;
         }
 
     }
 
-    public void OnEnemyBsttle(StateTest.BattleEndState shouhai)
+    public void OnEnemyBsttle(StateManager.BattleEndState shouhai)
     {
         switch (shouhai)
         {
-            case StateTest.BattleEndState.NONE:
+            case StateManager.BattleEndState.NONE:
                 break;
-            case StateTest.BattleEndState.Win:
-                Debug.Log($"Enemyの勝敗{StateTest.BattleEndState.Win}を再生");
+            case StateManager.BattleEndState.Win:
+                Debug.Log($"Enemyの勝敗{StateManager.BattleEndState.Win}を再生");
                 break;
-            case StateTest.BattleEndState.Lose:
-                Debug.Log($"Enemyの勝敗{StateTest.BattleEndState.Lose}を再生");
+            case StateManager.BattleEndState.Lose:
+                Debug.Log($"Enemyの勝敗{StateManager.BattleEndState.Lose}を再生");
                 break;
-            case StateTest.BattleEndState.Draw:
-                Debug.Log($"Enemyrの勝敗{StateTest.BattleEndState.Draw}を再生");
+            case StateManager.BattleEndState.Draw:
+                Debug.Log($"Enemyrの勝敗{StateManager.BattleEndState.Draw}を再生");
                 break;
         }
     }
