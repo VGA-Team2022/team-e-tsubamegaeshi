@@ -63,6 +63,7 @@ public class DistanceManager : MonoBehaviour
         if (_playerPrefab != null)
         {
             _player = Instantiate(_playerPrefab, _playerInitPos.position, Quaternion.identity);
+            _stateTest._playerStateController = _player.GetComponent<PlayerStateController>();
             _charaPlayer = _player.GetComponent<CharacterScript>();
         }
         else
@@ -73,6 +74,7 @@ public class DistanceManager : MonoBehaviour
         if (_enemyPrefab != null)
         {
             _enemy = Instantiate(_enemyPrefab, _enemyInitPos.position, Quaternion.identity);
+            _stateTest._enemyStateController = _enemy.GetComponent<EnemyStateController>();
             _charaEnemy = _enemy.GetComponent<CharacterScript>();
         }
         else
