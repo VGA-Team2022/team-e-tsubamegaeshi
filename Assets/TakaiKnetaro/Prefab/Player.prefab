@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _chara: 0
-  _charaSpeed: 5
-  _kbDis: 1
+  _charaSpeed: 3
+  _kbDis: 5
   _kbTime: 1
   _isMove: 1
 --- !u!1 &8081501460741860742
