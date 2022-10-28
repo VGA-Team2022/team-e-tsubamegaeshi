@@ -49,7 +49,7 @@ public class DistanceManager : MonoBehaviour
 
     private float _sum = 0;
 
-    private bool _isCheck = false;
+    public bool _isCheck = false;
 
     private void Start()
     {
@@ -128,6 +128,24 @@ public class DistanceManager : MonoBehaviour
         return value;
     }
 
+    public void SetUp(StateTest.BattleEndState battle)
+    {
+        if (battle == StateTest.BattleEndState.Win)
+        {
+            _charaEnemy.KnockBack();
+        }
+        else if (battle == StateTest.BattleEndState.Lose)
+        {
+            _charaPlayer.KnockBack();
+        }
+        else if (battle == StateTest.BattleEndState.Draw)
+        {
+            _charaPlayer.KnockBack();
+            _charaEnemy.KnockBack();
+        }
+        StartCoroutine(nameof(ResetInterval));
+    }
+
     /// <summary>
     /// プレイヤーとエネミーの距離比較
     /// </summary>
@@ -140,12 +158,24 @@ public class DistanceManager : MonoBehaviour
         {
             _charaPlayer._isMove = true;
             _charaEnemy._isMove = true;
-            _stateTest.BattleStart();
+            _stateTest.EnemyStateSet();
             return false;
         }
         else
         {
+            _charaPlayer._isMove = false;
+            _charaEnemy._isMove = false;
             return true;
         }
+    }
+
+    IEnumerator ResetInterval()
+    {
+        yield return new WaitForSeconds(_stateTest._interval);
+        _charaPlayer._isMove = false;
+        _charaEnemy._isMove = false;
+        float playerLerp = LerpTranslate(_player.transform.position.x);
+        float enemyLerp = LerpTranslate(_enemy.transform.position.x);
+        _isCheck = DistanceCheck(playerLerp, enemyLerp);
     }
 }
