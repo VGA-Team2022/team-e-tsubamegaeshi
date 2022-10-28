@@ -13,10 +13,8 @@ public class StateTest : MonoBehaviour
         Paper = 3//ÉpÅ[/Down
     }
 
-    [SerializeField]
     public BattleState _playerState = BattleState.NONE;
 
-    [SerializeField]
     public BattleState _enemyState = BattleState.NONE;
 
     public enum BattleEndState//èüîs
@@ -26,8 +24,7 @@ public class StateTest : MonoBehaviour
         Lose = 2,
         Draw = 3,
     }
-    [SerializeField]
-    private BattleEndState battleEndState = BattleEndState.NONE;
+    public BattleEndState battleEndState = BattleEndState.NONE;
 
     //[SerializeField]
     //Battele _battele;
