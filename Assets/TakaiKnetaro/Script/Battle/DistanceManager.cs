@@ -138,12 +138,11 @@ public class DistanceManager : MonoBehaviour
         }
         else if (battle == StateManager.BattleEndState.Lose)
         {
-            _charaPlayer.KnockBack();
+            Debug.Log("•‰‚¯");
         }
         else if (battle == StateManager.BattleEndState.Draw)
         {
             _charaPlayer.KnockBack();
-            _charaEnemy.KnockBack();
         }
         StartCoroutine(nameof(ResetInterval));
     }
