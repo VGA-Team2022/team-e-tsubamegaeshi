@@ -78,15 +78,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f529aa944b914449d62b8c40f188fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acfFile: Tsubame.acf
+  acfFile: tsubame.acf
   cueSheets:
-  - name: BGM
-    acbFile: BGM.acb
-    awbFile: BGM.awb
+  - name: bgm
+    acbFile: bgm.acb
+    awbFile: bgm.awb
     loaderStatus: 0
-  - name: SE
-    acbFile: SE.acb
-    awbFile: SE.awb
+  - name: se
+    acbFile: se.acb
+    awbFile: se.awb
     loaderStatus: 0
   dspBusSetting: 
   dontDestroyOnLoad: 0
