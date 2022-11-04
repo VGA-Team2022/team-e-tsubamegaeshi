@@ -29,25 +29,25 @@ public class StateTest : MonoBehaviour
     [SerializeField]
     private BattleEndState battleEndState = BattleEndState.NONE;
 
-    //[SerializeField]
-    //Battele _battele;
+    [SerializeField]
+    Battele _battele;
 
     [SerializeField]//確認用
     FlickTest _flickTest;//フリック方向
 
-    //[SerializeField]
-    //bool _isBattele;
+    [SerializeField]
+    bool _isBattele;
     private void Update()
     {
         Battle();
-        //if (_battele.IsBattle && !_isBattele)
-        //{
-        //    BattleStart();
-        //}
-        //if(_battele.IsBattle)
-        //{
-        //    PlayerStateSet();
-        //}
+        if (_battele.IsBattle && !_isBattele)
+        {
+            BattleStart();
+        }
+        if (_battele.IsBattle)
+        {
+            PlayerStateSet();
+        }
     }
 
     /// <summary>
@@ -57,7 +57,7 @@ public class StateTest : MonoBehaviour
     {
         //_isBattele = true;
         EnemyStateSet();
-        //PlayerStateSet();
+        PlayerStateSet();
     }
 
     /// <summary>
@@ -90,12 +90,15 @@ public class StateTest : MonoBehaviour
         {
             case FlickTest.FlickState.LEFT:
                 _playerState = BattleState.Rock;
+                Debug.Log("Rock");
                 break;
             case FlickTest.FlickState.RIGHT:
                 _playerState = BattleState.Scissors;
+                Debug.Log("Scissors");
                 break;
             case FlickTest.FlickState.DOWN:
                 _playerState = BattleState.Paper;
+                Debug.Log("Paper");
                 break;
             case FlickTest.FlickState.NONE:
                 _playerState = BattleState.NONE;
