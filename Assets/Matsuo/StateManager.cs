@@ -34,13 +34,17 @@ public class StateManager : MonoBehaviour
     bool BattleCheck = false;
 
     [SerializeField]//確認用
-    FlickManager _flickTest;//フリック方向
+    private FlickManager _flickTest;//フリック方向
 
     [SerializeField]//確認用
-    DistanceManager _distanceManager;//バトル判定
+    private DistanceManager _distanceManager;//バトル判定
+
+    [SerializeField]
+    private ActionOnDisplay _actionOnDisplay; // 攻撃表示
 
     public PlayerStateController _playerStateController;
     public EnemyStateController _enemyStateController;
+    
 
     //[SerializeField]
     //bool _isBattele;
@@ -74,16 +78,19 @@ public class StateManager : MonoBehaviour
             case 1:
                 _enemyState = BattleState.Rock;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Rock);
+                _actionOnDisplay.OnDisplay(Color.red);
                 Debug.Log($"敵:{BattleState.Rock}");
                 break;
             case 2:
                 _enemyState = BattleState.Scissors;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Scissors);
+                _actionOnDisplay.OnDisplay(Color.yellow);
                 Debug.Log($"敵:{BattleState.Scissors}");
                 break;
             case 3:
                 _enemyState = BattleState.Paper;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Paper);
+                _actionOnDisplay.OnDisplay(Color.blue);
                 Debug.Log($"敵:{BattleState.Paper}");
                 break;
         }
