@@ -36,6 +36,8 @@ public class DistanceManager : MonoBehaviour
     [Header("マネージャー")]
     [SerializeField, Tooltip("StateTest")]
     private StateManager _stateTest;
+    [SerializeField]
+    private TargetCamera _targetCamera;
 
     [Tooltip("プレイヤーの現在の座標")]
     private Vector3 _playerCurrentPos;
@@ -63,6 +65,8 @@ public class DistanceManager : MonoBehaviour
         if (_playerPrefab != null)
         {
             _player = Instantiate(_playerPrefab, _playerInitPos.position, Quaternion.identity);
+
+            _targetCamera._objects[0] = _player.transform;
             _stateTest._playerStateController = _player.GetComponent<PlayerStateController>();
             _charaPlayer = _player.GetComponent<CharacterScript>();
         }
@@ -74,6 +78,8 @@ public class DistanceManager : MonoBehaviour
         if (_enemyPrefab != null)
         {
             _enemy = Instantiate(_enemyPrefab, _enemyInitPos.position, Quaternion.identity);
+
+            _targetCamera._objects[1] = _enemy.transform;
             _stateTest._enemyStateController = _enemy.GetComponent<EnemyStateController>();
             _charaEnemy = _enemy.GetComponent<CharacterScript>();
         }
@@ -85,6 +91,8 @@ public class DistanceManager : MonoBehaviour
         _isCheck = true;
 
         Init();
+
+        _targetCamera.OnTarget();
     }
 
     /// <summary>

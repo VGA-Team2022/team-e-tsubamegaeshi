@@ -13,13 +13,13 @@ public class ActionOnDisplay : MonoBehaviour
 
     private void Start()
     {
-        _actionImage = GetComponent<SpriteRenderer>();
+        //_actionImage = GetComponent<SpriteRenderer>();
         _actionImage.gameObject.SetActive(false);
     }
 
     public void OnDisplay(Color color)
     {
-        _actionImage.color = color;
+        //_actionImage.color = color;
         _actionImage.gameObject.SetActive(true);
         StartCoroutine(nameof(DisplayTime));
     }
