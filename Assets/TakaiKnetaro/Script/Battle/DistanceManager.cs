@@ -35,7 +35,9 @@ public class DistanceManager : MonoBehaviour
 
     [Header("マネージャー")]
     [SerializeField, Tooltip("StateTest")]
-    private StateTest _stateTest;
+    private StateManager _stateTest;
+    [SerializeField]
+    private TargetCamera _targetCamera;
 
     [Tooltip("プレイヤーの現在の座標")]
     private Vector3 _playerCurrentPos;
@@ -49,7 +51,7 @@ public class DistanceManager : MonoBehaviour
 
     private float _sum = 0;
 
-    private bool _isCheck = false;
+    public bool _isCheck = false;
 
     private void Start()
     {
@@ -63,6 +65,9 @@ public class DistanceManager : MonoBehaviour
         if (_playerPrefab != null)
         {
             _player = Instantiate(_playerPrefab, _playerInitPos.position, Quaternion.identity);
+
+            _targetCamera._objects[0] = _player.transform;
+            _stateTest._playerStateController = _player.GetComponent<PlayerStateController>();
             _charaPlayer = _player.GetComponent<CharacterScript>();
         }
         else
@@ -73,6 +78,9 @@ public class DistanceManager : MonoBehaviour
         if (_enemyPrefab != null)
         {
             _enemy = Instantiate(_enemyPrefab, _enemyInitPos.position, Quaternion.identity);
+
+            _targetCamera._objects[1] = _enemy.transform;
+            _stateTest._enemyStateController = _enemy.GetComponent<EnemyStateController>();
             _charaEnemy = _enemy.GetComponent<CharacterScript>();
         }
         else
@@ -83,6 +91,8 @@ public class DistanceManager : MonoBehaviour
         _isCheck = true;
 
         Init();
+
+        _targetCamera.OnTarget();
     }
 
     /// <summary>
@@ -128,6 +138,23 @@ public class DistanceManager : MonoBehaviour
         return value;
     }
 
+    public void SetUp(StateManager.BattleEndState battle)
+    {
+        if (battle == StateManager.BattleEndState.Win)
+        {
+            _charaEnemy.KnockBack();
+        }
+        else if (battle == StateManager.BattleEndState.Lose)
+        {
+            Debug.Log("負け");
+        }
+        else if (battle == StateManager.BattleEndState.Draw)
+        {
+            _charaPlayer.KnockBack();
+        }
+        StartCoroutine(nameof(ResetInterval));
+    }
+
     /// <summary>
     /// プレイヤーとエネミーの距離比較
     /// </summary>
@@ -140,12 +167,24 @@ public class DistanceManager : MonoBehaviour
         {
             _charaPlayer._isMove = true;
             _charaEnemy._isMove = true;
-            _stateTest.BattleStart();
+            _stateTest.EnemyStateSet();
             return false;
         }
         else
         {
+            _charaPlayer._isMove = false;
+            _charaEnemy._isMove = false;
             return true;
         }
+    }
+
+    IEnumerator ResetInterval()
+    {
+        yield return new WaitForSeconds(_stateTest._interval);
+        _charaPlayer._isMove = false;
+        _charaEnemy._isMove = false;
+        float playerLerp = LerpTranslate(_player.transform.position.x);
+        float enemyLerp = LerpTranslate(_enemy.transform.position.x);
+        _isCheck = DistanceCheck(playerLerp, enemyLerp);
     }
 }

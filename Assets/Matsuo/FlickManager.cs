@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class FlickTest : MonoBehaviour
+public class FlickManager : MonoBehaviour
 {
 
     private Vector3 _touchStartPos;

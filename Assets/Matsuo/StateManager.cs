@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateTest : MonoBehaviour
+public class StateManager : MonoBehaviour
 {
     public enum BattleState
     {
@@ -13,11 +13,9 @@ public class StateTest : MonoBehaviour
         Paper = 3//パー/Down
     }
 
-    [SerializeField]//確認用　playerのアクション
-    private BattleState _playerState = BattleState.NONE;
+    public BattleState _playerState = BattleState.NONE;
 
-    [SerializeField]//確認用　enemyのアクション
-    private BattleState _enemyState = BattleState.NONE;
+    public BattleState _enemyState = BattleState.NONE;
 
     public enum BattleEndState//勝敗
     {
@@ -26,28 +24,36 @@ public class StateTest : MonoBehaviour
         Lose = 2,
         Draw = 3,
     }
-    [SerializeField]
-    private BattleEndState battleEndState = BattleEndState.NONE;
+    public BattleEndState battleEndState = BattleEndState.NONE;
 
     //[SerializeField]
     //Battele _battele;
 
+    public float _interval = 1f;
+
+    bool BattleCheck = false;
+
     [SerializeField]//確認用
-    FlickTest _flickTest;//フリック方向
+    private FlickManager _flickTest;//フリック方向
+
+    [SerializeField]//確認用
+    private DistanceManager _distanceManager;//バトル判定
+
+    [SerializeField]
+    private ActionOnDisplay _actionOnDisplay; // 攻撃表示
+
+    public PlayerStateController _playerStateController;
+    public EnemyStateController _enemyStateController;
+    
 
     //[SerializeField]
     //bool _isBattele;
     private void Update()
     {
-        Battle();
-        //if (_battele.IsBattle && !_isBattele)
-        //{
-        //    BattleStart();
-        //}
-        //if(_battele.IsBattle)
-        //{
-        //    PlayerStateSet();
-        //}
+        if (!_distanceManager._isCheck)
+        {
+            PlayerStateSet();
+        }
     }
 
     /// <summary>
@@ -64,21 +70,27 @@ public class StateTest : MonoBehaviour
     /// <summary>
     /// エネミーの出す手を決めて変更する処理
     /// </summary>
-    void EnemyStateSet()
+    public void EnemyStateSet()
     {
         var rdm = Random.Range(1, 4);
-        switch(rdm)
+        switch (rdm)
         {
             case 1:
                 _enemyState = BattleState.Rock;
-                Debug.Log($"敵:{BattleState.Rock}" );
+                _enemyStateController.OnEnemyChangeMode(BattleState.Rock);
+                _actionOnDisplay.OnDisplay(Color.red);
+                Debug.Log($"敵:{BattleState.Rock}");
                 break;
             case 2:
                 _enemyState = BattleState.Scissors;
+                _enemyStateController.OnEnemyChangeMode(BattleState.Scissors);
+                _actionOnDisplay.OnDisplay(Color.yellow);
                 Debug.Log($"敵:{BattleState.Scissors}");
                 break;
             case 3:
                 _enemyState = BattleState.Paper;
+                _enemyStateController.OnEnemyChangeMode(BattleState.Paper);
+                _actionOnDisplay.OnDisplay(Color.blue);
                 Debug.Log($"敵:{BattleState.Paper}");
                 break;
         }
@@ -89,28 +101,29 @@ public class StateTest : MonoBehaviour
     /// </summary>
     void PlayerStateSet()
     {
-
         switch (_flickTest.NowSwipe)
         {
-            case FlickTest.FlickState.LEFT:
+            case FlickManager.FlickState.LEFT:
                 _playerState = BattleState.Rock;
+                _playerStateController.OnPlayerChangeMode(BattleState.Rock);
                 Battle();
                 Debug.Log($"プレイヤー:{BattleState.Rock}");
                 break;
-            case FlickTest.FlickState.RIGHT:
+            case FlickManager.FlickState.RIGHT:
                 _playerState = BattleState.Scissors;
+                _playerStateController.OnPlayerChangeMode(BattleState.Scissors);
                 Battle();
                 Debug.Log($"プレイヤー:{BattleState.Scissors}");
                 break;
-            case FlickTest.FlickState.DOWN:
+            case FlickManager.FlickState.DOWN:
                 _playerState = BattleState.Paper;
+                _playerStateController.OnPlayerChangeMode(BattleState.Paper);
                 Battle();
                 Debug.Log($"プレイヤー:{BattleState.Paper}");
                 break;
-            case FlickTest.FlickState.NONE:
+            case FlickManager.FlickState.NONE:
                 _playerState = BattleState.NONE;
-                Battle();
-                Debug.Log($"プレイヤー:{BattleState.NONE}");
+                //Debug.Log($"プレイヤー:{BattleState.NONE}");
                 break;
         }
     }
@@ -119,8 +132,12 @@ public class StateTest : MonoBehaviour
     /// </summary>
     void StateReSet()
     {
-        _playerState = BattleState.NONE;
-        _enemyState = BattleState.NONE;
+        Debug.Log("リセット");
+        //_playerState = BattleState.NONE;
+        //_enemyState = BattleState.NONE;
+        //battleEndState = BattleEndState.NONE;
+        BattleCheck = true;
+        StartCoroutine(nameof(BattleInterval));
     }
 
     /// <summary>
@@ -205,6 +222,9 @@ public class StateTest : MonoBehaviour
     public void ChangeBattleEndState(BattleEndState next)
     {
         //_isBattele = false;
+
+        if(BattleCheck) { return; }
+
         var prev = battleEndState;
         battleEndState = next;
         switch (battleEndState)
@@ -218,23 +238,32 @@ public class StateTest : MonoBehaviour
             case BattleEndState.Win:
                 {
                     Debug.Log($"戦闘結果{next}");
-
+                    _distanceManager?.SetUp(BattleEndState.Win);
+                    StateReSet();
                 }
                 break;
 
             case BattleEndState.Lose:
                 {
                     Debug.Log($"戦闘結果{next}");
-
+                    _distanceManager?.SetUp(BattleEndState.Lose);
+                    StateReSet();  
                 }
                 break;
 
             case BattleEndState.Draw:
                 {
                     Debug.Log($"戦闘結果{next}");
-
+                    _distanceManager?.SetUp(BattleEndState.Draw);
+                    StateReSet();
                 }
                 break;
         }
+    }
+
+    IEnumerator BattleInterval()
+    {
+        yield return new WaitForSeconds(_interval);
+        BattleCheck = false;
     }
 }
