@@ -16,22 +16,14 @@ public class DistanceManager : MonoBehaviour
     [Header("プレイヤー")]
     [SerializeField, Tooltip("プレイヤーのプレハブ")]
     private GameObject _playerPrefab;
-    [SerializeField, Tooltip("プレイヤーのスピード")]
-    private float _playerSpeed = 1;
     [SerializeField, Tooltip("プレイヤーの初期座標")]
     private Transform _playerInitPos;
 
     [Header("敵")]
     [SerializeField, Tooltip("敵のプレハブ")]
     private GameObject _enemyPrefab;
-    [SerializeField, Tooltip("敵のスピード")]
-    private float _enemySpeed = 1;
     [SerializeField, Tooltip("敵の初期座標")]
     private Transform _enemyInitPos;
-    [SerializeField, Tooltip("ノックバックの威力")]
-    private float _kbDistance = 1f;
-    [SerializeField, Tooltip("ノックバックされてる時間")]
-    private float _kbTime = 1f;
 
     [Header("ステージ設定")]
     [SerializeField, Tooltip("ステージの最左")]
@@ -41,17 +33,23 @@ public class DistanceManager : MonoBehaviour
     [SerializeField, Tooltip("静止する線形距離")]
     private float _stopDistance = 0.05f;
 
+    [Header("マネージャー")]
+    [SerializeField, Tooltip("StateTest")]
+    private StateManager _stateTest;
+
     [Tooltip("プレイヤーの現在の座標")]
     private Vector3 _playerCurrentPos;
     [Tooltip("敵の現在の座標")]
     private Vector3 _enemyCurrentPos;
 
     private GameObject _player;
+    private CharacterScript _charaPlayer;
     private GameObject _enemy;
+    private CharacterScript _charaEnemy;
 
     private float _sum = 0;
 
-    private bool _isMove = false;
+    public bool _isCheck = false;
 
     private void Start()
     {
@@ -65,6 +63,8 @@ public class DistanceManager : MonoBehaviour
         if (_playerPrefab != null)
         {
             _player = Instantiate(_playerPrefab, _playerInitPos.position, Quaternion.identity);
+            _stateTest._playerStateController = _player.GetComponent<PlayerStateController>();
+            _charaPlayer = _player.GetComponent<CharacterScript>();
         }
         else
         {
@@ -74,22 +74,15 @@ public class DistanceManager : MonoBehaviour
         if (_enemyPrefab != null)
         {
             _enemy = Instantiate(_enemyPrefab, _enemyInitPos.position, Quaternion.identity);
+            _stateTest._enemyStateController = _enemy.GetComponent<EnemyStateController>();
+            _charaEnemy = _enemy.GetComponent<CharacterScript>();
         }
         else
         {
             Debug.LogError("プレハブにEnemyを設定してください");
         }
 
-        if (_kbDistance <= 0)
-        {
-            Debug.LogError("ノックバック距離の値を設定してください");
-        }
-        if (_kbTime <= 0)
-        {
-            Debug.Log("ノックバック時間を設定してください");
-        }
-
-        _isMove = true;
+        _isCheck = true;
 
         Init();
     }
@@ -111,15 +104,12 @@ public class DistanceManager : MonoBehaviour
 
     private void Update()
     {
-        if (_isMove == false) return;
-
-        PlayerMove(_player.transform);
-        EnemyMove(_enemy.transform);
+        if (_isCheck == false) return;
 
         float playerLerp = LerpTranslate(_player.transform.position.x);
         float enemyLerp = LerpTranslate(_enemy.transform.position.x);
 
-        _isMove = DistanceCheck(playerLerp, enemyLerp);
+        _isCheck = DistanceCheck(playerLerp, enemyLerp);
     }
 
     /// <summary>
@@ -136,26 +126,25 @@ public class DistanceManager : MonoBehaviour
         }
 
         float value = (xPos - _start.position.x) / _sum;
-        Debug.Log(value);
+        //Debug.Log(value);
         return value;
     }
 
-    /// <summary>
-    /// Playerの移動、Transform.Translateを使う
-    /// </summary>
-    /// <param name="tr"></param>
-    private void PlayerMove(Transform tr)
+    public void SetUp(StateManager.BattleEndState battle)
     {
-        tr.Translate(Vector3.right * Time.deltaTime * _playerSpeed);
-    }
-
-    /// <summary>
-    /// Enemyの移動、Transform.Translateを使う
-    /// </summary>
-    /// <param name="tr"></param>
-    private void EnemyMove(Transform tr)
-    {
-        tr.Translate(Vector3.left * Time.deltaTime * _enemySpeed);
+        if (battle == StateManager.BattleEndState.Win)
+        {
+            _charaEnemy.KnockBack();
+        }
+        else if (battle == StateManager.BattleEndState.Lose)
+        {
+            Debug.Log("負け");
+        }
+        else if (battle == StateManager.BattleEndState.Draw)
+        {
+            _charaPlayer.KnockBack();
+        }
+        StartCoroutine(nameof(ResetInterval));
     }
 
     /// <summary>
@@ -168,21 +157,26 @@ public class DistanceManager : MonoBehaviour
     {
         if (e - p <= _stopDistance)
         {
-            KnockBackEnemy();
+            _charaPlayer._isMove = true;
+            _charaEnemy._isMove = true;
+            _stateTest.EnemyStateSet();
             return false;
         }
         else
         {
+            _charaPlayer._isMove = false;
+            _charaEnemy._isMove = false;
             return true;
         }
     }
 
-    private void KnockBackEnemy()
+    IEnumerator ResetInterval()
     {
-        _enemy.transform.DOLocalMove
-            (_enemy.transform.position + _enemy.transform.right * _kbDistance, _kbTime)
-            .OnComplete(() => _isMove = true
-            );
-
+        yield return new WaitForSeconds(_stateTest._interval);
+        _charaPlayer._isMove = false;
+        _charaEnemy._isMove = false;
+        float playerLerp = LerpTranslate(_player.transform.position.x);
+        float enemyLerp = LerpTranslate(_enemy.transform.position.x);
+        _isCheck = DistanceCheck(playerLerp, enemyLerp);
     }
 }
