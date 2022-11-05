@@ -42,18 +42,20 @@ public class StateManager : MonoBehaviour
     [SerializeField]
     private ActionOnDisplay _actionOnDisplay; // çUåÇï\é¶
 
+    [SerializeField]
+    private float _attackTimer = 1f;
+
+    private float _timer;
+
     public PlayerStateController _playerStateController;
     public EnemyStateController _enemyStateController;
-    
 
-    //[SerializeField]
-    //bool _isBattele;
     private void Update()
     {
         if (!_distanceManager._isCheck)
         {
             PlayerStateSet();
-        }
+        } 
     }
 
     /// <summary>
@@ -61,10 +63,19 @@ public class StateManager : MonoBehaviour
     /// </summary>
     public void BattleStart()
     {
-        //_isBattele = true;
         Debug.Log("êÌì¨äJén");
         EnemyStateSet();
-        //PlayerStateSet();
+    }
+
+    public void AttackTimer()
+    {
+        StartCoroutine(nameof(AttackTimerCoroutine));
+    }
+
+    IEnumerator AttackTimerCoroutine()
+    {
+        yield return new WaitForSeconds(_attackTimer);
+        ChangeBattleEndState(BattleEndState.Lose);
     }
 
     /// <summary>
@@ -78,19 +89,19 @@ public class StateManager : MonoBehaviour
             case 1:
                 _enemyState = BattleState.Rock;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Rock);
-                _actionOnDisplay.OnDisplay(Color.red);
+                _actionOnDisplay.OnDisplay(Color.red, _attackTimer);
                 Debug.Log($"ìG:{BattleState.Rock}");
                 break;
             case 2:
                 _enemyState = BattleState.Scissors;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Scissors);
-                _actionOnDisplay.OnDisplay(Color.yellow);
+                _actionOnDisplay.OnDisplay(Color.yellow, _attackTimer);
                 Debug.Log($"ìG:{BattleState.Scissors}");
                 break;
             case 3:
                 _enemyState = BattleState.Paper;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Paper);
-                _actionOnDisplay.OnDisplay(Color.blue);
+                _actionOnDisplay.OnDisplay(Color.blue, _attackTimer);
                 Debug.Log($"ìG:{BattleState.Paper}");
                 break;
         }
@@ -133,9 +144,6 @@ public class StateManager : MonoBehaviour
     void StateReSet()
     {
         Debug.Log("ÉäÉZÉbÉg");
-        //_playerState = BattleState.NONE;
-        //_enemyState = BattleState.NONE;
-        //battleEndState = BattleEndState.NONE;
         BattleCheck = true;
         StartCoroutine(nameof(BattleInterval));
     }
@@ -223,7 +231,7 @@ public class StateManager : MonoBehaviour
     {
         //_isBattele = false;
 
-        if(BattleCheck) { return; }
+        if (BattleCheck) { return; }
 
         var prev = battleEndState;
         battleEndState = next;
@@ -247,7 +255,7 @@ public class StateManager : MonoBehaviour
                 {
                     Debug.Log($"êÌì¨åãâ {next}");
                     _distanceManager?.SetUp(BattleEndState.Lose);
-                    StateReSet();  
+                    StateReSet();
                 }
                 break;
 
@@ -260,7 +268,6 @@ public class StateManager : MonoBehaviour
                 break;
         }
     }
-
     IEnumerator BattleInterval()
     {
         yield return new WaitForSeconds(_interval);
