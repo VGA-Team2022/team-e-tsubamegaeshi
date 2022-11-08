@@ -148,6 +148,7 @@ public class DistanceManager : MonoBehaviour
         if (battle == StateManager.BattleEndState.Win)
         {
             _charaEnemy.KnockBack();
+            _charaPlayer.MoveStart();
         }
         else if (battle == StateManager.BattleEndState.Lose)
         {
@@ -156,6 +157,7 @@ public class DistanceManager : MonoBehaviour
         else if (battle == StateManager.BattleEndState.Draw)
         {
             _charaPlayer.KnockBack();
+            _charaEnemy.MoveStart();
         }
         StartCoroutine(nameof(ResetInterval));
     }
@@ -177,8 +179,8 @@ public class DistanceManager : MonoBehaviour
         }
         else
         {
-            _charaPlayer._isMove = false;
-            _charaEnemy._isMove = false;
+            //_charaPlayer._isMove = false;
+            //_charaEnemy._isMove = false;
             return true;
         }
     }
@@ -186,8 +188,8 @@ public class DistanceManager : MonoBehaviour
     IEnumerator ResetInterval()
     {
         yield return new WaitForSeconds(_stateManager._interval);
-        _charaPlayer._isMove = false;
-        _charaEnemy._isMove = false;
+        //_charaPlayer._isMove = false;
+        //_charaEnemy._isMove = false;
         float playerLerp = LerpTranslate(_player.transform.position.x);
         float enemyLerp = LerpTranslate(_enemy.transform.position.x);
         _isCheck = DistanceCheck(playerLerp, enemyLerp);
