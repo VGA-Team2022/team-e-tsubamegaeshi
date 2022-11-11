@@ -11,7 +11,10 @@ public class StageButton : MonoBehaviour
 
     public void OnClickStartButton()
     {
+        AudioManager.Instance.PlaySE("SE_RepelEnemy_DEMO_Ver.2_20221101");
         SceneManager.LoadScene("StageScene");
     }
+
+
 
 }
