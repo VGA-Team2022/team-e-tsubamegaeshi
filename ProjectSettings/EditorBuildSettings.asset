@@ -5,13 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/OutSideGame/Ryosuke/Scene/OptionScene.unity
     guid: 98e7af7ecfb8bbf4680953d3737668a0
-  - enabled: 1
+  - enabled: 0
     path: Assets/OutSideGame/Ryosuke/Scene/StageScene.unity
     guid: 8c0c52d7dac09e44e9b94bfe4c0df812
+  - enabled: 1
+    path: Assets/TakaiKnetaro/TakaiScene.unity
+    guid: ea9f3c1624cc5244e8bc64240c0656a7
   m_configObjects: {}

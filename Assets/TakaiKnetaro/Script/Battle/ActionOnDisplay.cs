@@ -6,20 +6,27 @@ using UnityEngine.UI;
 public class ActionOnDisplay : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _actionImage; // UŒ‚‚Ì‰æ‘œ
+    private Renderer _actionImage; // UŒ‚‚Ì‰æ‘œ
 
-    [SerializeField]
     private float _displayTime = 1f; // ‰æ‘œ‚Ì•\¦ŠÔ
 
     private void Start()
     {
-        //_actionImage = GetComponent<SpriteRenderer>();
-        _actionImage.gameObject.SetActive(false);
+        //_actionImage = GameObject.Find("ActionDisplay").GetComponent<Renderer>();
+        //_actionImage.gameObject.SetActive(false);
     }
 
-    public void OnDisplay(Color color)
+    public void OnDisplay(Color color, float time)
     {
-        //_actionImage.color = color;
+        if(_actionImage == null) 
+        {
+            _actionImage = GameObject.Find("ActionDisplay").GetComponent<Renderer>();
+            _actionImage.gameObject.SetActive(false);
+        }
+
+        _displayTime = time;
+
+        _actionImage.material.color = color;
         _actionImage.gameObject.SetActive(true);
         StartCoroutine(nameof(DisplayTime));
     }

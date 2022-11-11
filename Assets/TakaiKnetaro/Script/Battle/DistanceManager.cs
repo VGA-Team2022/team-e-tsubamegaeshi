@@ -35,7 +35,7 @@ public class DistanceManager : MonoBehaviour
 
     [Header("マネージャー")]
     [SerializeField, Tooltip("StateTest")]
-    private StateManager _stateTest;
+    private StateManager _stateManager;
     [SerializeField]
     private TargetCamera _targetCamera;
 
@@ -43,6 +43,8 @@ public class DistanceManager : MonoBehaviour
     private Vector3 _playerCurrentPos;
     [Tooltip("敵の現在の座標")]
     private Vector3 _enemyCurrentPos;
+    [SerializeField]
+    private float _attackInterval = 1f;
 
     private GameObject _player;
     private CharacterScript _charaPlayer;
@@ -65,9 +67,8 @@ public class DistanceManager : MonoBehaviour
         if (_playerPrefab != null)
         {
             _player = Instantiate(_playerPrefab, _playerInitPos.position, Quaternion.identity);
-
             _targetCamera._objects[0] = _player.transform;
-            _stateTest._playerStateController = _player.GetComponent<PlayerStateController>();
+            _stateManager._playerStateController = _player.GetComponent<PlayerStateController>();
             _charaPlayer = _player.GetComponent<CharacterScript>();
         }
         else
@@ -78,9 +79,8 @@ public class DistanceManager : MonoBehaviour
         if (_enemyPrefab != null)
         {
             _enemy = Instantiate(_enemyPrefab, _enemyInitPos.position, Quaternion.identity);
-
             _targetCamera._objects[1] = _enemy.transform;
-            _stateTest._enemyStateController = _enemy.GetComponent<EnemyStateController>();
+            _stateManager._enemyStateController = _enemy.GetComponent<EnemyStateController>();
             _charaEnemy = _enemy.GetComponent<CharacterScript>();
         }
         else
@@ -118,6 +118,11 @@ public class DistanceManager : MonoBehaviour
         float enemyLerp = LerpTranslate(_enemy.transform.position.x);
 
         _isCheck = DistanceCheck(playerLerp, enemyLerp);
+
+        if(!_isCheck)
+        {
+            _stateManager.AttackTimer();
+        }
     }
 
     /// <summary>
@@ -143,6 +148,7 @@ public class DistanceManager : MonoBehaviour
         if (battle == StateManager.BattleEndState.Win)
         {
             _charaEnemy.KnockBack();
+            _charaPlayer.MoveStart();
         }
         else if (battle == StateManager.BattleEndState.Lose)
         {
@@ -151,6 +157,7 @@ public class DistanceManager : MonoBehaviour
         else if (battle == StateManager.BattleEndState.Draw)
         {
             _charaPlayer.KnockBack();
+            _charaEnemy.MoveStart();
         }
         StartCoroutine(nameof(ResetInterval));
     }
@@ -167,22 +174,22 @@ public class DistanceManager : MonoBehaviour
         {
             _charaPlayer._isMove = true;
             _charaEnemy._isMove = true;
-            _stateTest.EnemyStateSet();
+            _stateManager.EnemyStateSet();
             return false;
         }
         else
         {
-            _charaPlayer._isMove = false;
-            _charaEnemy._isMove = false;
+            //_charaPlayer._isMove = false;
+            //_charaEnemy._isMove = false;
             return true;
         }
     }
 
     IEnumerator ResetInterval()
     {
-        yield return new WaitForSeconds(_stateTest._interval);
-        _charaPlayer._isMove = false;
-        _charaEnemy._isMove = false;
+        yield return new WaitForSeconds(_stateManager._interval);
+        //_charaPlayer._isMove = false;
+        //_charaEnemy._isMove = false;
         float playerLerp = LerpTranslate(_player.transform.position.x);
         float enemyLerp = LerpTranslate(_enemy.transform.position.x);
         _isCheck = DistanceCheck(playerLerp, enemyLerp);
