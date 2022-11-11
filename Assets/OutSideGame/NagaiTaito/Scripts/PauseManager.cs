@@ -6,12 +6,9 @@ public class PauseManager : MonoBehaviour
     bool _pauseJudge = false;
     public event Action<bool> _pause;
 
-    public void Update()
+    public void Pause()
     {
-        if(Input.GetButtonDown("Cancel"))
-        {
-            PauseResume();
-        }
+        PauseResume();
     }
 
     void PauseResume()
