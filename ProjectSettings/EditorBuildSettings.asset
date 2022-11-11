@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/OutSideGame/Ryosuke/Scene/StageScene.unity
     guid: 8c0c52d7dac09e44e9b94bfe4c0df812
+  - enabled: 1
+    path: Assets/OutSideGame/Ryosuke/Scene/EasyScene.unity
+    guid: e73e7175296ee784e90c988279ac1c1c
+  - enabled: 1
+    path: Assets/OutSideGame/Ryosuke/Scene/NomalScene.unity
+    guid: aa0dd1d65135cb74c9b7fcabe5b779ca
+  - enabled: 1
+    path: Assets/OutSideGame/Ryosuke/Scene/HardScene.unity
+    guid: fc44ef1c63935d44dae4805e3b3f33f9
   m_configObjects: {}
