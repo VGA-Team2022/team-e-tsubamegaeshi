@@ -55,12 +55,21 @@ public class CharacterScript : MonoBehaviour
         {
             gameObject.transform.DOLocalMove
             (gameObject.transform.position + (gameObject.transform.right * -1) * _kbDis, _kbTime);
+            _isMove = true;
         }
-        else if(_chara == Chara.Enemy)
+        else if (_chara == Chara.Enemy)
         {
             gameObject.transform.DOLocalMove
             (gameObject.transform.position + gameObject.transform.right * _kbDis, _kbTime);
+            _isMove = true;
         }
+    }
 
+    public void MoveStart()
+    {
+        if(_isMove)
+        {
+            _isMove = false;
+        }
     }
 }
