@@ -50,12 +50,35 @@ public class StateManager : MonoBehaviour
     public PlayerStateController _playerStateController;
     public EnemyStateController _enemyStateController;
 
+    [SerializeField]
+    Animator _playerAnim;
+    [SerializeField]
+    Animator _enemyAnim;
+
+    private void Start()
+    {
+        _playerAnim = GameObject.Find("Player").GetComponent<Animator>();
+        _enemyAnim = GameObject.Find("Enemy").GetComponent<Animator>();
+
+    }
+
     private void Update()
     {
+        if(!_playerAnim || !_enemyAnim)
+        {
+
+        }
         if (!_distanceManager._isCheck)
         {
             PlayerStateSet();
-        } 
+        }
+
+        _playerAnim.SetInteger("ActionState", ((int)_flickTest.NowSwipe));
+
+        _playerAnim.SetInteger("BattleState", ((int)battleEndState));
+
+        _enemyAnim.SetInteger("BattleState", ((int)battleEndState));
+
     }
 
     /// <summary>
