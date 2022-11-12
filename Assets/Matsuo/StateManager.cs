@@ -57,16 +57,15 @@ public class StateManager : MonoBehaviour
 
     private void Start()
     {
-        _playerAnim = GameObject.Find("Player").GetComponent<Animator>();
-        _enemyAnim = GameObject.Find("Enemy").GetComponent<Animator>();
-
+        
     }
 
     private void Update()
     {
         if(!_playerAnim || !_enemyAnim)
         {
-
+            _playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
+            _enemyAnim = GameObject.FindWithTag("Enemy").GetComponent<Animator>();
         }
         if (!_distanceManager._isCheck)
         {
@@ -74,9 +73,9 @@ public class StateManager : MonoBehaviour
         }
 
         _playerAnim.SetInteger("ActionState", ((int)_flickTest.NowSwipe));
-
         _playerAnim.SetInteger("BattleState", ((int)battleEndState));
 
+        _enemyAnim.SetInteger("ActionState", ((int)_enemyState));
         _enemyAnim.SetInteger("BattleState", ((int)battleEndState));
 
     }
