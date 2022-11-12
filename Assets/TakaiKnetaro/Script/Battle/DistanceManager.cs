@@ -153,6 +153,7 @@ public class DistanceManager : MonoBehaviour
         else if (battle == StateManager.BattleEndState.Lose)
         {
             Debug.Log("•‰‚¯");
+            Destroy(_player);
         }
         else if (battle == StateManager.BattleEndState.Draw)
         {
