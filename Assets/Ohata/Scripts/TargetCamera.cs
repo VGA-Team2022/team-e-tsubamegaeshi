@@ -20,7 +20,7 @@ public class TargetCamera : MonoBehaviour
     {
         for (var i= 0; i < _objects.Length; i++)
         {
-            _cinemachineTargetGroup.AddMember(_objects[i], 1, 5);
+            _cinemachineTargetGroup.AddMember(_objects[i], 1, 4);
         }
     }
 }
