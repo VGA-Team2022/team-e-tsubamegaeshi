@@ -1054,7 +1054,7 @@ MonoBehaviour:
   _stateManager: {fileID: 243864802}
   _targetCamera: {fileID: 450459416}
   _attackInterval: 1
-  _isCheck: 0
+  _isBattleCheck: 0
 --- !u!4 &971873275
 Transform:
   m_ObjectHideFlags: 0
@@ -1119,9 +1119,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.00021114945
+    y: 0.07378137
     width: 1
-    height: 0.9995777
+    height: 0.85243726
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
@@ -1396,7 +1396,7 @@ RectTransform:
   m_GameObject: {fileID: 1348336674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.27395833, y: 0.27395833, z: 0.27395833}
+  m_LocalScale: {x: 0.40885416, y: 0.40885416, z: 0.40885416}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 893345112}
@@ -1628,6 +1628,7 @@ MonoBehaviour:
   _flickRange: 30
   _line: {fileID: 1411588814}
   _battele: {fileID: 0}
+  _distanceManager: {fileID: 971873274}
 --- !u!120 &1411588814
 LineRenderer:
   m_ObjectHideFlags: 0

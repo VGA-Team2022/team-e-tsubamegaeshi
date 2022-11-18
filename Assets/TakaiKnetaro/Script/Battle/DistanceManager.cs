@@ -53,7 +53,7 @@ public class DistanceManager : MonoBehaviour
 
     private float _sum = 0;
 
-    public bool _isCheck = false;
+    public bool _isBattleCheck = false;
 
     private void Start()
     {
@@ -88,7 +88,7 @@ public class DistanceManager : MonoBehaviour
             Debug.LogError("ƒvƒŒƒnƒu‚ÉEnemy‚ğİ’è‚µ‚Ä‚­‚¾‚³‚¢");
         }
 
-        _isCheck = true;
+        _isBattleCheck = true;
 
         Init();
 
@@ -112,14 +112,14 @@ public class DistanceManager : MonoBehaviour
 
     private void Update()
     {
-        if (_isCheck == false) return;
+        if (_isBattleCheck == false) return;
 
         float playerLerp = LerpTranslate(_player.transform.position.x);
         float enemyLerp = LerpTranslate(_enemy.transform.position.x);
 
-        _isCheck = DistanceCheck(playerLerp, enemyLerp);
+        _isBattleCheck = DistanceCheck(playerLerp, enemyLerp);
 
-        if(!_isCheck)
+        if(!_isBattleCheck)
         {
             _stateManager.AttackTimer();
         }
@@ -153,7 +153,7 @@ public class DistanceManager : MonoBehaviour
         else if (battle == StateManager.BattleEndState.Lose)
         {
             Debug.Log("•‰‚¯");
-            Destroy(_player);
+            //Destroy(_player);
         }
         else if (battle == StateManager.BattleEndState.Draw)
         {
@@ -193,6 +193,6 @@ public class DistanceManager : MonoBehaviour
         //_charaEnemy._isMove = false;
         float playerLerp = LerpTranslate(_player.transform.position.x);
         float enemyLerp = LerpTranslate(_enemy.transform.position.x);
-        _isCheck = DistanceCheck(playerLerp, enemyLerp);
+        _isBattleCheck = DistanceCheck(playerLerp, enemyLerp);
     }
 }
