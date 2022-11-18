@@ -10,6 +10,7 @@ public class EasyButton : MonoBehaviour
     public void OnClickEasyButton()
     {
         AudioManager.Instance.PlaySE("SE_RepelEnemy_DEMO_Ver.2_20221101");
+
         SceneManager.LoadScene("EasyScene");
     }
 }
