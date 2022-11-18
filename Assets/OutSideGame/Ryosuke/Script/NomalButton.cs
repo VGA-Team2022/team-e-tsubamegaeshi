@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class OptionButton : MonoBehaviour
+public class NomalButton : MonoBehaviour
 {
-    //オプションシーン遷移用スクリプト
+    //難易度「ノーマル」に遷移するためのボタン
 
-    public void OnClickOptionButton()
+    public void OnClickNomalButton()
     {
         AudioManager.Instance.PlaySE("SE_RepelEnemy_DEMO_Ver.2_20221101");
-        SceneManager.LoadScene("OptionScene");
+        SceneManager.LoadScene("NomalScene");
     }
+    
 }
