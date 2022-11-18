@@ -35,11 +35,17 @@ public class FlickManager : MonoBehaviour
     [SerializeField]
     Battele _battele;
 
+    [SerializeField]
+    DistanceManager _distanceManager;
+
     private void Update()
     {
-        if (_nowSwipe == FlickState.NONE)
+        if(!_distanceManager._isBattleCheck) 
         {
-            Flick();
+            if (_nowSwipe == FlickState.NONE)
+            {
+                Flick();
+            }
         }
     }
 

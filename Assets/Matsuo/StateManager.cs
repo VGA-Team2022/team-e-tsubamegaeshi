@@ -67,7 +67,7 @@ public class StateManager : MonoBehaviour
             _playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
             _enemyAnim = GameObject.FindWithTag("Enemy").GetComponent<Animator>();
         }
-        if (!_distanceManager._isCheck)
+        if (!_distanceManager._isBattleCheck)
         {
             PlayerStateSet();
         }
@@ -293,6 +293,7 @@ public class StateManager : MonoBehaviour
     IEnumerator BattleInterval()
     {
         yield return new WaitForSeconds(_interval);
+        _enemyState = BattleState.NONE;
         BattleCheck = false;
     }
 }
