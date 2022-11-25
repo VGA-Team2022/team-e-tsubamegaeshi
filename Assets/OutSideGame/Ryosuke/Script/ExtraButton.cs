@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class OptionButton : MonoBehaviour
+public class ExtraButton : MonoBehaviour
 {
-    //オプションシーン遷移用スクリプト
-
-    public void OnClickOptionButton()
+    public void OnExtraStageButtonDown()
     {
         AudioManager.Instance.PlaySE("BattleEnemyRepel");
-        SceneManager.LoadScene("OptionScene");
+
+        SceneManager.LoadScene("ExtraStage");
     }
+
 }
