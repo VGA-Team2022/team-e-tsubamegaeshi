@@ -27,10 +27,11 @@ using UnityEngine.Assertions;
 public class Fade : MonoBehaviour
 {
 	IFade fade;
+	
 
 	void Start ()
 	{
-		Init ();
+		Init();
 		fade.Range = cutoutRange;
 	}
 
@@ -44,7 +45,7 @@ public class Fade : MonoBehaviour
 	void OnValidate ()
 	{
 		Init ();
-		fade.Range = cutoutRange;
+        fade.Range = cutoutRange;
 	}
 
 	IEnumerator FadeoutCoroutine (float time, System.Action action)
