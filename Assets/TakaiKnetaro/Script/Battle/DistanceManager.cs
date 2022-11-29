@@ -4,10 +4,6 @@ using UnityEngine;
 using UnityEditor;
 using DG.Tweening;
 
-//TODO
-//PlayerとEnemy両方の管理を行うとコード量が多くなるかも
-//必要であれば分割する
-
 /// <summary>
 /// シーン内のPlayerとEnemyの位置を管理する
 /// </summary>
@@ -32,6 +28,8 @@ public class DistanceManager : MonoBehaviour
     private Transform _end;
     [SerializeField, Tooltip("静止する線形距離")]
     private float _stopDistance = 0.05f;
+    [SerializeField, Tooltip("必殺!燕返し!!する距離")]
+    private float _tsubamegaeshiPos = 25f;
 
     [Header("マネージャー")]
     [SerializeField, Tooltip("StateTest")]
@@ -160,7 +158,7 @@ public class DistanceManager : MonoBehaviour
             _charaPlayer.KnockBack();
             _charaEnemy.MoveStart();
         }
-        StartCoroutine(nameof(ResetInterval));
+        StartCoroutine(ResetInterval());
     }
 
     /// <summary>
@@ -178,10 +176,14 @@ public class DistanceManager : MonoBehaviour
             _stateManager.EnemyStateSet();
             return false;
         }
+        else if(e >= _tsubamegaeshiPos) // 必殺!燕返し!!
+        {
+            _charaEnemy._isMove = true;
+            Debug.Log("必殺!燕返し!!");
+            return false;
+        }
         else
         {
-            //_charaPlayer._isMove = false;
-            //_charaEnemy._isMove = false;
             return true;
         }
     }
