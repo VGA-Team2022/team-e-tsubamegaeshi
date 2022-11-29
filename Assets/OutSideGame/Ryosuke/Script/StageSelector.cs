@@ -5,9 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class StageSelector : MonoBehaviour
 {
-    [Header("メイン画面の遷移管理")]
-    [Header("フェイドイン、アウトのスピードが変えられるよ")]
-
+    [Header("ステージ画面の遷移管理")]
+    [Header("フェイドインのスピードが変えられるよ")]
     [SerializeField] private float _fadeTime = 2.0f;
     [SerializeField] Fade fade;
 
