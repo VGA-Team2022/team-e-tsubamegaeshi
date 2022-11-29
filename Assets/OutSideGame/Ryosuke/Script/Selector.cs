@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Selector : MonoBehaviour
 {
     [Header("メイン画面の遷移管理")]
+    [Header("遷移の時間を決められるよ")]
 
     [Tooltip("フェイドイン、アウトのスピードが変えられるよ")]
     [SerializeField] private float _fadeTime = 2.0f;
