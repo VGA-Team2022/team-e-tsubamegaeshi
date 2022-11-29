@@ -14,7 +14,7 @@ public class StageSelector : MonoBehaviour
     public void OnClickEasyButton()
     {
         AudioManager.Instance.PlaySE("BattleEnemyRepel");
-        fade.FadeIn(_fadeTime, () => SceneManager.LoadScene("EasyScene"));
+        fade.FadeIn(_fadeTime, () => SceneManager.LoadScene("TakaiScene"));
     }
 
     public void OnClickNomalButton()
