@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 24557167}
   - component: {fileID: 24557166}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: UIKojiro
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dac5b12cbaf62d142830cde39aa7cb64, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 13373bdf5c6da744699da626dcb5065c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -657,7 +657,7 @@ GameObject:
   - component: {fileID: 693078027}
   - component: {fileID: 693078026}
   m_Layer: 5
-  m_Name: Image
+  m_Name: UIMusashi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -703,7 +703,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5e1fe4b6c8d97424b883b0583e55f6b2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 75bba38dbea6133488be09a3073a3ff7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
