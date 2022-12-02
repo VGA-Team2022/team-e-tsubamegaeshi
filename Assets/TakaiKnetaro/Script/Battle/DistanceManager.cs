@@ -151,12 +151,15 @@ public class DistanceManager : MonoBehaviour
         else if (battle == StateManager.BattleEndState.Lose)
         {
             Debug.Log("•‰‚¯");
-            //Destroy(_player);
         }
         else if (battle == StateManager.BattleEndState.Draw)
         {
             _charaPlayer.KnockBack();
             _charaEnemy.MoveStart();
+        }
+        else if(battle == StateManager.BattleEndState.Finish) // ƒQ[ƒ€‚ÉŸ—˜‚µ‚½‚Æ‚«‚Ìˆ—
+        {
+
         }
         StartCoroutine(ResetInterval());
     }

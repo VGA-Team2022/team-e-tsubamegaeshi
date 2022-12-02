@@ -1127,10 +1127,14 @@ MonoBehaviour:
   _start: {fileID: 198714114}
   _end: {fileID: 274858593}
   _stopDistance: 0.1
-  _tsubamegaeshiPos: 25
+  _tsubamegaeshiPosX: 0.9
   _stateManager: {fileID: 243864802}
   _targetCamera: {fileID: 450459416}
   _attackInterval: 1
+  _player: {fileID: 0}
+  _charaPlayer: {fileID: 0}
+  _enemy: {fileID: 0}
+  _charaEnemy: {fileID: 0}
   _isBattleCheck: 0
 --- !u!4 &971873275
 Transform:
