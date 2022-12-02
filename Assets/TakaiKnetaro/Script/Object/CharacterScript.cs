@@ -65,9 +65,21 @@ public class CharacterScript : MonoBehaviour
         }
     }
 
+    public void SpecialAttack()
+    {
+        if (_chara == Chara.Player)
+        {
+            _isMove = true;
+        }
+        else if(_chara == Chara.Enemy)
+        {
+            _isMove = true;
+        }
+    }
+
     public void MoveStart()
     {
-        if(_isMove)
+        if (_isMove)
         {
             _isMove = false;
         }
