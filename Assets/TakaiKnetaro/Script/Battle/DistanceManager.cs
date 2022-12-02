@@ -44,10 +44,10 @@ public class DistanceManager : MonoBehaviour
     [SerializeField]
     private float _attackInterval = 1f;
 
-    private GameObject _player;
-    private CharacterScript _charaPlayer;
-    private GameObject _enemy;
-    private CharacterScript _charaEnemy;
+    public GameObject _player;
+    public CharacterScript _charaPlayer;
+    public GameObject _enemy;
+    public CharacterScript _charaEnemy;
 
     private float _sum = 0;
 
