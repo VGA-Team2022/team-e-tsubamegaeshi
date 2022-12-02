@@ -91,7 +91,7 @@ public class StateManager : MonoBehaviour
 
     public void AttackTimer()
     {
-        StartCoroutine(nameof(AttackTimerCoroutine));
+        StartCoroutine(AttackTimerCoroutine());
     }
 
     IEnumerator AttackTimerCoroutine()

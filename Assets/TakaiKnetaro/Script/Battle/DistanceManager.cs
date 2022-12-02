@@ -29,7 +29,7 @@ public class DistanceManager : MonoBehaviour
     [SerializeField, Tooltip("静止する線形距離")]
     private float _stopDistance = 0.05f;
     [SerializeField, Tooltip("必殺!燕返し!!する距離")]
-    private float _tsubamegaeshiPos = 25f;
+    private float _tsubamegaeshiPosX = 25f;
 
     [Header("マネージャー")]
     [SerializeField, Tooltip("StateTest")]
@@ -176,9 +176,10 @@ public class DistanceManager : MonoBehaviour
             _stateManager.EnemyStateSet();
             return false;
         }
-        else if(e >= _tsubamegaeshiPos) // 必殺!燕返し!!
+        else if(e >= _tsubamegaeshiPosX) // 必殺!燕返し!!
         {
-            _charaEnemy._isMove = true;
+            _charaPlayer.SpecialAttack();
+            _charaEnemy.SpecialAttack();
             Debug.Log("必殺!燕返し!!");
             return false;
         }
@@ -191,8 +192,6 @@ public class DistanceManager : MonoBehaviour
     IEnumerator ResetInterval()
     {
         yield return new WaitForSeconds(_stateManager._interval);
-        //_charaPlayer._isMove = false;
-        //_charaEnemy._isMove = false;
         float playerLerp = LerpTranslate(_player.transform.position.x);
         float enemyLerp = LerpTranslate(_enemy.transform.position.x);
         _isBattleCheck = DistanceCheck(playerLerp, enemyLerp);
