@@ -164,31 +164,26 @@ public class FlickManager : MonoBehaviour
             case FlickState.UP:
                 {
                     StartCoroutine(StateReSet());
-
                 }
                 break;
             case FlickState.DOWN:
                 {
                     StartCoroutine(StateReSet());
-
                 }
                 break;
             case FlickState.RIGHT:
                 {
                     StartCoroutine(StateReSet());
-
                 }
                 break;
             case FlickState.LEFT:
                 {
                     StartCoroutine(StateReSet());
-
                 }
                 break;
             case FlickState.TAP:
                 {
                     StartCoroutine(StateReSet());
-
                 }
                 break;
         }
