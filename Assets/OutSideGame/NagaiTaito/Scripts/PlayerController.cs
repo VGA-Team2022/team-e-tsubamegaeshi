@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
 
     public void Pause()
     {
-        
         _playerAnimSpeed = _playerAnimator.speed;
         _playerAnimator.speed = 0;
         _playerTransformSpeed = _playerTransform.speed;
