@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEditor;
 using DG.Tweening;
 
+//TODO
+//PlayerとEnemy両方の管理を行うとコード量が多くなるかも
+//必要であれば分割する
+
 /// <summary>
 /// シーン内のPlayerとEnemyの位置を管理する
 /// </summary>
@@ -28,8 +32,6 @@ public class DistanceManager : MonoBehaviour
     private Transform _end;
     [SerializeField, Tooltip("静止する線形距離")]
     private float _stopDistance = 0.05f;
-    [SerializeField, Tooltip("必殺!燕返し!!する距離")]
-    private float _tsubamegaeshiPosX = 25f;
 
     [Header("マネージャー")]
     [SerializeField, Tooltip("StateTest")]
@@ -44,10 +46,10 @@ public class DistanceManager : MonoBehaviour
     [SerializeField]
     private float _attackInterval = 1f;
 
-    public GameObject _player;
-    public CharacterScript _charaPlayer;
-    public GameObject _enemy;
-    public CharacterScript _charaEnemy;
+    private GameObject _player;
+    private CharacterScript _charaPlayer;
+    private GameObject _enemy;
+    private CharacterScript _charaEnemy;
 
     private float _sum = 0;
 
@@ -151,17 +153,14 @@ public class DistanceManager : MonoBehaviour
         else if (battle == StateManager.BattleEndState.Lose)
         {
             Debug.Log("負け");
+            //Destroy(_player);
         }
         else if (battle == StateManager.BattleEndState.Draw)
         {
             _charaPlayer.KnockBack();
             _charaEnemy.MoveStart();
         }
-        else if(battle == StateManager.BattleEndState.Finish) // ゲームに勝利したときの処理
-        {
-
-        }
-        StartCoroutine(ResetInterval());
+        StartCoroutine(nameof(ResetInterval));
     }
 
     /// <summary>
@@ -179,15 +178,10 @@ public class DistanceManager : MonoBehaviour
             _stateManager.EnemyStateSet();
             return false;
         }
-        else if(e >= _tsubamegaeshiPosX) // 必殺!燕返し!!
-        {
-            _charaPlayer.SpecialAttack();
-            _charaEnemy.SpecialAttack();
-            Debug.Log("必殺!燕返し!!");
-            return false;
-        }
         else
         {
+            //_charaPlayer._isMove = false;
+            //_charaEnemy._isMove = false;
             return true;
         }
     }
@@ -195,6 +189,8 @@ public class DistanceManager : MonoBehaviour
     IEnumerator ResetInterval()
     {
         yield return new WaitForSeconds(_stateManager._interval);
+        //_charaPlayer._isMove = false;
+        //_charaEnemy._isMove = false;
         float playerLerp = LerpTranslate(_player.transform.position.x);
         float enemyLerp = LerpTranslate(_enemy.transform.position.x);
         _isBattleCheck = DistanceCheck(playerLerp, enemyLerp);

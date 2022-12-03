@@ -10,8 +10,7 @@ public class StateManager : MonoBehaviour
         NONE = 0,
         Rock = 1,//グー/Right
         Scissors = 2,//チョキ/Light
-        Paper = 3,//パー/Down
-        Special = 4 // 必殺!燕返し!!
+        Paper = 3//パー/Down
     }
 
     public BattleState _playerState = BattleState.NONE;
@@ -24,7 +23,6 @@ public class StateManager : MonoBehaviour
         Win = 1,
         Lose = 2,
         Draw = 3,
-        Finish = 4
     }
     public BattleEndState battleEndState = BattleEndState.NONE;
 
@@ -59,12 +57,12 @@ public class StateManager : MonoBehaviour
 
     private void Start()
     {
-
+        
     }
 
     private void Update()
     {
-        if (!_playerAnim || !_enemyAnim)
+        if(!_playerAnim || !_enemyAnim)
         {
             _playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
             _enemyAnim = GameObject.FindWithTag("Enemy").GetComponent<Animator>();
@@ -93,7 +91,7 @@ public class StateManager : MonoBehaviour
 
     public void AttackTimer()
     {
-        StartCoroutine(AttackTimerCoroutine());
+        StartCoroutine(nameof(AttackTimerCoroutine));
     }
 
     IEnumerator AttackTimerCoroutine()
@@ -113,19 +111,19 @@ public class StateManager : MonoBehaviour
             case 1:
                 _enemyState = BattleState.Rock;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Rock);
-                _actionOnDisplay.OnDisplay(0, _attackTimer);
+                _actionOnDisplay.OnDisplay(Color.red, _attackTimer);
                 Debug.Log($"敵:{BattleState.Rock}");
                 break;
             case 2:
                 _enemyState = BattleState.Scissors;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Scissors);
-                _actionOnDisplay.OnDisplay(1, _attackTimer);
+                _actionOnDisplay.OnDisplay(Color.yellow, _attackTimer);
                 Debug.Log($"敵:{BattleState.Scissors}");
                 break;
             case 3:
                 _enemyState = BattleState.Paper;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Paper);
-                _actionOnDisplay.OnDisplay(2, _attackTimer);
+                _actionOnDisplay.OnDisplay(Color.blue, _attackTimer);
                 Debug.Log($"敵:{BattleState.Paper}");
                 break;
         }
@@ -155,11 +153,6 @@ public class StateManager : MonoBehaviour
                 _playerStateController.OnPlayerChangeMode(BattleState.Paper);
                 Battle();
                 Debug.Log($"プレイヤー:{BattleState.Paper}");
-                break;
-            case FlickManager.FlickState.UP:
-                _playerState = BattleState.Special;
-                _playerStateController.OnPlayerChangeMode(BattleState.Special);
-                Debug.Log($"プレイヤー:{BattleState.Special}");
                 break;
             case FlickManager.FlickState.NONE:
                 _playerState = BattleState.NONE;
@@ -248,11 +241,6 @@ public class StateManager : MonoBehaviour
                     }
                 }
                 break;
-            case BattleState.Special:
-                {
-                    ChangeBattleEndState(BattleEndState.Finish);
-                }
-                break;
         }
 
     }
@@ -267,6 +255,7 @@ public class StateManager : MonoBehaviour
 
         if (BattleCheck) { return; }
 
+        var prev = battleEndState;
         battleEndState = next;
         switch (battleEndState)
         {
@@ -275,6 +264,7 @@ public class StateManager : MonoBehaviour
 
                 }
                 break;
+
             case BattleEndState.Win:
                 {
                     Debug.Log($"戦闘結果{next}");
@@ -282,6 +272,7 @@ public class StateManager : MonoBehaviour
                     StateReSet();
                 }
                 break;
+
             case BattleEndState.Lose:
                 {
                     Debug.Log($"戦闘結果{next}");
@@ -289,17 +280,12 @@ public class StateManager : MonoBehaviour
                     StateReSet();
                 }
                 break;
+
             case BattleEndState.Draw:
                 {
                     Debug.Log($"戦闘結果{next}");
                     _distanceManager?.SetUp(BattleEndState.Draw);
                     StateReSet();
-                }
-                break;
-            case BattleEndState.Finish:
-                {
-                    _distanceManager?.SetUp(BattleEndState.Finish);
-                    Debug.Log($"戦闘結果{next}");
                 }
                 break;
         }

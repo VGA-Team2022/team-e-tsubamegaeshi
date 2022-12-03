@@ -459,19 +459,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 64301533}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1570318765}
-        m_TargetAssemblyTypeName: StageSelector, Assembly-CSharp
-        m_MethodName: OnClickEasyButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &64301533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -728,19 +716,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 101472060}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1570318765}
-        m_TargetAssemblyTypeName: StageSelector, Assembly-CSharp
-        m_MethodName: OnClickHardButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &101472060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1246,19 +1222,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 740997934}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1570318765}
-        m_TargetAssemblyTypeName: StageSelector, Assembly-CSharp
-        m_MethodName: OnClickEasyButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &740997934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1380,19 +1344,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1199051689}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1570318765}
-        m_TargetAssemblyTypeName: StageSelector, Assembly-CSharp
-        m_MethodName: OnClickExtraButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1199051689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1586,7 +1538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1570318764}
-  - component: {fileID: 1570318765}
+  - component: {fileID: 1570318766}
   m_Layer: 0
   m_Name: FadeIn_StageSelect
   m_TagString: Untagged
@@ -1609,7 +1561,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1570318765
+--- !u!114 &1570318766
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1618,11 +1570,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1570318762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0135fe1c524cac646b06db26afdc7a2f, type: 3}
+  m_Script: {fileID: 11500000, guid: f1642cf2dac4dc7419ca4b2791783a89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _fadeTime: 2
+  se: BattleEnemyRepel
   fade: {fileID: 1500960923}
+  Setting:
+  - Scene: TakaiScene
+    Button: {fileID: 740997933}
+  - Scene: NomalScene
+    Button: {fileID: 64301532}
+  - Scene: HardScene
+    Button: {fileID: 101472059}
+  - Scene: ExtraScene
+    Button: {fileID: 1199051688}
 --- !u!1 &1598229241
 GameObject:
   m_ObjectHideFlags: 0
