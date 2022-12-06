@@ -22,7 +22,6 @@ public class CharacterScript : MonoBehaviour
     private float _kbTime = 1f;
 
     public bool _isMove = false;
-    public bool _isSpecial = false;
 
     private void Start()
     {
@@ -66,25 +65,9 @@ public class CharacterScript : MonoBehaviour
         }
     }
 
-    public void SpecialAttack()
-    {
-        if (_chara == Chara.Player)
-        {
-            _isMove = true;
-            _isSpecial = true;
-            Debug.Log("Playerèüóò");
-        }
-        else if(_chara == Chara.Enemy)
-        {
-            _isMove = true;
-            _isSpecial = true;
-            Debug.Log("EnemyéÄñS");
-        }
-    }
-
     public void MoveStart()
     {
-        if (_isMove)
+        if(_isMove)
         {
             _isMove = false;
         }

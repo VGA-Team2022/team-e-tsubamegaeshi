@@ -15,6 +15,13 @@ public class PlayerStateController : MonoBehaviour
         }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+      
+
+    }
+
     public void OnPlayerChangeMode(StateManager.BattleState janken)
     {
         switch (janken)
@@ -34,11 +41,8 @@ public class PlayerStateController : MonoBehaviour
                 _animator.Play("PlayerAttackGreen");
                 Debug.Log($"Playerのアニメーション{StateManager.BattleState.Paper}を再生");
                 break;
-            case StateManager.BattleState.Special:
-                _animator.Play("PlayerAttackSpecial");
-                Debug.Log($"Playerのアニメーション{StateManager.BattleState.Special}を再生");
-                break;
         }
+
     }
 
     public void OnPlayerBsttle(StateManager.BattleEndState shouhai)
