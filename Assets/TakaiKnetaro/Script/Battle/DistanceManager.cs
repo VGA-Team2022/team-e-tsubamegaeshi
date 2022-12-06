@@ -117,7 +117,7 @@ public class DistanceManager : MonoBehaviour
 
         _isBattleCheck = DistanceCheck(playerLerp, enemyLerp);
 
-        if(!_isBattleCheck)
+        if (!_isBattleCheck)
         {
             _stateManager.AttackTimer();
         }
@@ -157,9 +157,10 @@ public class DistanceManager : MonoBehaviour
             _charaPlayer.KnockBack();
             _charaEnemy.MoveStart();
         }
-        else if(battle == StateManager.BattleEndState.Finish) // ƒQ[ƒ€‚ÉŸ—˜‚µ‚½‚Æ‚«‚Ìˆ—
+        else if (battle == StateManager.BattleEndState.Finish) // ƒQ[ƒ€‚ÉŸ—˜‚µ‚½‚Æ‚«‚Ìˆ—
         {
-
+            _charaPlayer.SpecialAttack();
+            _charaEnemy.SpecialAttack();
         }
         StartCoroutine(ResetInterval());
     }
@@ -179,10 +180,11 @@ public class DistanceManager : MonoBehaviour
             _stateManager.EnemyStateSet();
             return false;
         }
-        else if(e >= _tsubamegaeshiPosX) // •KE!‰•Ô‚µ!!
+        else if (e >= _tsubamegaeshiPosX) // •KE!‰•Ô‚µ!!
         {
-            _charaPlayer.SpecialAttack();
-            _charaEnemy.SpecialAttack();
+            _charaPlayer._isMove = true;
+            _charaEnemy._isMove = true;
+            
             Debug.Log("•KE!‰•Ô‚µ!!");
             return false;
         }

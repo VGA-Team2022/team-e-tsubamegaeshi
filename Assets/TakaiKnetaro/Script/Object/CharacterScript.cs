@@ -72,11 +72,13 @@ public class CharacterScript : MonoBehaviour
         {
             _isMove = true;
             _isSpecial = true;
+            Debug.Log("PlayerŸ—˜");
         }
         else if(_chara == Chara.Enemy)
         {
             _isMove = true;
             _isSpecial = true;
+            Debug.Log("Enemy€–S");
         }
     }
 

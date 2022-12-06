@@ -174,7 +174,7 @@ public class StateManager : MonoBehaviour
     {
         Debug.Log("ƒŠƒZƒbƒg");
         BattleCheck = true;
-        StartCoroutine(nameof(BattleInterval));
+        StartCoroutine(BattleInterval());
     }
 
     /// <summary>
