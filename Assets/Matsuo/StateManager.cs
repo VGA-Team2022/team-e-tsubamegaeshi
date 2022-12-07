@@ -10,7 +10,8 @@ public class StateManager : MonoBehaviour
         NONE = 0,
         Rock = 1,//グー/Right
         Scissors = 2,//チョキ/Light
-        Paper = 3//パー/Down
+        Paper = 3,//パー/Down
+        Special = 4 // 必殺!燕返し!!
     }
 
     public BattleState _playerState = BattleState.NONE;
@@ -57,12 +58,12 @@ public class StateManager : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
     {
-        if(!_playerAnim || !_enemyAnim)
+        if (!_playerAnim || !_enemyAnim)
         {
             _playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
             _enemyAnim = GameObject.FindWithTag("Enemy").GetComponent<Animator>();
@@ -157,6 +158,10 @@ public class StateManager : MonoBehaviour
             case FlickManager.FlickState.NONE:
                 _playerState = BattleState.NONE;
                 //Debug.Log($"プレイヤー:{BattleState.NONE}");
+                break;
+            case FlickManager.FlickState.UP:
+                _playerState = BattleState.Special;
+                _playerStateController.OnPlayerChangeMode(BattleState.Special);
                 break;
         }
     }

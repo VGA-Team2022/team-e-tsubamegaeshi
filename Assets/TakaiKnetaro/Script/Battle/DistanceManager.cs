@@ -32,6 +32,8 @@ public class DistanceManager : MonoBehaviour
     private Transform _end;
     [SerializeField, Tooltip("静止する線形距離")]
     private float _stopDistance = 0.05f;
+    [SerializeField, Tooltip("敵を停止する位置")]
+    private float _enemyStopPos = 0.5f;
 
     [Header("マネージャー")]
     [SerializeField, Tooltip("StateTest")]
@@ -176,6 +178,12 @@ public class DistanceManager : MonoBehaviour
             _charaPlayer._isMove = true;
             _charaEnemy._isMove = true;
             _stateManager.EnemyStateSet();
+            return false;
+        }
+        else if(e >= _enemyStopPos)
+        {
+            _charaPlayer._isMove = true;
+            _charaEnemy._isMove = true;
             return false;
         }
         else
