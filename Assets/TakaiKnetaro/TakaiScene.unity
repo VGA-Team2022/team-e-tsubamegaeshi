@@ -766,6 +766,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _actionImage: {fileID: 0}
+  _actionRed: {fileID: 21300000, guid: ed15da1b2e838834d9336392a5f4992b, type: 3}
+  _actionBlue: {fileID: 21300000, guid: 955a5cd82b4a84a47b6498d6f3d72c5b, type: 3}
+  _actionGreen: {fileID: 21300000, guid: e4bfdc483187abd4c97eddcd8b9c80cf, type: 3}
+  _actionSpecial: {fileID: 21300000, guid: db1c3c74137d3af47bfe0c2942060945, type: 3}
 --- !u!1001 &836734089
 PrefabInstance:
   m_ObjectHideFlags: 0
