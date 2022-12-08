@@ -24,11 +24,9 @@ public class StateManager : MonoBehaviour
         Win = 1,
         Lose = 2,
         Draw = 3,
+        Special = 4,
     }
     public BattleEndState battleEndState = BattleEndState.NONE;
-
-    //[SerializeField]
-    //Battele _battele;
 
     public float _interval = 1f;
 
@@ -246,6 +244,14 @@ public class StateManager : MonoBehaviour
                     }
                 }
                 break;
+            case BattleState.Special:
+                {
+                    if (_enemyState == BattleState.Special)
+                    {
+                        ChangeBattleEndState(BattleEndState.Special);
+                    }
+                }
+                break;
         }
 
     }
@@ -269,7 +275,6 @@ public class StateManager : MonoBehaviour
 
                 }
                 break;
-
             case BattleEndState.Win:
                 {
                     Debug.Log($"í“¬Œ‹‰Ê{next}");
@@ -277,7 +282,6 @@ public class StateManager : MonoBehaviour
                     StateReSet();
                 }
                 break;
-
             case BattleEndState.Lose:
                 {
                     Debug.Log($"í“¬Œ‹‰Ê{next}");
@@ -285,12 +289,18 @@ public class StateManager : MonoBehaviour
                     StateReSet();
                 }
                 break;
-
             case BattleEndState.Draw:
                 {
                     Debug.Log($"í“¬Œ‹‰Ê{next}");
                     _distanceManager?.SetUp(BattleEndState.Draw);
                     StateReSet();
+                }
+                break;
+            case BattleEndState.Special:
+                {
+                    Debug.Log($"í“¬Œ‹‰Ê{next}");
+                    _distanceManager.SetUp(BattleEndState.Special);
+                    //StateReSet();
                 }
                 break;
         }

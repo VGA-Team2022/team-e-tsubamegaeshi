@@ -104,7 +104,7 @@ MonoBehaviour:
   _charaSpeed: 3
   _kbDis: 5
   _kbTime: 1
-  _isMove: 1
+  _isMove: 0
 --- !u!114 &6206436640082005579
 MonoBehaviour:
   m_ObjectHideFlags: 0
