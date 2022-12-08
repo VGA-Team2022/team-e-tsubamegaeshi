@@ -73,7 +73,7 @@ public class CharacterScript : MonoBehaviour
         }
         else if (_chara == Chara.Enemy)
         {
-
+            _isMove = true;
         }
     }
 
