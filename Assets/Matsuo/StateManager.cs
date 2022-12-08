@@ -110,22 +110,30 @@ public class StateManager : MonoBehaviour
             case 1:
                 _enemyState = BattleState.Rock;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Rock);
-                _actionOnDisplay.OnDisplay(Color.red, _attackTimer);
+                _actionOnDisplay.OnDisplay(0, _attackTimer);
                 Debug.Log($"“G:{BattleState.Rock}");
                 break;
             case 2:
                 _enemyState = BattleState.Scissors;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Scissors);
-                _actionOnDisplay.OnDisplay(Color.yellow, _attackTimer);
+                _actionOnDisplay.OnDisplay(1, _attackTimer);
                 Debug.Log($"“G:{BattleState.Scissors}");
                 break;
             case 3:
                 _enemyState = BattleState.Paper;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Paper);
-                _actionOnDisplay.OnDisplay(Color.blue, _attackTimer);
+                _actionOnDisplay.OnDisplay(2, _attackTimer);
                 Debug.Log($"“G:{BattleState.Paper}");
                 break;
         }
+    }
+
+    public void EnemyStateSpecial()
+    {
+        _enemyState = BattleState.Special;
+        _enemyStateController.OnEnemyChangeMode(BattleState.Special);
+        _actionOnDisplay.OnDisplay(3, 10f);
+        Debug.Log($"“G:{BattleState.Special}");
     }
 
     /// <summary>

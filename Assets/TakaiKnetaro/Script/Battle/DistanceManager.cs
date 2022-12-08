@@ -177,8 +177,9 @@ public class DistanceManager : MonoBehaviour
         if (e >= _enemyStopPos)
         {
             Debug.Log(e);
-            //_charaPlayer._isMove = true;
-            //_charaEnemy._isMove = true;
+            //_charaPlayer.SpecialAttack();
+            //_charaEnemy.SpecialAttack();
+            _stateManager.EnemyStateSpecial();
             return false;
         }
         else if (e - p <= _stopDistance)
