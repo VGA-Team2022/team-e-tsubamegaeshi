@@ -32,6 +32,8 @@ public class DistanceManager : MonoBehaviour
     private Transform _end;
     [SerializeField, Tooltip("静止する線形距離")]
     private float _stopDistance = 0.05f;
+    [SerializeField, Tooltip("敵を停止する位置")]
+    private float _enemyStopPos = 0.95f;
 
     [Header("マネージャー")]
     [SerializeField, Tooltip("StateTest")]
@@ -62,6 +64,7 @@ public class DistanceManager : MonoBehaviour
             Debug.LogError("座標が不正な値です");
             return;
         }
+
         _sum = Mathf.Abs(_start.position.x) + Mathf.Abs(_end.position.x);
 
         if (_playerPrefab != null)
@@ -119,7 +122,7 @@ public class DistanceManager : MonoBehaviour
 
         _isBattleCheck = DistanceCheck(playerLerp, enemyLerp);
 
-        if(!_isBattleCheck)
+        if (!_isBattleCheck)
         {
             _stateManager.AttackTimer();
         }
@@ -171,7 +174,15 @@ public class DistanceManager : MonoBehaviour
     /// <returns></returns>
     private bool DistanceCheck(float p, float e)
     {
-        if (e - p <= _stopDistance)
+        if (e >= _enemyStopPos)
+        {
+            Debug.Log(e);
+            //_charaPlayer.SpecialAttack();
+            //_charaEnemy.SpecialAttack();
+            _stateManager.EnemyStateSpecial();
+            return false;
+        }
+        else if (e - p <= _stopDistance)
         {
             _charaPlayer._isMove = true;
             _charaEnemy._isMove = true;
@@ -180,8 +191,6 @@ public class DistanceManager : MonoBehaviour
         }
         else
         {
-            //_charaPlayer._isMove = false;
-            //_charaEnemy._isMove = false;
             return true;
         }
     }
@@ -189,8 +198,6 @@ public class DistanceManager : MonoBehaviour
     IEnumerator ResetInterval()
     {
         yield return new WaitForSeconds(_stateManager._interval);
-        //_charaPlayer._isMove = false;
-        //_charaEnemy._isMove = false;
         float playerLerp = LerpTranslate(_player.transform.position.x);
         float enemyLerp = LerpTranslate(_enemy.transform.position.x);
         _isBattleCheck = DistanceCheck(playerLerp, enemyLerp);
