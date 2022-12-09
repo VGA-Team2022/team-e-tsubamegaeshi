@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class SousaSetumei : MonoBehaviour
 {
@@ -108,9 +108,7 @@ public class SousaSetumei : MonoBehaviour
                 }
                 _image.sprite = _images[_count % _images.Length];
                 break;
-
-            default:
-                return;
         }
+        isFlick = false;
     }
 }
