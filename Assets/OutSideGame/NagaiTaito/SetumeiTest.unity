@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 1311230713}
   - component: {fileID: 1311230716}
   - component: {fileID: 1311230715}
-  - component: {fileID: 1311230714}
+  - component: {fileID: 1311230717}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -382,26 +382,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1311230714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1311230712}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00876ac1632affc439c18480ab7e35e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _images:
-  - {fileID: 21300000, guid: fce6c7236ab31314588c4e104a1b57d4, type: 3}
-  - {fileID: 21300000, guid: 22adf7f0ebbf57e46bd0940fd9874e45, type: 3}
-  - {fileID: 21300000, guid: 3ca1e452e8cb9e5458e1c05886f705f7, type: 3}
-  - {fileID: 21300000, guid: 95b37d926b35ee94d9a092b41e17fb1d, type: 3}
-  - {fileID: 21300000, guid: 37c78c321e172a340b7d602b8bcd6a9f, type: 3}
-  - {fileID: 21300000, guid: 1ce4b96f0f5256343a14fb3ede6b47db, type: 3}
-  _image: {fileID: 2010281063}
 --- !u!114 &1311230715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,6 +420,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1311230712}
   m_CullTransparentMesh: 1
+--- !u!114 &1311230717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1311230712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85eb722ff014d694e8a67841b43961e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _images:
+  - {fileID: 21300000, guid: fce6c7236ab31314588c4e104a1b57d4, type: 3}
+  - {fileID: 21300000, guid: 22adf7f0ebbf57e46bd0940fd9874e45, type: 3}
+  - {fileID: 21300000, guid: 3ca1e452e8cb9e5458e1c05886f705f7, type: 3}
+  - {fileID: 21300000, guid: 95b37d926b35ee94d9a092b41e17fb1d, type: 3}
+  - {fileID: 21300000, guid: 37c78c321e172a340b7d602b8bcd6a9f, type: 3}
+  - {fileID: 21300000, guid: 1ce4b96f0f5256343a14fb3ede6b47db, type: 3}
+  _image: {fileID: 2010281063}
 --- !u!1 &1676754096
 GameObject:
   m_ObjectHideFlags: 0
