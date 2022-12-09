@@ -1,11 +1,13 @@
 using DG.Tweening;
 using UnityEngine;
+using Unity.UI;
+using TMPro.EditorUtilities;
 
 public class PauseUI : MonoBehaviour
 {
     [SerializeField] Animator _pauseAnimator = default;
     PauseManager _pauseManager = default;
-
+    [SerializeField]  bool _panel = false;
     private void Awake()
     {
         _pauseManager = GameObject.FindObjectOfType<PauseManager>();
@@ -23,10 +25,14 @@ public class PauseUI : MonoBehaviour
     {
         if(isPause)
         {
-            _pauseAnimator.Play("Color");
+            //_panel = true;
+            Debug.Log("パネルあり");
+            _pauseAnimator.Play("Pause");
         }
         else
         {
+            //_panel = false;
+            Debug.Log("パネルなし");
             _pauseAnimator.Play("Idol");
         }
     }
