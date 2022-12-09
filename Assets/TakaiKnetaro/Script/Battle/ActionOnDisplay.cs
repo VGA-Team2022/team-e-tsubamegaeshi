@@ -11,18 +11,18 @@ public class ActionOnDisplay : MonoBehaviour
     [SerializeField] private Sprite _actionRed;
     [SerializeField] private Sprite _actionBlue;
     [SerializeField] private Sprite _actionGreen;
+    [SerializeField] private Sprite _actionSpecial;
 
     private float _displayTime = 1f; // âÊëúÇÃï\é¶éûä‘
 
     private void Start()
     {
-        //_actionImage = GameObject.Find("ActionDisplay").GetComponent<Renderer>();
-        //_actionImage.gameObject.SetActive(false);
+
     }
 
     public void OnDisplay(int colornum, float time)
     {
-        if(_actionImage == null) 
+        if (_actionImage == null)
         {
             _actionImage = GameObject.Find("ActionDisplay").GetComponent<SpriteRenderer>();
             _actionImage.gameObject.SetActive(false);
@@ -30,25 +30,30 @@ public class ActionOnDisplay : MonoBehaviour
 
         _displayTime = time;
 
-        if(colornum == 0)
+        if (colornum == 0)
         {
             _actionImage.sprite = _actionRed;
         }
-        else if(colornum == 1)
+        else if (colornum == 1)
         {
             _actionImage.sprite = _actionBlue;
         }
-        else if(colornum == 2)
+        else if (colornum == 2)
         {
             _actionImage.sprite = _actionGreen;
         }
-        else
+        else if(colornum == 3)
         {
-            Debug.Log("0Å`2ÇÃílÇê›íËÇµÇƒÇ≠ÇæÇ≥Ç¢");
+            _actionImage.sprite = _actionSpecial;
+        }
+        else 
+        {
+            Debug.Log("0Å`3ÇÃílÇê›íËÇµÇƒÇ≠ÇæÇ≥Ç¢");
         }
 
+
         _actionImage.gameObject.SetActive(true);
-        StartCoroutine(nameof(DisplayTime));
+        StartCoroutine(DisplayTime());
     }
 
     IEnumerator DisplayTime()

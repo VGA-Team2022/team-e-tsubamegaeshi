@@ -16,6 +16,13 @@ public class EnemyStateController : MonoBehaviour
         }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+
     public void OnEnemyChangeMode(StateManager.BattleState janken)
     {
         switch (janken)

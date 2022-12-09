@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEditor;
 using DG.Tweening;
 
+//TODO
+//PlayerとEnemy両方の管理を行うとコード量が多くなるかも
+//必要であれば分割する
+
 /// <summary>
 /// シーン内のPlayerとEnemyの位置を管理する
 /// </summary>
@@ -28,8 +32,8 @@ public class DistanceManager : MonoBehaviour
     private Transform _end;
     [SerializeField, Tooltip("静止する線形距離")]
     private float _stopDistance = 0.05f;
-    [SerializeField, Tooltip("必殺!燕返し!!する距離")]
-    private float _tsubamegaeshiPosX = 25f;
+    [SerializeField, Tooltip("敵を停止する位置")]
+    private float _enemyStopPos = 0.95f;
 
     [Header("マネージャー")]
     [SerializeField, Tooltip("StateTest")]
@@ -44,10 +48,10 @@ public class DistanceManager : MonoBehaviour
     [SerializeField]
     private float _attackInterval = 1f;
 
-    public GameObject _player;
-    public CharacterScript _charaPlayer;
-    public GameObject _enemy;
-    public CharacterScript _charaEnemy;
+    private GameObject _player;
+    private CharacterScript _charaPlayer;
+    private GameObject _enemy;
+    private CharacterScript _charaEnemy;
 
     private float _sum = 0;
 
@@ -60,6 +64,7 @@ public class DistanceManager : MonoBehaviour
             Debug.LogError("座標が不正な値です");
             return;
         }
+
         _sum = Mathf.Abs(_start.position.x) + Mathf.Abs(_end.position.x);
 
         if (_playerPrefab != null)
@@ -117,7 +122,7 @@ public class DistanceManager : MonoBehaviour
 
         _isBattleCheck = DistanceCheck(playerLerp, enemyLerp);
 
-        if(!_isBattleCheck)
+        if (!_isBattleCheck)
         {
             _stateManager.AttackTimer();
         }
@@ -158,7 +163,7 @@ public class DistanceManager : MonoBehaviour
             _charaPlayer.KnockBack();
             _charaEnemy.MoveStart();
         }
-        StartCoroutine(ResetInterval());
+        StartCoroutine(nameof(ResetInterval));
     }
 
     /// <summary>
@@ -169,18 +174,19 @@ public class DistanceManager : MonoBehaviour
     /// <returns></returns>
     private bool DistanceCheck(float p, float e)
     {
-        if (e - p <= _stopDistance)
+        if (e >= _enemyStopPos)
+        {
+            Debug.Log(e);
+            //_charaPlayer.SpecialAttack();
+            //_charaEnemy.SpecialAttack();
+            _stateManager.EnemyStateSpecial();
+            return false;
+        }
+        else if (e - p <= _stopDistance)
         {
             _charaPlayer._isMove = true;
             _charaEnemy._isMove = true;
             _stateManager.EnemyStateSet();
-            return false;
-        }
-        else if(e >= _tsubamegaeshiPosX) // 必殺!燕返し!!
-        {
-            _charaPlayer.SpecialAttack();
-            _charaEnemy.SpecialAttack();
-            Debug.Log("必殺!燕返し!!");
             return false;
         }
         else

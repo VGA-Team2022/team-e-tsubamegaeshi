@@ -307,19 +307,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 107523117}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 807389189}
-        m_TargetAssemblyTypeName: Selector, Assembly-CSharp
-        m_MethodName: OnClickOptionButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &107523117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -498,6 +486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 807389188}
   - component: {fileID: 807389189}
+  - component: {fileID: 807389190}
   m_Layer: 0
   m_Name: Selector
   m_TagString: Untagged
@@ -532,8 +521,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f5536c22b4f48349a941680c3655d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fadeTime: 2.5
+--- !u!114 &807389190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807389187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1642cf2dac4dc7419ca4b2791783a89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fadeTime: 2
+  se: BattleEnemyRepel
   fade: {fileID: 1691973947}
+  Setting:
+  - Scene: StartScene
+    Button: {fileID: 1796872832}
+  - Scene: OptionScene
+    Button: {fileID: 107523116}
 --- !u!1001 &995810483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1174,19 +1181,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1796872833}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 807389189}
-        m_TargetAssemblyTypeName: Selector, Assembly-CSharp
-        m_MethodName: OnClickStartButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1796872833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,7 +1247,7 @@ RectTransform:
   m_GameObject: {fileID: 1851124157}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0873866, y: 1.0873866, z: 1.0873866}
+  m_LocalScale: {x: 1.1546959, y: 1.1546959, z: 1.1546959}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1796872830}

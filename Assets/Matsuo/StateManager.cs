@@ -10,7 +10,8 @@ public class StateManager : MonoBehaviour
         NONE = 0,
         Rock = 1,//グー/Right
         Scissors = 2,//チョキ/Light
-        Paper = 3//パー/Down
+        Paper = 3,//パー/Down
+        Special = 4 // 必殺!燕返し!!
     }
 
     public BattleState _playerState = BattleState.NONE;
@@ -23,11 +24,9 @@ public class StateManager : MonoBehaviour
         Win = 1,
         Lose = 2,
         Draw = 3,
+        Special = 4,
     }
     public BattleEndState battleEndState = BattleEndState.NONE;
-
-    //[SerializeField]
-    //Battele _battele;
 
     public float _interval = 1f;
 
@@ -57,12 +56,12 @@ public class StateManager : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
     private void Update()
     {
-        if(!_playerAnim || !_enemyAnim)
+        if (!_playerAnim || !_enemyAnim)
         {
             _playerAnim = GameObject.FindWithTag("Player").GetComponent<Animator>();
             _enemyAnim = GameObject.FindWithTag("Enemy").GetComponent<Animator>();
@@ -91,7 +90,7 @@ public class StateManager : MonoBehaviour
 
     public void AttackTimer()
     {
-        StartCoroutine(AttackTimerCoroutine());
+        StartCoroutine(nameof(AttackTimerCoroutine));
     }
 
     IEnumerator AttackTimerCoroutine()
@@ -129,6 +128,14 @@ public class StateManager : MonoBehaviour
         }
     }
 
+    public void EnemyStateSpecial()
+    {
+        _enemyState = BattleState.Special;
+        _enemyStateController.OnEnemyChangeMode(BattleState.Special);
+        _actionOnDisplay.OnDisplay(3, 10f);
+        Debug.Log($"敵:{BattleState.Special}");
+    }
+
     /// <summary>
     /// デバック用
     /// </summary>
@@ -158,6 +165,10 @@ public class StateManager : MonoBehaviour
                 _playerState = BattleState.NONE;
                 //Debug.Log($"プレイヤー:{BattleState.NONE}");
                 break;
+            case FlickManager.FlickState.UP:
+                _playerState = BattleState.Special;
+                _playerStateController.OnPlayerChangeMode(BattleState.Special);
+                break;
         }
     }
     /// <summary>
@@ -167,7 +178,7 @@ public class StateManager : MonoBehaviour
     {
         Debug.Log("リセット");
         BattleCheck = true;
-        StartCoroutine(nameof(BattleInterval));
+        StartCoroutine(BattleInterval());
     }
 
     /// <summary>
@@ -241,6 +252,14 @@ public class StateManager : MonoBehaviour
                     }
                 }
                 break;
+            case BattleState.Special:
+                {
+                    if (_enemyState == BattleState.Special)
+                    {
+                        ChangeBattleEndState(BattleEndState.Special);
+                    }
+                }
+                break;
         }
 
     }
@@ -264,7 +283,6 @@ public class StateManager : MonoBehaviour
 
                 }
                 break;
-
             case BattleEndState.Win:
                 {
                     Debug.Log($"戦闘結果{next}");
@@ -272,7 +290,6 @@ public class StateManager : MonoBehaviour
                     StateReSet();
                 }
                 break;
-
             case BattleEndState.Lose:
                 {
                     Debug.Log($"戦闘結果{next}");
@@ -280,12 +297,18 @@ public class StateManager : MonoBehaviour
                     StateReSet();
                 }
                 break;
-
             case BattleEndState.Draw:
                 {
                     Debug.Log($"戦闘結果{next}");
                     _distanceManager?.SetUp(BattleEndState.Draw);
                     StateReSet();
+                }
+                break;
+            case BattleEndState.Special:
+                {
+                    Debug.Log($"戦闘結果{next}");
+                    _distanceManager.SetUp(BattleEndState.Special);
+                    //StateReSet();
                 }
                 break;
         }
