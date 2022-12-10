@@ -1,7 +1,5 @@
 using DG.Tweening;
 using UnityEngine;
-using Unity.UI;
-using TMPro.EditorUtilities;
 
 public class PauseUI : MonoBehaviour
 {
