@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2288678923039552410}
   - component: {fileID: 2288678923039552409}
+  - component: {fileID: 4257076225604999225}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -51,3 +52,15 @@ MonoBehaviour:
   _enemySpeed: 1
   _enemyKnockbackDistance: 1
   _enemyKnockbackTime: 1
+--- !u!114 &4257076225604999225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2288678923039552411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ae2e441a8deac94f88cefa792387200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

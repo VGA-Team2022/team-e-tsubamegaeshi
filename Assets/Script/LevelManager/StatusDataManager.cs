@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatusDataManager : MonoBehaviour
+public class Data
 {
-    // Start is called before the first frame update
-    void Start()
+
+}
+
+public class StatusDataManager : Data
+{
+    public void Save()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Load()
     {
-        
+
     }
 }
