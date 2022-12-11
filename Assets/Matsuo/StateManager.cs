@@ -90,7 +90,7 @@ public class StateManager : MonoBehaviour
 
     public void AttackTimer()
     {
-        StartCoroutine(nameof(AttackTimerCoroutine));
+        StartCoroutine(AttackTimerCoroutine());
     }
 
     IEnumerator AttackTimerCoroutine()
@@ -133,6 +133,7 @@ public class StateManager : MonoBehaviour
         _enemyState = BattleState.Special;
         _enemyStateController.OnEnemyChangeMode(BattleState.Special);
         _actionOnDisplay.OnDisplay(3, 10f);
+        BattleCheck = false;
         Debug.Log($"敵:{BattleState.Special}");
     }
 
@@ -161,14 +162,17 @@ public class StateManager : MonoBehaviour
                 Battle();
                 Debug.Log($"プレイヤー:{BattleState.Paper}");
                 break;
+            case FlickManager.FlickState.UP:
+                _playerState = BattleState.Special;
+                _playerStateController.OnPlayerChangeMode(BattleState.Special);
+                Battle();
+                Debug.Log($"プレイヤー:{BattleState.Special}");
+                break;
             case FlickManager.FlickState.NONE:
                 _playerState = BattleState.NONE;
                 //Debug.Log($"プレイヤー:{BattleState.NONE}");
                 break;
-            case FlickManager.FlickState.UP:
-                _playerState = BattleState.Special;
-                _playerStateController.OnPlayerChangeMode(BattleState.Special);
-                break;
+
         }
     }
     /// <summary>
@@ -188,10 +192,6 @@ public class StateManager : MonoBehaviour
     {
         switch (_playerState)
         {
-            case BattleState.NONE:
-                {
-                }
-                break;
             case BattleState.Rock:
                 {
                     if (_enemyState == BattleState.Rock)
@@ -256,8 +256,13 @@ public class StateManager : MonoBehaviour
                 {
                     if (_enemyState == BattleState.Special)
                     {
+                        Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaa");
                         ChangeBattleEndState(BattleEndState.Special);
                     }
+                }
+                break;
+            case BattleState.NONE:
+                {
                 }
                 break;
         }
@@ -307,7 +312,7 @@ public class StateManager : MonoBehaviour
             case BattleEndState.Special:
                 {
                     Debug.Log($"戦闘結果{next}");
-                    _distanceManager.SetUp(BattleEndState.Special);
+                    _distanceManager?.SetUp(BattleEndState.Special);
                     //StateReSet();
                 }
                 break;
