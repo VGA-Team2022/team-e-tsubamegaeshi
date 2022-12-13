@@ -69,22 +69,21 @@ public class LevelController : MonoBehaviour
         {
             case LevelState.EASY:
                 {
-                    
+
                 }
                 break;
 
             case LevelState.NORMAL:
                 {
-                    
+
                 }
                 break;
 
             case LevelState.HARD:
                 {
-                   
+
                 }
                 break;
         }
-
     }
 }
