@@ -7,7 +7,7 @@ public class Data
 
 }
 
-public class StatusDataManager : Data
+public class StatusDataManager : MonoBehaviour
 {
     public void Save()
     {
