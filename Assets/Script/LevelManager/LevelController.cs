@@ -50,6 +50,18 @@ public class LevelController : MonoBehaviour
     [SerializeField]
     private float _enemyKnockbackTime = 1f;
 
+    // プレイヤーのステータスを保存 
+    // 1.Speed 2.KnockbackDistance 3.KnockbackTime
+    [System.NonSerialized] public float[] _easyPlayerStatus = new float[3];
+    [System.NonSerialized] public float[] _normalPlayerStatus = new float[3];
+    [System.NonSerialized] public float[] _hardPlayerStatus = new float[3];
+
+    // エネミーのステータスを保存
+    // 1.Speed 2.KnockbackDistance 3.KnockbackTime
+    [System.NonSerialized] public float[] _easyEnemyStatus = new float[3];
+    [System.NonSerialized] public float[] _normalEnemyStatus = new float[3];
+    [System.NonSerialized] public float[] _hardEnemyStatus = new float[3];
+
     /// <summary>
     /// インスペクター上でいじる際の変更を可視化
     /// </summary>
