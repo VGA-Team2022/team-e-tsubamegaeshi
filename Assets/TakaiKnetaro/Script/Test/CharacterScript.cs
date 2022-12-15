@@ -11,22 +11,23 @@ public enum Chara
 
 public class CharacterScript : MonoBehaviour
 {
-    [Header("ƒLƒƒƒ‰ƒNƒ^[")]
-    [SerializeField, Tooltip("ƒNƒ‰ƒX‚ğ“ü‚ê‚Ä‚éƒIƒuƒWƒFƒNƒg‚ÌƒLƒƒƒ‰")]
+    [Header("ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼")]
+    [SerializeField, Tooltip("ã‚¯ãƒ©ã‚¹ã‚’å…¥ã‚Œã¦ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚­ãƒ£ãƒ©")]
     private Chara _chara;
-    [SerializeField, Tooltip("ƒLƒƒƒ‰‚ÌƒXƒs[ƒh")]
+    [SerializeField, Tooltip("ã‚­ãƒ£ãƒ©ã®ã‚¹ãƒ”ãƒ¼ãƒ‰")]
     private float _charaSpeed = 1;
-    [SerializeField, Tooltip("ƒLƒƒƒ‰‚ÌƒmƒbƒNƒoƒbƒNˆĞ—Í")]
+    [SerializeField, Tooltip("ã‚­ãƒ£ãƒ©ã®ãƒãƒƒã‚¯ãƒãƒƒã‚¯å¨åŠ›")]
     private float _kbDis = 1f;
-    [SerializeField, Tooltip("ƒLƒƒƒ‰‚ÌƒmƒbƒNƒoƒbƒN‚³‚ê‚Ä‚éŠÔ")]
+    [SerializeField, Tooltip("ã‚­ãƒ£ãƒ©ã®ãƒãƒƒã‚¯ãƒãƒƒã‚¯ã•ã‚Œã¦ã‚‹æ™‚é–“")]
     private float _kbTime = 1f;
 
     public bool _isMove = false;
 
     private void Start()
     {
-        if (_kbDis <= 0) { Debug.LogError("ƒmƒbƒNƒoƒbƒN‹——£‚Ì’l‚ğİ’è‚µ‚Ä‚­‚¾‚³‚¢"); }
-        if (_kbTime <= 0) { Debug.LogError("ƒmƒbƒNƒoƒbƒNŠÔ‚ğİ’è‚µ‚Ä‚­‚¾‚³‚¢"); }
+        if (_kbDis <= 0) { Debug.LogError("ãƒãƒƒã‚¯ãƒãƒƒã‚¯è·é›¢ã®å€¤ã‚’è¨­å®šã—ã¦ãã ã•ã„"); }
+        if (_kbTime <= 0) { Debug.LogError("ãƒãƒƒã‚¯ãƒãƒƒã‚¯æ™‚é–“ã‚’è¨­å®šã—ã¦ãã ã•ã„"); }
+        
         _isMove = false;
     }
 
