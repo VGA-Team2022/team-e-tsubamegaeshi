@@ -1055,6 +1055,7 @@ MonoBehaviour:
   _enemyStopPos: 0.9
   _stateManager: {fileID: 243864802}
   _targetCamera: {fileID: 450459416}
+  _levelController: {fileID: 0}
   _attackInterval: 1
   _isBattleCheck: 0
 --- !u!4 &971873275
@@ -2037,6 +2038,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1361665707}
     m_Modifications:
+    - target: {fileID: 2288678923039552409, guid: 59ebee524d4645841bd07613f0dd51ca, type: 3}
+      propertyPath: _nowLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288678923039552409, guid: 59ebee524d4645841bd07613f0dd51ca, type: 3}
+      propertyPath: _enemySpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288678923039552409, guid: 59ebee524d4645841bd07613f0dd51ca, type: 3}
+      propertyPath: _levelState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288678923039552409, guid: 59ebee524d4645841bd07613f0dd51ca, type: 3}
+      propertyPath: _playerSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288678923039552409, guid: 59ebee524d4645841bd07613f0dd51ca, type: 3}
+      propertyPath: _enemyKnockbackTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288678923039552409, guid: 59ebee524d4645841bd07613f0dd51ca, type: 3}
+      propertyPath: _enemyKnockbackDistance
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288678923039552409, guid: 59ebee524d4645841bd07613f0dd51ca, type: 3}
+      propertyPath: _easyEnemyStatus.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288678923039552409, guid: 59ebee524d4645841bd07613f0dd51ca, type: 3}
+      propertyPath: _easyEnemyStatus.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288678923039552409, guid: 59ebee524d4645841bd07613f0dd51ca, type: 3}
+      propertyPath: _easyEnemyStatus.Array.data[2]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2288678923039552409, guid: 59ebee524d4645841bd07613f0dd51ca, type: 3}
+      propertyPath: _easyPlayerStatus.Array.data[0]
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2288678923039552410, guid: 59ebee524d4645841bd07613f0dd51ca, type: 3}
       propertyPath: m_RootOrder
       value: 4

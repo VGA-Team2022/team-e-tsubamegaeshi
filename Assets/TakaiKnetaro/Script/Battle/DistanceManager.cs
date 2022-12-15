@@ -40,6 +40,8 @@ public class DistanceManager : MonoBehaviour
     private StateManager _stateManager;
     [SerializeField]
     private TargetCamera _targetCamera;
+    [SerializeField,Tooltip("LevelManager")]
+    private LevelController _levelController;
 
     [Tooltip("プレイヤーの現在の座標")]
     private Vector3 _playerCurrentPos;
