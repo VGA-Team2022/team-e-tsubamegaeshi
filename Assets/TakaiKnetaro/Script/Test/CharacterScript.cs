@@ -25,9 +25,64 @@ public class CharacterScript : MonoBehaviour
 
     private void Start()
     {
+        switch (LevelController.Instance.LevelState)
+        {
+            case LevelState.EASY:
+                {
+                    if(_chara == Chara.Player)
+                    {
+                        _charaSpeed = LevelController.Instance._easyPlayerStatus[0];
+                        _kbDis = LevelController.Instance._easyPlayerStatus[1];
+                        _kbTime = LevelController.Instance._easyPlayerStatus[2];
+                    }
+                    else if(_chara == Chara.Enemy)
+                    {
+                        _charaSpeed = LevelController.Instance._easyEnemyStatus[0];
+                        _kbDis = LevelController.Instance._easyEnemyStatus[1];
+                        _kbTime = LevelController.Instance._easyEnemyStatus[2];
+                    }
+                }
+                break;
+
+            case LevelState.NORMAL:
+                {
+                    if (_chara == Chara.Player)
+                    {
+                        _charaSpeed = LevelController.Instance._normalPlayerStatus[0];
+                        _kbDis = LevelController.Instance._normalPlayerStatus[1];
+                        _kbTime = LevelController.Instance._normalPlayerStatus[2];
+                    }
+                    else if (_chara == Chara.Enemy)
+                    {
+                        _charaSpeed = LevelController.Instance._normalEnemyStatus[0];
+                        _kbDis = LevelController.Instance._normalEnemyStatus[1];
+                        _kbTime = LevelController.Instance._normalEnemyStatus[2];
+                    }
+                }
+                break;
+
+            case LevelState.HARD:
+                {
+                    if (_chara == Chara.Player)
+                    {
+                        _charaSpeed = LevelController.Instance._hardPlayerStatus[0];
+                        _kbDis = LevelController.Instance._hardPlayerStatus[1];
+                        _kbTime = LevelController.Instance._hardPlayerStatus[2];
+                    }
+                    else if (_chara == Chara.Player)
+                    {
+                        _charaSpeed = LevelController.Instance._hardEnemyStatus[0];
+                        _kbDis = LevelController.Instance._hardEnemyStatus[1];
+                        _kbTime = LevelController.Instance._hardEnemyStatus[2];
+                    }
+                }
+                break;
+        }
+
+        if (_charaSpeed <= 0) { Debug.LogError("移動する値を設定してください"); }
         if (_kbDis <= 0) { Debug.LogError("ノックバック距離の値を設定してください"); }
         if (_kbTime <= 0) { Debug.LogError("ノックバック時間を設定してください"); }
-        
+
         _isMove = false;
     }
 
@@ -68,7 +123,7 @@ public class CharacterScript : MonoBehaviour
 
     public void MoveStart()
     {
-        if(_isMove)
+        if (_isMove)
         {
             _isMove = false;
         }

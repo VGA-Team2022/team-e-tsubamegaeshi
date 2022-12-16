@@ -51,3 +51,27 @@ MonoBehaviour:
   _enemySpeed: 1
   _enemyKnockbackDistance: 1
   _enemyKnockbackTime: 1
+  _easyPlayerStatus:
+  - 1
+  - 1
+  - 1
+  _normalPlayerStatus:
+  - 1
+  - 1
+  - 1
+  _hardPlayerStatus:
+  - 1
+  - 1
+  - 1
+  _easyEnemyStatus:
+  - 1
+  - 1
+  - 1
+  _normalEnemyStatus:
+  - 1
+  - 1
+  - 1
+  _hardEnemyStatus:
+  - 1
+  - 1
+  - 1

@@ -69,6 +69,11 @@ public class DistanceManager : MonoBehaviour
 
         _sum = Mathf.Abs(_start.position.x) + Mathf.Abs(_end.position.x);
 
+        if(_levelController != null)
+        {
+            Instantiate(_levelController, gameObject.transform);
+        }
+
         if (_playerPrefab != null)
         {
             _player = Instantiate(_playerPrefab, _playerInitPos.position, Quaternion.identity);
