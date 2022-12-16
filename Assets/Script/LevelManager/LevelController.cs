@@ -31,7 +31,7 @@ public class LevelController : MonoBehaviour
         }
     }
 
-    [Header("-------------------難易度の設定・ステータスを設定-------------------")]
+    [Header("-------------------難易度の設定・ステータスを設定------------------")]
     [Header("難易度"), SerializeField]
     LevelState _levelState;
 
