@@ -20,6 +20,7 @@ public class SceneSelector : MonoBehaviour
     [Header("フェードインの遷移時間を決められるよ")]
     [SerializeField] private float _fadeTime = 2.0f;
     [SerializeField] string se;
+    [SerializeField] string bgm;
     [SerializeField] Fade fade;
     [SerializeField] List<ChangeSetting> Setting;
 
@@ -30,6 +31,7 @@ public class SceneSelector : MonoBehaviour
             s.Button.onClick.AddListener(() =>
             {
                 AudioManager.Instance.PlaySE(se);
+                AudioManager.Instance.PlayBgm(bgm);
                 fade.FadeIn(_fadeTime, () => SceneManager.LoadScene(s.Scene));
             });
         });

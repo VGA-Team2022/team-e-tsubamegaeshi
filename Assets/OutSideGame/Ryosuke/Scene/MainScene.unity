@@ -480,6 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeTime: 2
   se: BattleEnemyRepel
+  bgm: TitleLoop
   fade: {fileID: 1691973947}
   Setting:
   - Scene: StartScene
