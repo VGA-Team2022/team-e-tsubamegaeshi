@@ -40,6 +40,8 @@ public class DistanceManager : MonoBehaviour
     private StateManager _stateManager;
     [SerializeField]
     private TargetCamera _targetCamera;
+    [SerializeField,Tooltip("LevelManager")]
+    private LevelController _levelController;
 
     [Tooltip("プレイヤーの現在の座標")]
     private Vector3 _playerCurrentPos;
@@ -67,6 +69,11 @@ public class DistanceManager : MonoBehaviour
 
         _sum = Mathf.Abs(_start.position.x) + Mathf.Abs(_end.position.x);
 
+        if(_levelController != null)
+        {
+            Instantiate(_levelController, gameObject.transform);
+        }
+
         if (_playerPrefab != null)
         {
             _player = Instantiate(_playerPrefab, _playerInitPos.position, Quaternion.identity);
@@ -90,6 +97,8 @@ public class DistanceManager : MonoBehaviour
         {
             Debug.LogError("プレハブにEnemyを設定してください");
         }
+
+        _enemyStopPos = (_end.position.x - _start.position.x) * _enemyStopPos + _start.position.x;
 
         _isBattleCheck = true;
 
@@ -120,8 +129,14 @@ public class DistanceManager : MonoBehaviour
         float playerLerp = LerpTranslate(_player.transform.position.x);
         float enemyLerp = LerpTranslate(_enemy.transform.position.x);
 
+        
         _isBattleCheck = DistanceCheck(playerLerp, enemyLerp);
-
+        
+        if(_isBattleCheck)
+        {
+            _isBattleCheck = SpecialCheck(_enemy.transform.position.x);
+        }
+ 
         if (!_isBattleCheck)
         {
             _stateManager.AttackTimer();
@@ -163,7 +178,33 @@ public class DistanceManager : MonoBehaviour
             _charaPlayer.KnockBack();
             _charaEnemy.MoveStart();
         }
-        StartCoroutine(nameof(ResetInterval));
+        else if (battle == StateManager.BattleEndState.Special)
+        {
+            Debug.Log("勝利");
+            Destroy(_enemy);
+        }
+        StartCoroutine(ResetInterval());
+    }
+
+    /// <summary>
+    /// エネミーのX軸が一定距離を超えたら機能する関数
+    /// </summary>
+    /// <param name="posx"></param>
+    /// <returns></returns>
+    private bool SpecialCheck(float posx)
+    {
+        if (posx >= _enemyStopPos)
+        {
+            _stateManager.EnemyStateSpecial();
+            _charaPlayer._isMove = true;
+            _charaEnemy._isMove = true;
+            _isBattleCheck = false;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     /// <summary>
@@ -174,18 +215,11 @@ public class DistanceManager : MonoBehaviour
     /// <returns></returns>
     private bool DistanceCheck(float p, float e)
     {
-        if (e >= _enemyStopPos)
-        {
-            Debug.Log(e);
-            //_charaPlayer.SpecialAttack();
-            //_charaEnemy.SpecialAttack();
-            _stateManager.EnemyStateSpecial();
-            return false;
-        }
-        else if (e - p <= _stopDistance)
+        if (e - p <= _stopDistance)
         {
             _charaPlayer._isMove = true;
             _charaEnemy._isMove = true;
+            _isBattleCheck = false;
             _stateManager.EnemyStateSet();
             return false;
         }

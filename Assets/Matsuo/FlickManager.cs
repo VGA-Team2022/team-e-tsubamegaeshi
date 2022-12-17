@@ -44,6 +44,7 @@ public class FlickManager : MonoBehaviour
         {
             if (_nowSwipe == FlickState.NONE)
             {
+                Debug.Log("Flick‚¾!!!");
                 Flick();
             }
         }
