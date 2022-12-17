@@ -56,7 +56,29 @@ public class StateManager : MonoBehaviour
 
     private void Start()
     {
-
+        switch(LevelController.Instance.LevelState)
+        {
+            case LevelState.EASY:
+                {
+                    _attackTimer = LevelController.Instance._easyPlayerStatus[3];
+                }
+                break;
+            case LevelState.NORMAL:
+                {
+                    _attackTimer = LevelController.Instance._normalPlayerStatus[3];
+                }
+                break;
+            case LevelState.HARD:
+                {
+                    _attackTimer = LevelController.Instance._hardPlayerStatus[3];
+                }
+                break;
+            case LevelState.EXPART:
+                {
+                    _attackTimer = LevelController.Instance._expartPlayerStatus[3];
+                }
+                break;
+        }
     }
 
     private void Update()
