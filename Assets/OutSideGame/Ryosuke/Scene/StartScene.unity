@@ -1410,6 +1410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeTime: 2
   se: BattleEnemyRepel
+  bgm: TitleLoop
   fade: {fileID: 1500960923}
   Setting:
   - Scene: TakaiScene

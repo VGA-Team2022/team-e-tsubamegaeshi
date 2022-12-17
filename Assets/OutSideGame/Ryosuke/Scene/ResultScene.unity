@@ -614,6 +614,8 @@ MonoBehaviour:
   Setting:
   - Scene: MainScene
     Button: {fileID: 317132240}
+  - Scene: StartScene
+    Button: {fileID: 159983262}
 --- !u!4 &1242098139
 Transform:
   m_ObjectHideFlags: 0
