@@ -26,12 +26,12 @@ public class SceneSelector : MonoBehaviour
 
     private void Awake()
     {
+        AudioManager.Instance.PlayBgm(bgm);
         Setting.ForEach(s =>
         {
             s.Button.onClick.AddListener(() =>
             {
                 AudioManager.Instance.PlaySE(se);
-                AudioManager.Instance.PlayBgm(bgm);
                 fade.FadeIn(_fadeTime, () => SceneManager.LoadScene(s.Scene));
             });
         });
