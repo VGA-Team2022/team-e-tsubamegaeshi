@@ -252,6 +252,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: 53c22e1773be7f84aad8ed8b7b58fa6e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11486218, guid: 53c22e1773be7f84aad8ed8b7b58fa6e, type: 3}
+      propertyPath: cutoutRange
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 22424616, guid: 53c22e1773be7f84aad8ed8b7b58fa6e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -598,7 +606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f94aadbcbf25a84a8b5fbcce71d33e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOut: 0
+  fadeOut: 1
 --- !u!1 &1311230712
 GameObject:
   m_ObjectHideFlags: 0

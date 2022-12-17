@@ -284,8 +284,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u64CD\u4F5C\u8AAC\u660E"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0c5180539dc8e8b41a8136ae36308cb0, type: 2}
-  m_sharedMaterial: {fileID: 536402246277105037, guid: 0c5180539dc8e8b41a8136ae36308cb0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d7ec839939e762b49a66b6dba01e09e3, type: 2}
+  m_sharedMaterial: {fileID: 536402246277105037, guid: d7ec839939e762b49a66b6dba01e09e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -539,7 +539,7 @@ MonoBehaviour:
   Setting:
   - Scene: StartScene
     Button: {fileID: 1796872832}
-  - Scene: SetumriTest
+  - Scene: SetumeiTest
     Button: {fileID: 1649310342}
 --- !u!1001 &995810483
 PrefabInstance:
@@ -820,8 +820,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u59CB\u3081\u308B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 0c5180539dc8e8b41a8136ae36308cb0, type: 2}
-  m_sharedMaterial: {fileID: 536402246277105037, guid: 0c5180539dc8e8b41a8136ae36308cb0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d7ec839939e762b49a66b6dba01e09e3, type: 2}
+  m_sharedMaterial: {fileID: 536402246277105037, guid: d7ec839939e762b49a66b6dba01e09e3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
