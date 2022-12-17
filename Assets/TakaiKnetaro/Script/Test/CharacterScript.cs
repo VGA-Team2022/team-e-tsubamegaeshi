@@ -21,30 +21,31 @@ public class CharacterScript : MonoBehaviour
     [SerializeField, Tooltip("キャラのノックバックされてる時間")]
     private float _kbTime = 1f;
 
-    private Vector2 _enemyTransformX;
+    private Vector2 _startPosX;
 
     public bool _isMove = false;
 
     private void Start()
     {
-        _enemyTransformX = transform.position;
+        _startPosX = transform.position;
 
         switch (LevelController.Instance.LevelState)
         {
             case LevelState.EASY:
                 {
-                    if(_chara == Chara.Player)
+                    if (_chara == Chara.Player)
                     {
                         _charaSpeed = LevelController.Instance._easyPlayerStatus[0];
                         _kbDis = LevelController.Instance._easyPlayerStatus[1];
                         _kbTime = LevelController.Instance._easyPlayerStatus[2];
+                        _startPosX.x += LevelController.Instance._easyPlayerStatus[3] * -1;
                     }
-                    else if(_chara == Chara.Enemy)
+                    else if (_chara == Chara.Enemy)
                     {
                         _charaSpeed = LevelController.Instance._easyEnemyStatus[0];
                         _kbDis = LevelController.Instance._easyEnemyStatus[1];
                         _kbTime = LevelController.Instance._easyEnemyStatus[2];
-                        _enemyTransformX.x += LevelController.Instance._easyEnemyStatus[3];
+                        _startPosX.x += LevelController.Instance._easyEnemyStatus[3];
                     }
                 }
                 break;
@@ -56,13 +57,14 @@ public class CharacterScript : MonoBehaviour
                         _charaSpeed = LevelController.Instance._normalPlayerStatus[0];
                         _kbDis = LevelController.Instance._normalPlayerStatus[1];
                         _kbTime = LevelController.Instance._normalPlayerStatus[2];
+                        _startPosX.x += LevelController.Instance._normalPlayerStatus[3] * -1;
                     }
                     else if (_chara == Chara.Enemy)
                     {
                         _charaSpeed = LevelController.Instance._normalEnemyStatus[0];
                         _kbDis = LevelController.Instance._normalEnemyStatus[1];
                         _kbTime = LevelController.Instance._normalEnemyStatus[2];
-                        _enemyTransformX.x += LevelController.Instance._normalEnemyStatus[3];
+                        _startPosX.x += LevelController.Instance._normalEnemyStatus[3];
                     }
                 }
                 break;
@@ -74,13 +76,14 @@ public class CharacterScript : MonoBehaviour
                         _charaSpeed = LevelController.Instance._hardPlayerStatus[0];
                         _kbDis = LevelController.Instance._hardPlayerStatus[1];
                         _kbTime = LevelController.Instance._hardPlayerStatus[2];
+                        _startPosX.x += LevelController.Instance._hardPlayerStatus[3] * -1;
                     }
                     else if (_chara == Chara.Player)
                     {
                         _charaSpeed = LevelController.Instance._hardEnemyStatus[0];
                         _kbDis = LevelController.Instance._hardEnemyStatus[1];
                         _kbTime = LevelController.Instance._hardEnemyStatus[2];
-                        _enemyTransformX.x += LevelController.Instance._normalEnemyStatus[3];
+                        _startPosX.x += LevelController.Instance._normalEnemyStatus[3];
                     }
                 }
                 break;
@@ -92,19 +95,20 @@ public class CharacterScript : MonoBehaviour
                         _charaSpeed = LevelController.Instance._expartPlayerStatus[0];
                         _kbDis = LevelController.Instance._expartPlayerStatus[1];
                         _kbTime = LevelController.Instance._expartPlayerStatus[2];
+                        _startPosX.x += LevelController.Instance._expartPlayerStatus[3] * -1;
                     }
                     else if (_chara == Chara.Player)
                     {
                         _charaSpeed = LevelController.Instance._expartEnemyStatus[0];
                         _kbDis = LevelController.Instance._expartEnemyStatus[1];
                         _kbTime = LevelController.Instance._expartEnemyStatus[2];
-                        _enemyTransformX.x += LevelController.Instance._expartEnemyStatus[3];
+                        _startPosX.x += LevelController.Instance._expartEnemyStatus[3];
                     }
                 }
-                break;   
+                break;
         }
 
-        transform.position = _enemyTransformX;
+        transform.position = _startPosX;
 
         if (_charaSpeed <= 0) { Debug.LogError("移動する値を設定してください"); }
         if (_kbDis <= 0) { Debug.LogError("ノックバック距離の値を設定してください"); }
