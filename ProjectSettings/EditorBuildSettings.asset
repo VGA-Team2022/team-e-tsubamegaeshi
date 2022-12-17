@@ -8,34 +8,31 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/OutSideGame/Ryosuke/Scene/MainScene.unity
     guid: f4a8431d89a29fa489741b2e330de8a5
-  - enabled: 0
-    path: Assets/OutSideGame/Ryosuke/Scene/OptionScene.unity
-    guid: 98e7af7ecfb8bbf4680953d3737668a0
-  - enabled: 0
-    path: Assets/OutSideGame/Ryosuke/Scene/StartScene.unity
-    guid: 8c0c52d7dac09e44e9b94bfe4c0df812
-  - enabled: 0
-    path: Assets/OutSideGame/Ryosuke/Scene/EasyScene.unity
-    guid: e73e7175296ee784e90c988279ac1c1c
-  - enabled: 0
-    path: Assets/OutSideGame/Ryosuke/Scene/NomalScene.unity
-    guid: aa0dd1d65135cb74c9b7fcabe5b779ca
-  - enabled: 0
-    path: Assets/OutSideGame/Ryosuke/Scene/HardScene.unity
-    guid: fc44ef1c63935d44dae4805e3b3f33f9
-  - enabled: 0
-    path: Assets/OutSideGame/Ryosuke/Scene/ExtraScene.unity
-    guid: a657dacf6f0c4d441b4034ce3840e6a2
-  - enabled: 0
-    path: Assets/OutSideGame/Ryosuke/Scene/ResultScene.unity
-    guid: e9114ca0747740e40a17a75399468417
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
-    path: Assets/TakaiKnetaro/TakaiScene.unity
-    guid: ea9f3c1624cc5244e8bc64240c0656a7
   - enabled: 1
     path: Assets/OutSideGame/NagaiTaito/SetumeiTest.unity
     guid: af2333f46ff0b4047bf7f876d2f56d51
+  - enabled: 1
+    path: Assets/OutSideGame/Ryosuke/Scene/StartScene.unity
+    guid: 8c0c52d7dac09e44e9b94bfe4c0df812
+  - enabled: 1
+    path: Assets/OutSideGame/Ryosuke/Scene/EasyScene.unity
+    guid: e73e7175296ee784e90c988279ac1c1c
+  - enabled: 1
+    path: Assets/OutSideGame/Ryosuke/Scene/NomalScene.unity
+    guid: aa0dd1d65135cb74c9b7fcabe5b779ca
+  - enabled: 1
+    path: Assets/OutSideGame/Ryosuke/Scene/HardScene.unity
+    guid: fc44ef1c63935d44dae4805e3b3f33f9
+  - enabled: 1
+    path: Assets/OutSideGame/Ryosuke/Scene/ExtraScene.unity
+    guid: a657dacf6f0c4d441b4034ce3840e6a2
+  - enabled: 1
+    path: Assets/OutSideGame/Ryosuke/Scene/ResultScene.unity
+    guid: e9114ca0747740e40a17a75399468417
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/TakaiKnetaro/TakaiScene.unity
+    guid: ea9f3c1624cc5244e8bc64240c0656a7
   m_configObjects: {}

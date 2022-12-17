@@ -40,8 +40,6 @@ public class DistanceManager : MonoBehaviour
     private StateManager _stateManager;
     [SerializeField]
     private TargetCamera _targetCamera;
-    [SerializeField,Tooltip("LevelManager")]
-    private LevelController _levelController;
 
     [Tooltip("プレイヤーの現在の座標")]
     private Vector3 _playerCurrentPos;
@@ -68,11 +66,6 @@ public class DistanceManager : MonoBehaviour
         }
 
         _sum = Mathf.Abs(_start.position.x) + Mathf.Abs(_end.position.x);
-
-        if(_levelController != null)
-        {
-            Instantiate(_levelController, gameObject.transform);
-        }
 
         if (_playerPrefab != null)
         {
