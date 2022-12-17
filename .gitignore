@@ -60,17 +60,3 @@ crashlytics-build.properties
 
 UserSettings/
 .vsconfig
-Assets/Aoyama/
-ProjectSettings/
-Assets/Aoyama.meta
-Assets/Prefab/===Manager===.prefab
-Assets/Scenes/InGame.unity
-Assets/Scenes/Result.unity
-Assets/Scenes/Title.unity
-Assets/Scenes/Title.unity.meta
-Assets/Sprite/UI/uikojiro.png
-Assets/Sprite/UI/uikojiro.png.meta
-Assets/Sprite/UI/uimusashi.png
-Assets/Sprite/UI/uimusashi.png.meta
-Assets/Sprite/UI/操作.png
-Assets/Sprite/UI/操作.png.meta
