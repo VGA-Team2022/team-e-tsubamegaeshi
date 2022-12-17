@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/OutSideGame/Ryosuke/Scene/MainScene.unity
     guid: f4a8431d89a29fa489741b2e330de8a5
   - enabled: 1
-    path: Assets/OutSideGame/Ryosuke/Scene/OptionScene.unity
-    guid: 98e7af7ecfb8bbf4680953d3737668a0
+    path: Assets/OutSideGame/NagaiTaito/SetumeiTest.unity
+    guid: af2333f46ff0b4047bf7f876d2f56d51
   - enabled: 1
     path: Assets/OutSideGame/Ryosuke/Scene/StartScene.unity
     guid: 8c0c52d7dac09e44e9b94bfe4c0df812
@@ -35,7 +35,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TakaiKnetaro/TakaiScene.unity
     guid: ea9f3c1624cc5244e8bc64240c0656a7
-  - enabled: 1
-    path: Assets/OutSideGame/NagaiTaito/SetumeiTest.unity
-    guid: af2333f46ff0b4047bf7f876d2f56d51
   m_configObjects: {}
