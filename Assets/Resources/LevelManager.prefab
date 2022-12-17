@@ -48,10 +48,13 @@ MonoBehaviour:
   _playerSpeed: 1
   _playerKnockbackDistance: 1
   _playerKnockbackTime: 1
+  _playerAttackInterval: 1
   _enemySpeed: 1
   _enemyKnockbackDistance: 1
   _enemyKnockbackTime: 1
+  _enemyStartPos: 0
   _easyPlayerStatus:
+  - 1
   - 1
   - 1
   - 1
@@ -59,15 +62,24 @@ MonoBehaviour:
   - 1
   - 1
   - 1
+  - 1
   _hardPlayerStatus:
   - 1
   - 1
   - 1
+  - 1
+  _expartPlayerStatus:
+  - 0
+  - 0
+  - 0
+  - 0
   _easyEnemyStatus:
   - 1
   - 1
   - 1
+  - 0
   _normalEnemyStatus:
+  - 1
   - 1
   - 1
   - 1
@@ -75,3 +87,9 @@ MonoBehaviour:
   - 1
   - 1
   - 1
+  - 1
+  _expartEnemyStatus:
+  - 0
+  - 0
+  - 0
+  - 0
