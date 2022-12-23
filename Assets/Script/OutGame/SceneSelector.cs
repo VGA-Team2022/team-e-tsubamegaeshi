@@ -19,9 +19,12 @@ public class SceneSelector : MonoBehaviour
     [Header("画面の遷移管理")]
     [Header("フェードインの遷移時間を決められるよ")]
     [SerializeField] private float _fadeTime = 2.0f;
-    [SerializeField] string se;
-    [SerializeField] string bgm;
-    [SerializeField] Fade fade;
+    
+    [SerializeField,Header("SEの名前をコピペして入れてください")] string se;
+    [SerializeField,Header("BGMの曲名をコピペして入れてください")] string bgm;
+
+    
+    [SerializeField,Header("ここにFadeCanvasのプレハブを入れてください")] Fade fade;
     [SerializeField] List<ChangeSetting> Setting;
 
     private void Awake()
