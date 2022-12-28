@@ -44,9 +44,10 @@ public class StateManager : MonoBehaviour
 
     [SerializeField]
     private float _attackTimer = 1f;
+    [SerializeField]
+    private float _attackGraceTime = 0.5f;
 
     private float _timer;
-
     public PlayerStateController _playerStateController;
     public EnemyStateController _enemyStateController;
 
@@ -94,11 +95,22 @@ public class StateManager : MonoBehaviour
         StartCoroutine(nameof(AttackTimerCoroutine));
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     IEnumerator AttackTimerCoroutine()
     {
         yield return new WaitForSeconds(_attackTimer);
         ChangeBattleEndState(BattleEndState.Lose);
     }
+
+    IEnumerator AttackGraceTime()
+    {
+        yield return new WaitForSeconds(_attackTimer);
+        _enemyAnim.SetTrigger("Attack");
+    }
+
 
     /// <summary>
     /// エネミーの出す手を決めて変更する処理
