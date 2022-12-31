@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: bc473f8f5738ce74fa040d7ceefb08e9
+  - enabled: 1
+    path: Assets/Scenes/Select.unity
+    guid: 75f145b4695882845b1f2a23577ce5fe
+  - enabled: 1
+    path: Assets/Scenes/InGame.unity
+    guid: 41c5cea51536e1244a8c8dbe6fbd6980
+  - enabled: 1
+    path: Assets/Scenes/Result.unity
+    guid: b81942cbbc20d584aa64f338d03e343b
+  - enabled: 1
     path: Assets/OutSideGame/Ryosuke/Scene/MainScene.unity
     guid: f4a8431d89a29fa489741b2e330de8a5
   - enabled: 1
@@ -29,9 +41,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/OutSideGame/Ryosuke/Scene/ResultScene.unity
     guid: e9114ca0747740e40a17a75399468417
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/TakaiKnetaro/TakaiScene.unity
     guid: ea9f3c1624cc5244e8bc64240c0656a7
