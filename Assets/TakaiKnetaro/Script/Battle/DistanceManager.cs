@@ -40,6 +40,8 @@ public class DistanceManager : MonoBehaviour
     private StateManager _stateManager;
     [SerializeField]
     private TargetCamera _targetCamera;
+    [SerializeField]
+    private SceneChangeResult _sceneChangeResult;
 
     [Tooltip("プレイヤーの現在の座標")]
     private Vector3 _playerCurrentPos;
@@ -164,6 +166,8 @@ public class DistanceManager : MonoBehaviour
         else if (battle == StateManager.BattleEndState.Lose)
         {
             Debug.Log("負け");
+            ResultManager._resultState = ResultState.LOSE;
+            _sceneChangeResult.GoResult();
             //Destroy(_player);
         }
         else if (battle == StateManager.BattleEndState.Draw)
@@ -174,7 +178,8 @@ public class DistanceManager : MonoBehaviour
         else if (battle == StateManager.BattleEndState.Special)
         {
             Debug.Log("勝利");
-            Destroy(_enemy);
+            ResultManager._resultState = ResultState.WIN;
+            _sceneChangeResult.GoResult();
         }
         StartCoroutine(ResetInterval());
     }
