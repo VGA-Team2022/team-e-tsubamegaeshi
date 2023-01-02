@@ -59,7 +59,9 @@ MonoBehaviour:
   - 1
   - 1
   - 0
+  - 10
   _normalPlayerStatus:
+  - 1
   - 1
   - 1
   - 1
@@ -69,13 +71,15 @@ MonoBehaviour:
   - 1
   - 1
   - 1
+  - 1
   _expartPlayerStatus:
   - 0
   - 0
   - 0
   - 0
+  - 0
   _easyEnemyStatus:
-  - 1
+  - 10
   - 1
   - 1
   - 0
