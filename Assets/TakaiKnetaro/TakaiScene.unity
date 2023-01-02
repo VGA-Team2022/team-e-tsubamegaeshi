@@ -223,7 +223,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131590565}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -285,7 +285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234716735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25, y: -3, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1055,7 +1055,7 @@ MonoBehaviour:
   _enemyStopPos: 0.9
   _stateManager: {fileID: 243864802}
   _targetCamera: {fileID: 450459416}
-  _levelController: {fileID: 2288678923039552409, guid: 59ebee524d4645841bd07613f0dd51ca, type: 3}
+  _sceneChangeResult: {fileID: 0}
   _attackInterval: 1
   _isBattleCheck: 0
 --- !u!4 &971873275
@@ -1121,9 +1121,9 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: 0.10235572
     y: 0
-    width: 1
+    width: 0.79528856
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
@@ -1430,7 +1430,7 @@ RectTransform:
   m_GameObject: {fileID: 1348336674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5861111, y: 0.5861111, z: 0.5861111}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 873911747}
@@ -1442,7 +1442,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 262}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 1920.0001, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1348336676
 MonoBehaviour:
