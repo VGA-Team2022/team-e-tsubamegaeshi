@@ -45,19 +45,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelState: 0
-  _playerSpeed: 1
+  _playerSpeed: 10
   _playerKnockbackDistance: 1
   _playerKnockbackTime: 1
-  _playerAttackInterval: 1
-  _enemySpeed: 1
+  _playerStartPos: 0
+  _playerAttackInterval: 10
+  _enemySpeed: 10
   _enemyKnockbackDistance: 1
   _enemyKnockbackTime: 1
   _enemyStartPos: 0
   _easyPlayerStatus:
+  - 10
   - 1
   - 1
-  - 1
-  - 1
+  - 0
   _normalPlayerStatus:
   - 1
   - 1
