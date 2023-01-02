@@ -49,7 +49,7 @@ MonoBehaviour:
   _playerKnockbackDistance: 1
   _playerKnockbackTime: 1
   _playerStartPos: 0
-  _playerAttackInterval: 10
+  _playerAttackInterval: 1
   _enemySpeed: 10
   _enemyKnockbackDistance: 1
   _enemyKnockbackTime: 1
@@ -59,7 +59,7 @@ MonoBehaviour:
   - 1
   - 1
   - 0
-  - 10
+  - 1
   _normalPlayerStatus:
   - 1
   - 1
