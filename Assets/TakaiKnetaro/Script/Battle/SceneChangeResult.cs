@@ -5,17 +5,35 @@ using UnityEngine.SceneManagement;
 
 public class SceneChangeResult : MonoBehaviour
 {
-    [SerializeField,Tooltip("ˆÚ“®‚Ü‚Å‚ÉŠ|‚©‚éŽžŠÔ")]
-    private float _timer;
+    [Header("ˆÚ“®‚Ü‚Å‚ÉŠ|‚©‚éŽžŠÔ")]
+    [SerializeField]
+    private float _winTimer;
+    [SerializeField]
+    private float _loseTimer;
 
-    public void GoResult()
+    private float time;
+    public void MoveScene()
     {
-        StartCoroutine(GoResultTimer());
+        switch(ResultManager._resultState)
+        {
+            case ResultState.WIN:
+                {
+                    time = _winTimer;
+                    StartCoroutine(GoResultTimer());
+                }
+                break;
+            case ResultState.LOSE:
+                {
+                    time -= _loseTimer;
+                    StartCoroutine(GoResultTimer());
+                }
+                break;
+        }
     }
 
     IEnumerator  GoResultTimer()
     {
-        yield return new WaitForSeconds(_timer);
+        yield return new WaitForSeconds(time);
         SceneManager.LoadScene("Result");
     }
 }

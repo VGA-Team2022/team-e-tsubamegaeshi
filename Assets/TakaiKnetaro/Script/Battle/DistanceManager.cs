@@ -5,37 +5,37 @@ using UnityEditor;
 using DG.Tweening;
 
 //TODO
-//Player‚ÆEnemy—¼•û‚ÌŠÇ—‚ğs‚¤‚ÆƒR[ƒh—Ê‚ª‘½‚­‚È‚é‚©‚à
-//•K—v‚Å‚ ‚ê‚Î•ªŠ„‚·‚é
+//Playerã¨Enemyä¸¡æ–¹ã®ç®¡ç†ã‚’è¡Œã†ã¨ã‚³ãƒ¼ãƒ‰é‡ãŒå¤šããªã‚‹ã‹ã‚‚
+//å¿…è¦ã§ã‚ã‚Œã°åˆ†å‰²ã™ã‚‹
 
 /// <summary>
-/// ƒV[ƒ““à‚ÌPlayer‚ÆEnemy‚ÌˆÊ’u‚ğŠÇ—‚·‚é
+/// ã‚·ãƒ¼ãƒ³å†…ã®Playerã¨Enemyã®ä½ç½®ã‚’ç®¡ç†ã™ã‚‹
 /// </summary>
 public class DistanceManager : MonoBehaviour
 {
-    [Header("ƒvƒŒƒCƒ„[")]
-    [SerializeField, Tooltip("ƒvƒŒƒCƒ„[‚ÌƒvƒŒƒnƒu")]
+    [Header("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼")]
+    [SerializeField, Tooltip("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ãƒ—ãƒ¬ãƒãƒ–")]
     private GameObject _playerPrefab;
-    [SerializeField, Tooltip("ƒvƒŒƒCƒ„[‚Ì‰ŠúÀ•W")]
+    [SerializeField, Tooltip("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®åˆæœŸåº§æ¨™")]
     private Transform _playerInitPos;
 
-    [Header("“G")]
-    [SerializeField, Tooltip("“G‚ÌƒvƒŒƒnƒu")]
+    [Header("æ•µ")]
+    [SerializeField, Tooltip("æ•µã®ãƒ—ãƒ¬ãƒãƒ–")]
     private GameObject _enemyPrefab;
-    [SerializeField, Tooltip("“G‚Ì‰ŠúÀ•W")]
+    [SerializeField, Tooltip("æ•µã®åˆæœŸåº§æ¨™")]
     private Transform _enemyInitPos;
 
-    [Header("ƒXƒe[ƒWİ’è")]
-    [SerializeField, Tooltip("ƒXƒe[ƒW‚ÌÅ¶")]
+    [Header("ã‚¹ãƒ†ãƒ¼ã‚¸è¨­å®š")]
+    [SerializeField, Tooltip("ã‚¹ãƒ†ãƒ¼ã‚¸ã®æœ€å·¦")]
     private Transform _start;
-    [SerializeField, Tooltip("ƒXƒe[ƒW‚ÌÅ‰E")]
+    [SerializeField, Tooltip("ã‚¹ãƒ†ãƒ¼ã‚¸ã®æœ€å³")]
     private Transform _end;
-    [SerializeField, Tooltip("Ã~‚·‚éüŒ`‹——£")]
+    [SerializeField, Tooltip("é™æ­¢ã™ã‚‹ç·šå½¢è·é›¢")]
     private float _stopDistance = 0.05f;
-    [SerializeField, Tooltip("“G‚ğ’â~‚·‚éˆÊ’u")]
+    [SerializeField, Tooltip("æ•µã‚’åœæ­¢ã™ã‚‹ä½ç½®")]
     private float _enemyStopPos = 0.95f;
 
-    [Header("ƒ}ƒl[ƒWƒƒ[")]
+    [Header("ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼")]
     [SerializeField, Tooltip("StateTest")]
     private StateManager _stateManager;
     [SerializeField]
@@ -43,9 +43,9 @@ public class DistanceManager : MonoBehaviour
     [SerializeField]
     private SceneChangeResult _sceneChangeResult;
 
-    [Tooltip("ƒvƒŒƒCƒ„[‚ÌŒ»İ‚ÌÀ•W")]
+    [Tooltip("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ç¾åœ¨ã®åº§æ¨™")]
     private Vector3 _playerCurrentPos;
-    [Tooltip("“G‚ÌŒ»İ‚ÌÀ•W")]
+    [Tooltip("æ•µã®ç¾åœ¨ã®åº§æ¨™")]
     private Vector3 _enemyCurrentPos;
     [SerializeField]
     private float _attackInterval = 1f;
@@ -63,7 +63,7 @@ public class DistanceManager : MonoBehaviour
     {
         if (_start.position.x >= _end.position.x)
         {
-            Debug.LogError("À•W‚ª•s³‚È’l‚Å‚·");
+            Debug.LogError("åº§æ¨™ãŒä¸æ­£ãªå€¤ã§ã™");
             return;
         }
 
@@ -78,7 +78,7 @@ public class DistanceManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("ƒvƒŒƒnƒu‚ÉPlayer‚ğİ’è‚µ‚Ä‚­‚¾‚³‚¢");
+            Debug.LogError("ãƒ—ãƒ¬ãƒãƒ–ã«Playerã‚’è¨­å®šã—ã¦ãã ã•ã„");
         }
 
         if (_enemyPrefab != null)
@@ -90,7 +90,7 @@ public class DistanceManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("ƒvƒŒƒnƒu‚ÉEnemy‚ğİ’è‚µ‚Ä‚­‚¾‚³‚¢");
+            Debug.LogError("ãƒ—ãƒ¬ãƒãƒ–ã«Enemyã‚’è¨­å®šã—ã¦ãã ã•ã„");
         }
 
         _enemyStopPos = (_end.position.x - _start.position.x) * _enemyStopPos + _start.position.x;
@@ -103,7 +103,7 @@ public class DistanceManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Player‚ÆEnemy‚ÌˆÊ’uî•ñ‚Ì‰Šú‰»
+    /// Playerã¨Enemyã®ä½ç½®æƒ…å ±ã®åˆæœŸåŒ–
     /// </summary>
     public void Init()
     {
@@ -139,15 +139,15 @@ public class DistanceManager : MonoBehaviour
     }
 
     /// <summary>
-    /// —^‚¦‚ç‚ê‚½’l‚ğüŒ`•âŠ®‚É•ÏŠ·‚·‚é
+    /// ä¸ãˆã‚‰ã‚ŒãŸå€¤ã‚’ç·šå½¢è£œå®Œã«å¤‰æ›ã™ã‚‹
     /// </summary>
-    /// <param name="xPos">•ÏŠ·‚·‚éÀ•W‚ÌXÀ•W</param>
+    /// <param name="xPos">å¤‰æ›ã™ã‚‹åº§æ¨™ã®Xåº§æ¨™</param>
     /// <returns></returns>
     private float LerpTranslate(float xPos)
     {
         if (_start.position.x > xPos || _end.position.x < xPos)
         {
-            Debug.LogError("Stage‚©‚çŠO‚ê‚Ä‚¢‚Ü‚·");
+            Debug.LogError("Stageã‹ã‚‰å¤–ã‚Œã¦ã„ã¾ã™");
             return 0;
         }
 
@@ -165,9 +165,9 @@ public class DistanceManager : MonoBehaviour
         }
         else if (battle == StateManager.BattleEndState.Lose)
         {
-            Debug.Log("•‰‚¯");
+            Debug.Log("è² ã‘");
             ResultManager._resultState = ResultState.LOSE;
-            _sceneChangeResult.GoResult();
+            _sceneChangeResult.MoveScene();
             //Destroy(_player);
         }
         else if (battle == StateManager.BattleEndState.Draw)
@@ -177,15 +177,15 @@ public class DistanceManager : MonoBehaviour
         }
         else if (battle == StateManager.BattleEndState.Special)
         {
-            Debug.Log("Ÿ—˜");
+            Debug.Log("å‹åˆ©");
             ResultManager._resultState = ResultState.WIN;
-            _sceneChangeResult.GoResult();
+            _sceneChangeResult.MoveScene();
         }
         StartCoroutine(ResetInterval());
     }
 
     /// <summary>
-    /// ƒGƒlƒ~[‚ÌX²‚ªˆê’è‹——£‚ğ’´‚¦‚½‚ç‹@”\‚·‚éŠÖ”
+    /// ã‚¨ãƒãƒŸãƒ¼ã®Xè»¸ãŒä¸€å®šè·é›¢ã‚’è¶…ãˆãŸã‚‰æ©Ÿèƒ½ã™ã‚‹é–¢æ•°
     /// </summary>
     /// <param name="posx"></param>
     /// <returns></returns>
@@ -206,7 +206,7 @@ public class DistanceManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒvƒŒƒCƒ„[‚ÆƒGƒlƒ~[‚Ì‹——£”äŠr
+    /// ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã¨ã‚¨ãƒãƒŸãƒ¼ã®è·é›¢æ¯”è¼ƒ
     /// </summary>
     /// <param name="p"></param>
     /// <param name="e"></param>
