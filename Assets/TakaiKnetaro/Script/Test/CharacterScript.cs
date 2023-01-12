@@ -11,22 +11,109 @@ public enum Chara
 
 public class CharacterScript : MonoBehaviour
 {
-    [Header("ƒLƒƒƒ‰ƒNƒ^[")]
-    [SerializeField, Tooltip("ƒNƒ‰ƒX‚ğ“ü‚ê‚Ä‚éƒIƒuƒWƒFƒNƒg‚ÌƒLƒƒƒ‰")]
+    [Header("ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ãƒ¼")]
+    [SerializeField, Tooltip("ã‚¯ãƒ©ã‚¹ã‚’å…¥ã‚Œã¦ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚­ãƒ£ãƒ©")]
     private Chara _chara;
-    [SerializeField, Tooltip("ƒLƒƒƒ‰‚ÌƒXƒs[ƒh")]
+    [SerializeField, Tooltip("ã‚­ãƒ£ãƒ©ã®ã‚¹ãƒ”ãƒ¼ãƒ‰")]
     private float _charaSpeed = 1;
-    [SerializeField, Tooltip("ƒLƒƒƒ‰‚ÌƒmƒbƒNƒoƒbƒNˆĞ—Í")]
+    [SerializeField, Tooltip("ã‚­ãƒ£ãƒ©ã®ãƒãƒƒã‚¯ãƒãƒƒã‚¯å¨åŠ›")]
     private float _kbDis = 1f;
-    [SerializeField, Tooltip("ƒLƒƒƒ‰‚ÌƒmƒbƒNƒoƒbƒN‚³‚ê‚Ä‚éŠÔ")]
+    [SerializeField, Tooltip("ã‚­ãƒ£ãƒ©ã®ãƒãƒƒã‚¯ãƒãƒƒã‚¯ã•ã‚Œã¦ã‚‹æ™‚é–“")]
     private float _kbTime = 1f;
+
+    private Vector2 _startPosX;
 
     public bool _isMove = false;
 
     private void Start()
     {
-        if (_kbDis <= 0) { Debug.LogError("ƒmƒbƒNƒoƒbƒN‹——£‚Ì’l‚ğİ’è‚µ‚Ä‚­‚¾‚³‚¢"); }
-        if (_kbTime <= 0) { Debug.LogError("ƒmƒbƒNƒoƒbƒNŠÔ‚ğİ’è‚µ‚Ä‚­‚¾‚³‚¢"); }
+        _startPosX = transform.position;
+
+        switch (LevelController.Instance.LevelState)
+        {
+            case LevelState.EASY:
+                {
+                    if (_chara == Chara.Player)
+                    {
+                        _charaSpeed = LevelController.Instance._easyPlayerStatus[0];
+                        _kbDis = LevelController.Instance._easyPlayerStatus[1];
+                        _kbTime = LevelController.Instance._easyPlayerStatus[2];
+                        _startPosX.x += LevelController.Instance._easyPlayerStatus[3] * -1;
+                    }
+                    else if (_chara == Chara.Enemy)
+                    {
+                        _charaSpeed = LevelController.Instance._easyEnemyStatus[0];
+                        _kbDis = LevelController.Instance._easyEnemyStatus[1];
+                        _kbTime = LevelController.Instance._easyEnemyStatus[2];
+                        _startPosX.x += LevelController.Instance._easyEnemyStatus[3];
+                    }
+                }
+                break;
+
+            case LevelState.NORMAL:
+                {
+                    if (_chara == Chara.Player)
+                    {
+                        _charaSpeed = LevelController.Instance._normalPlayerStatus[0];
+                        _kbDis = LevelController.Instance._normalPlayerStatus[1];
+                        _kbTime = LevelController.Instance._normalPlayerStatus[2];
+                        _startPosX.x += LevelController.Instance._normalPlayerStatus[3] * -1;
+                    }
+                    else if (_chara == Chara.Enemy)
+                    {
+                        _charaSpeed = LevelController.Instance._normalEnemyStatus[0];
+                        _kbDis = LevelController.Instance._normalEnemyStatus[1];
+                        _kbTime = LevelController.Instance._normalEnemyStatus[2];
+                        _startPosX.x += LevelController.Instance._normalEnemyStatus[3];
+                    }
+                }
+                break;
+
+            case LevelState.HARD:
+                {
+                    if (_chara == Chara.Player)
+                    {
+                        _charaSpeed = LevelController.Instance._hardPlayerStatus[0];
+                        _kbDis = LevelController.Instance._hardPlayerStatus[1];
+                        _kbTime = LevelController.Instance._hardPlayerStatus[2];
+                        _startPosX.x += LevelController.Instance._hardPlayerStatus[3] * -1;
+                    }
+                    else if (_chara == Chara.Player)
+                    {
+                        _charaSpeed = LevelController.Instance._hardEnemyStatus[0];
+                        _kbDis = LevelController.Instance._hardEnemyStatus[1];
+                        _kbTime = LevelController.Instance._hardEnemyStatus[2];
+                        _startPosX.x += LevelController.Instance._normalEnemyStatus[3];
+                    }
+                }
+                break;
+
+            case LevelState.EXPART:
+                {
+                    if (_chara == Chara.Player)
+                    {
+                        _charaSpeed = LevelController.Instance._expartPlayerStatus[0];
+                        _kbDis = LevelController.Instance._expartPlayerStatus[1];
+                        _kbTime = LevelController.Instance._expartPlayerStatus[2];
+                        _startPosX.x += LevelController.Instance._expartPlayerStatus[3] * -1;
+                    }
+                    else if (_chara == Chara.Player)
+                    {
+                        _charaSpeed = LevelController.Instance._expartEnemyStatus[0];
+                        _kbDis = LevelController.Instance._expartEnemyStatus[1];
+                        _kbTime = LevelController.Instance._expartEnemyStatus[2];
+                        _startPosX.x += LevelController.Instance._expartEnemyStatus[3];
+                    }
+                }
+                break;
+        }
+
+        transform.position = _startPosX;
+
+        if (_charaSpeed <= 0) { Debug.LogError("ç§»å‹•ã™ã‚‹å€¤ã‚’è¨­å®šã—ã¦ãã ã•ã„"); }
+        if (_kbDis <= 0) { Debug.LogError("ãƒãƒƒã‚¯ãƒãƒƒã‚¯è·é›¢ã®å€¤ã‚’è¨­å®šã—ã¦ãã ã•ã„"); }
+        if (_kbTime <= 0) { Debug.LogError("ãƒãƒƒã‚¯ãƒãƒƒã‚¯æ™‚é–“ã‚’è¨­å®šã—ã¦ãã ã•ã„"); }
+
         _isMove = false;
     }
 
@@ -67,7 +154,7 @@ public class CharacterScript : MonoBehaviour
 
     public void MoveStart()
     {
-        if(_isMove)
+        if (_isMove)
         {
             _isMove = false;
         }

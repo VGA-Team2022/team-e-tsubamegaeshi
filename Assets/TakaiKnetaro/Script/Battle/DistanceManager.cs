@@ -32,12 +32,16 @@ public class DistanceManager : MonoBehaviour
     private Transform _end;
     [SerializeField, Tooltip("静止する線形距離")]
     private float _stopDistance = 0.05f;
+    [SerializeField, Tooltip("敵を停止する位置")]
+    private float _enemyStopPos = 0.95f;
 
     [Header("マネージャー")]
     [SerializeField, Tooltip("StateTest")]
     private StateManager _stateManager;
     [SerializeField]
     private TargetCamera _targetCamera;
+    [SerializeField]
+    private SceneChangeResult _sceneChangeResult;
 
     [Tooltip("プレイヤーの現在の座標")]
     private Vector3 _playerCurrentPos;
@@ -62,6 +66,7 @@ public class DistanceManager : MonoBehaviour
             Debug.LogError("座標が不正な値です");
             return;
         }
+
         _sum = Mathf.Abs(_start.position.x) + Mathf.Abs(_end.position.x);
 
         if (_playerPrefab != null)
@@ -87,6 +92,8 @@ public class DistanceManager : MonoBehaviour
         {
             Debug.LogError("プレハブにEnemyを設定してください");
         }
+
+        _enemyStopPos = (_end.position.x - _start.position.x) * _enemyStopPos + _start.position.x;
 
         _isBattleCheck = true;
 
@@ -117,9 +124,15 @@ public class DistanceManager : MonoBehaviour
         float playerLerp = LerpTranslate(_player.transform.position.x);
         float enemyLerp = LerpTranslate(_enemy.transform.position.x);
 
+        
         _isBattleCheck = DistanceCheck(playerLerp, enemyLerp);
-
-        if(!_isBattleCheck)
+        
+        if(_isBattleCheck)
+        {
+            _isBattleCheck = SpecialCheck(_enemy.transform.position.x);
+        }
+ 
+        if (!_isBattleCheck)
         {
             _stateManager.AttackTimer();
         }
@@ -153,6 +166,8 @@ public class DistanceManager : MonoBehaviour
         else if (battle == StateManager.BattleEndState.Lose)
         {
             Debug.Log("負け");
+            ResultManager._resultState = ResultState.LOSE;
+            _sceneChangeResult.GoResult();
             //Destroy(_player);
         }
         else if (battle == StateManager.BattleEndState.Draw)
@@ -160,7 +175,34 @@ public class DistanceManager : MonoBehaviour
             _charaPlayer.KnockBack();
             _charaEnemy.MoveStart();
         }
-        StartCoroutine(nameof(ResetInterval));
+        else if (battle == StateManager.BattleEndState.Special)
+        {
+            Debug.Log("勝利");
+            ResultManager._resultState = ResultState.WIN;
+            _sceneChangeResult.GoResult();
+        }
+        StartCoroutine(ResetInterval());
+    }
+
+    /// <summary>
+    /// エネミーのX軸が一定距離を超えたら機能する関数
+    /// </summary>
+    /// <param name="posx"></param>
+    /// <returns></returns>
+    private bool SpecialCheck(float posx)
+    {
+        if (posx >= _enemyStopPos)
+        {
+            _stateManager.EnemyStateSpecial();
+            _charaPlayer._isMove = true;
+            _charaEnemy._isMove = true;
+            _isBattleCheck = false;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     /// <summary>
@@ -175,13 +217,12 @@ public class DistanceManager : MonoBehaviour
         {
             _charaPlayer._isMove = true;
             _charaEnemy._isMove = true;
+            _isBattleCheck = false;
             _stateManager.EnemyStateSet();
             return false;
         }
         else
         {
-            //_charaPlayer._isMove = false;
-            //_charaEnemy._isMove = false;
             return true;
         }
     }
@@ -189,8 +230,6 @@ public class DistanceManager : MonoBehaviour
     IEnumerator ResetInterval()
     {
         yield return new WaitForSeconds(_stateManager._interval);
-        //_charaPlayer._isMove = false;
-        //_charaEnemy._isMove = false;
         float playerLerp = LerpTranslate(_player.transform.position.x);
         float enemyLerp = LerpTranslate(_enemy.transform.position.x);
         _isBattleCheck = DistanceCheck(playerLerp, enemyLerp);

@@ -42,6 +42,10 @@ public class EnemyStateController : MonoBehaviour
                 _animator.Play("EnemyAttackGreen");
                 Debug.Log($"Enemyのアニメーション{StateManager.BattleState.Paper}を再生");
                 break;
+            case StateManager.BattleState.Special:
+                _animator.Play("EnemyAttackSpecial");
+                Debug.Log($"Enemyのアニメーション{StateManager.BattleState.Special}を再生");
+                break;
         }
 
     }
