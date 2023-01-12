@@ -58,6 +58,8 @@ public class StateManager : MonoBehaviour
     [SerializeField]
     private string _cueName = "BattleLoop";
 
+    List<IEnumerator> _attackCoroutineList = new List<IEnumerator>();
+
     private void Start()
     {
         AudioManager.Instance.PlayBgm(_cueName);
@@ -118,20 +120,26 @@ public class StateManager : MonoBehaviour
 
     public void AttackTimer()
     {
-        StartCoroutine(AttackTimerCoroutine());
+        IEnumerator attackTimerCortoutine = AttackTimerCoroutine();
+        _attackCoroutineList.Add(attackTimerCortoutine);
+        StartCoroutine(attackTimerCortoutine);
 
-        StartCoroutine(AttackGraceTime());
+        IEnumerator attackGraceTime = AttackGraceTime();
+        _attackCoroutineList.Add(attackGraceTime);
+        StartCoroutine(attackGraceTime);
     }
 
     IEnumerator AttackTimerCoroutine()
     {
         yield return new WaitForSeconds(_attackTimer);
+
         ChangeBattleEndState(BattleEndState.Lose);
     }
 
     IEnumerator AttackGraceTime()
     {
         yield return new WaitForSeconds(_attackTimer - 1.0f);
+
         _enemyAnim.SetTrigger("Attack");
     }
 
@@ -237,6 +245,12 @@ public class StateManager : MonoBehaviour
     /// </summary>
     void Battle()
     {
+        foreach (var routine in _attackCoroutineList)
+        {
+            StopCoroutine(routine);
+        }
+        _attackCoroutineList.Clear();
+
         switch (_playerState)
         {
             case BattleState.Rock:
