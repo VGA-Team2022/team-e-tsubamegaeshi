@@ -113,6 +113,8 @@ public class StateManager : MonoBehaviour
     public void AttackTimer()
     {
         StartCoroutine(AttackTimerCoroutine());
+
+        StartCoroutine(AttackGraceTime());
     }
 
     IEnumerator AttackTimerCoroutine()
@@ -120,6 +122,23 @@ public class StateManager : MonoBehaviour
         yield return new WaitForSeconds(_attackTimer);
         ChangeBattleEndState(BattleEndState.Lose);
     }
+
+    IEnumerator AttackGraceTime()
+    {
+        yield return new WaitForSeconds(_attackTimer - 1.0f);
+        _enemyAnim.SetTrigger("Attack");
+    }
+
+    //public void AttackTimer()
+    //{
+    //    StartCoroutine(AttackTimerCoroutine());
+    //}
+
+    //IEnumerator AttackTimerCoroutine()
+    //{
+    //    yield return new WaitForSeconds(_attackTimer);
+    //    ChangeBattleEndState(BattleEndState.Lose);
+    //}
 
     /// <summary>
     /// エネミーの出す手を決めて変更する処理
