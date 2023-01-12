@@ -54,8 +54,14 @@ public class StateManager : MonoBehaviour
     [SerializeField]
     Animator _enemyAnim;
 
+    [Header("Audio")]
+    [SerializeField]
+    private string _cueName = "BattleLoop";
+
     private void Start()
     {
+        AudioManager.Instance.PlayBgm(_cueName);
+
         switch(LevelController.Instance.LevelState)
         {
             case LevelState.EASY:
