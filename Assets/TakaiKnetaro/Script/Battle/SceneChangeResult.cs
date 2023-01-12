@@ -24,7 +24,7 @@ public class SceneChangeResult : MonoBehaviour
                 break;
             case ResultState.LOSE:
                 {
-                    time -= _loseTimer;
+                    time = _loseTimer;
                     StartCoroutine(GoResultTimer());
                 }
                 break;
@@ -33,6 +33,7 @@ public class SceneChangeResult : MonoBehaviour
 
     IEnumerator  GoResultTimer()
     {
+        Debug.Log(ResultManager._resultState);
         yield return new WaitForSeconds(time);
         SceneManager.LoadScene("Result");
     }

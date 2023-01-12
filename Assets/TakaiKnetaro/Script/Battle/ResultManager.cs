@@ -7,11 +7,12 @@ public enum ResultState
 {
     WIN = 0,
     LOSE = 1,
+    NONE = 2,
 }
 
 public class ResultManager : MonoBehaviour
 {
-    static public ResultState _resultState;
+    static public ResultState _resultState = ResultState.NONE;
 
     [SerializeField]
     private Text _text;

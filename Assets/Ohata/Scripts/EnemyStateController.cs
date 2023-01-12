@@ -18,29 +18,47 @@ public class EnemyStateController : MonoBehaviour
 
     public void OnEnemyChangeMode(StateManager.BattleState janken)
     {
-        switch (janken)
+        switch (ResultManager._resultState)
         {
-            case StateManager.BattleState.NONE:
+            case ResultState.NONE:
+                {
+                    switch (janken)
+                    {
+                        case StateManager.BattleState.NONE:
 
+                            break;
+                        case StateManager.BattleState.Rock:
+                            _animator.Play("EnemyAttackRed");
+                            Debug.Log($"Enemyのアニメーション{StateManager.BattleState.Rock}を再生");
+                            break;
+                        case StateManager.BattleState.Scissors:
+                            _animator.Play("EnemyAttackBlue");
+                            Debug.Log($"Enemyのアニメーション{StateManager.BattleState.Scissors}を再生");
+                            break;
+                        case StateManager.BattleState.Paper:
+                            _animator.Play("EnemyAttackGreen");
+                            Debug.Log($"Enemyのアニメーション{StateManager.BattleState.Paper}を再生");
+                            break;
+                        case StateManager.BattleState.Special:
+                            _animator.Play("EnemyAttackSpecial");
+                            Debug.Log($"Enemyのアニメーション{StateManager.BattleState.Special}を再生");
+                            break;
+                    }
+                }
                 break;
-            case StateManager.BattleState.Rock:
-                _animator.Play("EnemyAttackRed");
-                Debug.Log($"Enemyのアニメーション{StateManager.BattleState.Rock}を再生");
+
+            case ResultState.WIN:
+                {
+                    _animator.Play("Death");
+                }
                 break;
-            case StateManager.BattleState.Scissors:
-                _animator.Play("EnemyAttackBlue");
-                Debug.Log($"Enemyのアニメーション{StateManager.BattleState.Scissors}を再生");
-                break;
-            case StateManager.BattleState.Paper:
-                _animator.Play("EnemyAttackGreen");
-                Debug.Log($"Enemyのアニメーション{StateManager.BattleState.Paper}を再生");
-                break;
-            case StateManager.BattleState.Special:
-                _animator.Play("EnemyAttackSpecial");
-                Debug.Log($"Enemyのアニメーション{StateManager.BattleState.Special}を再生");
+
+            case ResultState.LOSE:
+                {
+                    _animator.Play("EnemyWin");
+                }
                 break;
         }
-
     }
 
     public void OnEnemyBsttle(StateManager.BattleEndState shouhai)
