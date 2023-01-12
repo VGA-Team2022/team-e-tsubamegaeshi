@@ -59,10 +59,12 @@ public class StateManager : MonoBehaviour
     private string _cueName = "BattleLoop";
 
     List<IEnumerator> _attackCoroutineList = new List<IEnumerator>();
+    AudioManager _audioManager;
 
     private void Start()
     {
-        AudioManager.Instance.PlayBgm(_cueName);
+        _audioManager = AudioManager.Instance;
+        _audioManager.PlayBgm(_cueName);
 
         switch(LevelController.Instance.LevelState)
         {
@@ -165,18 +167,21 @@ public class StateManager : MonoBehaviour
             case 1:
                 _enemyState = BattleState.Rock;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Rock);
+                _audioManager.PlaySE("Voice_MusashiAttack1");
                 _actionOnDisplay.OnDisplay(0, _attackTimer);
                 Debug.Log($"ìG:{BattleState.Rock}");
                 break;
             case 2:
                 _enemyState = BattleState.Scissors;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Scissors);
+                _audioManager.PlaySE("Voice_MusashiAttack2");
                 _actionOnDisplay.OnDisplay(1, _attackTimer);
                 Debug.Log($"ìG:{BattleState.Scissors}");
                 break;
             case 3:
                 _enemyState = BattleState.Paper;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Paper);
+                _audioManager.PlaySE("Voice_MusashiAttack3");
                 _actionOnDisplay.OnDisplay(2, _attackTimer);
                 Debug.Log($"ìG:{BattleState.Paper}");
                 break;
@@ -353,12 +358,14 @@ public class StateManager : MonoBehaviour
                 {
                     Debug.Log($"êÌì¨åãâ {next}");
                     _distanceManager?.SetUp(BattleEndState.Win);
+                    _audioManager.PlaySE("BattlePlayerRepel");
                     StateReSet();
                 }
                 break;
             case BattleEndState.Lose:
                 {
                     Debug.Log($"êÌì¨åãâ {next}");
+                    _audioManager.PlaySE("BattlePlayerDeath");
                     _distanceManager?.SetUp(BattleEndState.Lose);
                     StateReSet();
                 }
@@ -366,6 +373,7 @@ public class StateManager : MonoBehaviour
             case BattleEndState.Draw:
                 {
                     Debug.Log($"êÌì¨åãâ {next}");
+                    _audioManager.PlaySE("BattleEnemyRepel");
                     _distanceManager?.SetUp(BattleEndState.Draw);
                     StateReSet();
                 }
