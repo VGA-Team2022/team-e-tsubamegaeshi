@@ -8,7 +8,7 @@ public class EnemyStateController : MonoBehaviour
 
     [SerializeField]
     private Animator _animator;
-    void Start()
+    void Awake()
     {
         if (_animator == null)
         {

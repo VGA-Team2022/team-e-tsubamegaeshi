@@ -250,6 +250,8 @@ public class StateManager : MonoBehaviour
     /// </summary>
     void Battle()
     {
+        _enemyAnim.SetTrigger("Walk");
+
         foreach (var routine in _attackCoroutineList)
         {
             StopCoroutine(routine);
