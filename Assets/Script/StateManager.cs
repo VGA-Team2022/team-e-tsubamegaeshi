@@ -93,6 +93,7 @@ public class StateManager : MonoBehaviour
     public void AttackTimer()
     {
         StartCoroutine(nameof(AttackTimerCoroutine));
+        StartCoroutine(AttackGraceTime());
     }
 
     /// <summary>
@@ -107,7 +108,7 @@ public class StateManager : MonoBehaviour
 
     IEnumerator AttackGraceTime()
     {
-        yield return new WaitForSeconds(_attackTimer);
+        yield return new WaitForSeconds(_attackGraceTime);
         _enemyAnim.SetTrigger("Attack");
     }
 
