@@ -164,6 +164,7 @@ MonoBehaviour:
   _enemyStateController: {fileID: 0}
   _playerAnim: {fileID: 0}
   _enemyAnim: {fileID: 0}
+  _cueName: BattleLoop
 --- !u!4 &183484679
 Transform:
   m_ObjectHideFlags: 0
@@ -1319,10 +1320,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 141186, guid: 53c22e1773be7f84aad8ed8b7b58fa6e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 11486218, guid: 53c22e1773be7f84aad8ed8b7b58fa6e, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1654,7 +1651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1e75d7e650cf843abf0ced759d1a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timer: 0.01
+  _winTimer: 0
+  _loseTimer: 0
 --- !u!1 &1499609061
 GameObject:
   m_ObjectHideFlags: 3
