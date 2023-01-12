@@ -707,6 +707,10 @@ PrefabInstance:
       value: Select
       objectReference: {fileID: 0}
     - target: {fileID: 4481664765142830502, guid: f9c35d5c5ccc5344b88c576681a77f44, type: 3}
+      propertyPath: Setting.Array.data[1].Scene
+      value: Description
+      objectReference: {fileID: 0}
+    - target: {fileID: 4481664765142830502, guid: f9c35d5c5ccc5344b88c576681a77f44, type: 3}
       propertyPath: Setting.Array.data[0].Button
       value: 
       objectReference: {fileID: 2037295123}
