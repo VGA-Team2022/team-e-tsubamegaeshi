@@ -65,6 +65,7 @@ public class StateManager : MonoBehaviour
     {
         _audioManager = AudioManager.Instance;
         _audioManager.PlayBgm(_cueName);
+        _audioManager.PlaySE("SE_BattleStart");
 
         switch(LevelController.Instance.LevelState)
         {
@@ -167,21 +168,21 @@ public class StateManager : MonoBehaviour
             case 1:
                 _enemyState = BattleState.Rock;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Rock);
-                _audioManager.PlaySE("Voice_MusashiAttack1");
+                //_audioManager.PlaySE("Voice_MusashiAttack1");
                 _actionOnDisplay.OnDisplay(0, _attackTimer);
                 Debug.Log($"“G:{BattleState.Rock}");
                 break;
             case 2:
                 _enemyState = BattleState.Scissors;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Scissors);
-                _audioManager.PlaySE("Voice_MusashiAttack2");
+                //_audioManager.PlaySE("Voice_MusashiAttack2");
                 _actionOnDisplay.OnDisplay(1, _attackTimer);
                 Debug.Log($"“G:{BattleState.Scissors}");
                 break;
             case 3:
                 _enemyState = BattleState.Paper;
                 _enemyStateController.OnEnemyChangeMode(BattleState.Paper);
-                _audioManager.PlaySE("Voice_MusashiAttack3");
+                //_audioManager.PlaySE("Voice_MusashiAttack3");
                 _actionOnDisplay.OnDisplay(2, _attackTimer);
                 Debug.Log($"“G:{BattleState.Paper}");
                 break;

@@ -41,7 +41,7 @@ public class PlayerStateController : MonoBehaviour
                             break;
                         case StateManager.BattleState.Special:
                             _animator.Play("PlayerSpecialAttack");
-                            AudioManager.Instance.PlaySE("Voice_TsubameGaeshi");
+                            //AudioManager.Instance.PlaySE("Voice_TsubameGaeshi");
                             Debug.Log($"Playerのアニメーション{StateManager.BattleState.Special}を再生");
                             break;
                     }
